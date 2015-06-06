@@ -11,8 +11,8 @@
 #define MESSATRAVERSE 4
 #define MESSSORT 5
 
-#define PASTRAVERSE 0
-#define TRAVERSE 1
+#define PASTRAVERSE 1
+#define TRAVERSE 2
 #define ATRAVERSE 0
 
 /**

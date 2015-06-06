@@ -21,7 +21,7 @@ void constructionReponse(Requete *req,Reponse *rep)
 {
 	rep->type = req->pidEmetteur;
 
-	if (croisements[req->croisement] == 0)
+	if (croisements[req->croisement] == PASTRAVERSE || croisements[req->croisement] == ATRAVERSE)
 		rep->autorisation = 1;
 	else
 		rep->autorisation = 0;
