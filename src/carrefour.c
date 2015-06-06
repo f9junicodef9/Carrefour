@@ -64,7 +64,10 @@ void affiche_carrefour()
 	printf("\n--------------------------------------------\n");
 	for (i=0;i<TAILLE;i++) {
 		for (j=0;j<TAILLE;j++) {
-			printf("%d\t", croisements[i*TAILLE+j]);
+			if (croisements[i*TAILLE+j] == -1)
+				printf(" \t");
+			else
+				printf("%d\t", croisements[i*TAILLE+j]);
 		}
 		printf("\n");
 	}
