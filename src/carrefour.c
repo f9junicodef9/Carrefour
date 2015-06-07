@@ -48,8 +48,10 @@ void maj_carrefour(Requete *req)
 	P(MUTEX);
 	int i = req->croisement;
 	int etat = req->traverse;
-	croisements[i] = etat;
-//	affiche_carrefour();
+	if ( (croisements[i] != TRAVERSE) || (etat == ATRAVERSE)) {
+		croisements[i] = etat;
+//		affiche_carrefour();
+	}
 	V(MUTEX);
 }
 

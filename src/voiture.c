@@ -98,12 +98,19 @@ void voiture(int numero, int voie)
 		maj_position(&v, croisement_numero, PASTRAVERSE);
 		constructionRequete(&req, &v, croisement_numero, croisement_voie, PASTRAVERSE, MESSDEMANDE);
 		affichageRequete(&req);
+		msgsnd(msgid,&req,tailleReq,0);
 		V(MUTEX);
 
-		do {
-			msgsnd(msgid,&req,tailleReq,0);
-			msgrcv(msgid,&rep,tailleRep,getpid(),0);
-		} while (rep.autorisation == 0);
+		msgrcv(msgid,&rep,tailleRep,getpid(),0);
+		affichageReponse(&req,&rep);
+		if (rep.autorisation == 0) {
+			while (rep.autorisation == 0) {
+				msgsnd(msgid,&req,tailleReq,0);
+				msgrcv(msgid,&rep,tailleRep,getpid(),0);
+				sleep(1);
+			}
+			affichageReponse(&req,&rep);
+		}
 
 		P(MUTEX);
 		maj_position(&v, croisement_numero, TRAVERSE);
