@@ -3,7 +3,7 @@
 
 #define MUTEX 1
 
-#define MAXPAUSE 2
+#define MAXPAUSE 5
 
 #define MESSARRIVE 1
 #define MESSDEMANDE 2
@@ -99,7 +99,7 @@ typedef struct {
 extern int tailleReq;	/*!< La taille d'une requete. */
 extern int tailleRep;	/*!< La taille d'une reponse. */
 
-extern int croisements[25];	/*!< La representation d'un carrefour. */
+extern int croisements[];	/*!< La representation d'un carrefour. */
 
 extern int msgid;	/*!< La file de message utilisee pour communiquer entre les voitures et le carrefour */
 extern int sem_id;	/*!< L'identifiant de l'ensemble de semaphores */

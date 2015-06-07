@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include "project.h"
 #include "serveur.h"
+#include "interface.h"
 
 /**
  * \fn void constructionReponse(Requete *req,Reponse *rep)
@@ -36,5 +37,10 @@ void constructionReponse(Requete *req,Reponse *rep)
  */
 void affichageReponse(Requete *req,Reponse *rep)
 {
-
+	if (rep->autorisation == 1)
+		snprintf(buffer, sizeof(buffer), "Autorise voie %d\n", req->voie);
+	else
+		snprintf(buffer, sizeof(buffer), "Interdit voie %d\n", req->voie);
+				
+	message(req->v.numero, buffer);
 }

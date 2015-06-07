@@ -25,10 +25,10 @@ void carrefour()
 	initRand();
 
 	while (1) {
-		msgrcv(msgid,&req,3*tailleReq,0,0);
+		msgrcv(msgid,&req,tailleReq,0,0);
 
 		if ((req.type == MESSDEMANDE) || (req.type == MESSTRAVERSE) || (req.type == MESSATRAVERSE))
-		maj_carrefour(&req);
+			maj_carrefour(&req);
 
 		if (req.type == MESSDEMANDE) {
 			constructionReponse(&req,&rep);
@@ -45,10 +45,12 @@ void carrefour()
  */
 void maj_carrefour(Requete *req)
 {
+	P(MUTEX);
 	int i = req->croisement;
 	int etat = req->traverse;
 	croisements[i] = etat;
 //	affiche_carrefour();
+	V(MUTEX);
 }
 
 /**
@@ -57,8 +59,6 @@ void maj_carrefour(Requete *req)
  */
 void affiche_carrefour()
 {
-	P(MUTEX);
-	
 	int i, j;
 
 	printf("\n--------------------------------------------\n");
@@ -72,6 +72,4 @@ void affiche_carrefour()
 		printf("\n");
 	}
 	printf("--------------------------------------------\n");
-	
-	V(MUTEX);
 }

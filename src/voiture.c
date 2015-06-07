@@ -74,8 +74,9 @@ void voiture(int numero, int voie)
 
 	v.numero = numero;
 
+	initRand();
+
 	if (voie == -1) {
-		initRand();
 		int voie_random = rand()%12+1;
 		v.voie = &voies[voie_random-1];
 	} else
