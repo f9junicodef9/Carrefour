@@ -8,6 +8,8 @@
 #include "serveur.h"
 #include "interface.h"
 
+#define MAXFILE 1
+
 /**
  * \fn void constructionReponse(Requete *req,Reponse *rep)
  * \brief Construit une reponse pour le client.
@@ -22,10 +24,37 @@ void constructionReponse(Requete *req,Reponse *rep)
 {
 	rep->type = req->pidEmetteur;
 
-	if (croisements[req->croisement] == PASTRAVERSE || croisements[req->croisement] == ATRAVERSE)
-		rep->autorisation = 1;
-	else
-		rep->autorisation = 0;
+	int i = req->croisement;
+	int traverse = req->traverse;
+	int orientation = req->croisement_orientation;
+
+	rep->autorisation = 0;
+	
+	if (traverse == AVANT) {
+		if (orientation == HO) {
+			if (croisements[i].avantH < MAXFILE) {
+				rep->autorisation = 1;
+			}
+		} else {
+			if (croisements[i].avantV < MAXFILE) {
+				rep->autorisation = 1;
+			}
+		}
+	} else if (traverse == PENDANT) {
+			if (croisements[i].etat == 0) {
+				rep->autorisation = 1;
+			}
+	} else if (traverse == APRES) {
+		if (orientation == HO) {
+			if (croisements[i].apresH < MAXFILE) {
+				rep->autorisation = 1;
+			}
+		} else {
+			if (croisements[i].apresV < MAXFILE) {
+				rep->autorisation = 1;
+			}	
+		}
+	}
 }
 
 /**
@@ -37,10 +66,18 @@ void constructionReponse(Requete *req,Reponse *rep)
  */
 void affichageReponse(Requete *req,Reponse *rep)
 {
-	if (rep->autorisation == 1)
-		snprintf(buffer, sizeof(buffer), "Autorise voie %d\n", req->voie);
-	else
-		snprintf(buffer, sizeof(buffer), "Interdit voie %d\n", req->voie);
+	int traverse = req->traverse;
+	
+	if (traverse == AVANT) {
+		if (rep->autorisation == 1) snprintf(buffer, sizeof(buffer), "Autorise. avant voie %d\n", req->voie);
+		else if (rep->autorisation == 0) snprintf(buffer, sizeof(buffer), "Interdit. avant voie %d\n", req->voie);
+	} else if (traverse == PENDANT) {
+		if (rep->autorisation == 1) snprintf(buffer, sizeof(buffer), "Autorise. traverse voie %d\n", req->voie);
+		else if (rep->autorisation == 0) snprintf(buffer, sizeof(buffer), "Interdit. traverse voie %d\n", req->voie);
+	} else if (traverse == APRES) {
+		if (rep->autorisation == 1) snprintf(buffer, sizeof(buffer), "Autorise. apres voie %d\n", req->voie);
+		else if (rep->autorisation == 0) snprintf(buffer, sizeof(buffer), "Interdit. apres voie %d\n", req->voie);
+	}
 				
 	message(req->v.numero, buffer);
 }

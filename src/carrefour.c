@@ -11,7 +11,7 @@
 #define TAILLE 5
 
 /*! Represente le carrefour. Les valeurs 0 representent des sections critiques ; Les valeurs -1 representent des sections non critiques, donc facultatives, mais tout de meme representees par soucis de simplicite. */
-int croisements[25] = {0,0,-1,0,0,0,0,0,0,0,-1,0,-1,0,-1,0,0,0,0,0,0,0,-1,0,0};
+Croisement croisements[25] = {{0},{0},{-1},{0},{0},{0},{0},{0},{0},{0},{-1},{0},{-1},{0},{-1},{0},{0},{0},{0},{0},{0},{0},{-1},{0},{0}};
 
 /**
  * \fn void carrefour()
@@ -27,11 +27,14 @@ void carrefour()
 	while (1) {
 		msgrcv(msgid,&req,tailleReq,0,0);
 
-		if ((req.type == MESSDEMANDE) || (req.type == MESSTRAVERSE) || (req.type == MESSATRAVERSE))
+		if (req.type == MESSSORT) {
 			maj_carrefour(&req);
+		}
 
 		if (req.type == MESSDEMANDE) {
 			constructionReponse(&req,&rep);
+			if (rep.autorisation == 1)
+				maj_carrefour(&req);
 			msgsnd(msgid,&rep,tailleRep,0);
 		}
 	}
@@ -46,12 +49,55 @@ void carrefour()
 void maj_carrefour(Requete *req)
 {
 	P(MUTEX);
+	
 	int i = req->croisement;
+	int j = req->croisement_precedent;
 	int etat = req->traverse;
-	if ( (croisements[i] != TRAVERSE) || (etat == ATRAVERSE)) {
-		croisements[i] = etat;
-//		affiche_carrefour();
+	int type = req->type;
+	int orientation = req->croisement_orientation;
+	int orientation_precedent = req->croisement_precedent_orientation;
+	
+	if (type == MESSSORT) {
+		if (j != -1) {
+			if (orientation_precedent == HO) {
+				croisements[j].apresH--;
+			} else {
+				croisements[j].apresV--;
+			}		
+		}
 	}
+	
+	if (etat == AVANT) {
+		if (j != -1) {
+			if (orientation_precedent == HO) {
+				croisements[j].apresH--;
+			} else {
+				croisements[j].apresV--;
+			}
+		}
+		
+		if (orientation == HO) {
+			croisements[i].avantH++;
+		} else {
+			croisements[i].avantV++;
+		}
+	} else if (etat == PENDANT) {
+		if (orientation == HO) {
+			croisements[i].avantH--;
+		} else {
+			croisements[i].avantV--;
+		}
+		croisements[i].etat = 1;
+	} else if (etat == APRES) {
+		croisements[i].etat = 0;
+		if (orientation == HO) {
+			croisements[i].apresH++;
+		} else {
+			croisements[i].apresV++;
+		}
+	}
+	
+//	affiche_carrefour();
 	V(MUTEX);
 }
 
@@ -66,10 +112,10 @@ void affiche_carrefour()
 	printf("\n--------------------------------------------\n");
 	for (i=0;i<TAILLE;i++) {
 		for (j=0;j<TAILLE;j++) {
-			if (croisements[i*TAILLE+j] == -1)
+			if (croisements[i*TAILLE+j].etat == -1)
 				printf(" \t");
 			else
-				printf("%d\t", croisements[i*TAILLE+j]);
+				printf("%d\t", croisements[i*TAILLE+j].etat);
 		}
 		printf("\n");
 	}

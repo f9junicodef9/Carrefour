@@ -123,9 +123,11 @@ void traitantSIGINT(int s)
 void premiere_ligne(int num)
 {
 	int i;
+	P(MUTEX);
 	for (i = 0 ; i < num ; i++) {
 		snprintf(buffer, sizeof(buffer), "     %s  %d     ", "Voiture", i);
 		message(0, buffer);
 	}
 	message(0, "\n\n");
+	V(MUTEX);
 }
