@@ -3,7 +3,8 @@
 
 #define MUTEX 1
 
-#define MAXPAUSE 1
+#define MAXPAUSE 500000
+#define MINPAUSE 100
 
 #define MESSARRIVE 1
 #define MESSDEMANDE 2
@@ -68,8 +69,6 @@ typedef struct Voiture {
 	int numero;	/*!< Le numero de la voiture. */
 	Voie *voie;	/*!< La voie attribuee a la voiture. */
 	int carrefour;
-	int position;	/*!< Le croisement ou se trouve la voiture le cas echeant. */
-	int position_traversee;	/*!< L'etat de traversement du croisement le cas echeant. */
 } Voiture;
 
 /**
@@ -124,12 +123,17 @@ typedef struct {
 	Voiture v;
 } Reponse;
 
+typedef struct Carrefour {
+	Croisement croisements[25];
+} Carrefour;
+
 extern int tailleReq;	/*!< La taille d'une requete. */
 extern int tailleRep;	/*!< La taille d'une reponse. */
 
-extern Croisement croisements[];	/*!< La representation d'un carrefour. */
-
-extern int msgid;	/*!< La file de message utilisee pour communiquer entre les voitures et le carrefour */
+extern int msgid_serveur;	/*!< La file de message utilisee pour communiquer entre le serveur et les carrefour */
+extern int msgid_carrefour[];	/*!< Les files de message utilisees pour communiquer entre les voitures et les carrefour */
 extern int sem_id;	/*!< L'identifiant de l'ensemble de semaphores */
+extern int shm_id[4];
+extern int compteur;
 
 #endif

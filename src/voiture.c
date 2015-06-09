@@ -6,7 +6,8 @@
 #include <stdlib.h>
 #include "project.h"
 #include "voiture.h"
-#include "sys/time.h"
+#include "interface.h"
+#include <sys/time.h>
 
 /*! Represente les 12 voies du carrefour. */
 Voie voies[12] = {	{1,{15,16,17,13,8,3},{11,7,10,4,7,8},{HO,HO,VE,VE,VE,VE}},
@@ -135,25 +136,25 @@ void voiture(int numero, int voie, int carrefour)
 		}
 
 		create_question(&req, &v, v.carrefour, croisement_precedent_numero, croisement_precedent_orientation, croisement_numero, croisement_orientation, croisement_voie, AVANT, MESSDEMANDE);
-		receive_answer(&req,&rep);
+		receive_answer(&req,v.carrefour);
 		
 		create_question(&req, &v, v.carrefour, croisement_precedent_numero, croisement_precedent_orientation, croisement_numero, croisement_orientation, croisement_voie, AVANT, MESSINFO);
 
-		sleep(rand()%MAXPAUSE+1);
+		usleep(rand()%MAXPAUSE+MINPAUSE);
 		
 		create_question(&req, &v, v.carrefour, croisement_precedent_numero, croisement_precedent_orientation, croisement_numero, croisement_orientation, croisement_voie, PENDANT, MESSDEMANDE);		
-		receive_answer(&req,&rep);		
+		receive_answer(&req,v.carrefour);		
 
 		create_question(&req, &v, v.carrefour, croisement_precedent_numero, croisement_precedent_orientation, croisement_numero, croisement_orientation, croisement_voie, PENDANT, MESSINFO);
 		
-		sleep(rand()%MAXPAUSE+1);
+		usleep(rand()%MAXPAUSE+MINPAUSE);
 
 		create_question(&req, &v, v.carrefour, croisement_precedent_numero, croisement_precedent_orientation, croisement_numero, croisement_orientation, croisement_voie, APRES, MESSDEMANDE);		
-		receive_answer(&req,&rep);
+		receive_answer(&req,v.carrefour);
 
 		create_question(&req, &v, v.carrefour, croisement_precedent_numero, croisement_precedent_orientation, croisement_numero, croisement_orientation, croisement_voie, APRES, MESSINFO);
 
-		sleep(rand()%MAXPAUSE+1);
+		usleep(rand()%MAXPAUSE+MINPAUSE);
 	}
 	
 	croisement_precedent_numero = v.voie->sem_num[i-1];
@@ -165,32 +166,20 @@ void voiture(int numero, int voie, int carrefour)
 		create_question(&req, &v, v.carrefour, croisement_precedent_numero, croisement_precedent_orientation, -1, -1, v.voie->numero, -1, MESSSORT);			
 	}
 
-	if (assoc_carrefours[v.carrefour-1][v.voie->numero-1] == -1) exit(0);
+	if (assoc_carrefours[v.carrefour-1][v.voie->numero-1] == -1) {
+		P(MUTEX);
+		int *c = (int *) shmat(compteur, NULL, 0);
+		(*c)++;
+		sprintf(buffer, "%d Voitures sont sorties\n", *c);
+		message(0, buffer);
+		V(MUTEX);
+		exit(0);
+	}
 	
-	sleep(rand()%MAXPAUSE+1);
+	usleep(rand()%MAXPAUSE+MINPAUSE);
 			
 	voiture(v.numero, assoc_voies[v.voie->numero-1], assoc_carrefours[v.carrefour-1][v.voie->numero-1]);
 }
-
-/**
- * \fn void maj_position(Voiture *v, int position, int traverse)
- * \brief Met a jour la position de la voiture dans sa structure.
- *
- *					!!!! INUTILISEE !!!! => a voir si reellement utile, sinon supprimer et mettre a jour structure Voiture
- *
- * \param v Pointeur sur la voiture a mettre a jour.
- * \param position L'indice du croisement ou se trouve la voiture.
- * \param traverse L'etat de traversement (directement lie aux informations de traversement). Peut valoir :
- * - AVANT
- * - PENDANT
- * - APRES
- */
-void maj_position(Voiture *v, int position, int traverse)
-{
-	v->position = position;
-	v->position_traversee = traverse;
-}
-
 
 /**
  * \fn void create_question(Requete *req, Voiture *v, int croisement_precedent, int croisement_precedent_orientation, int croisement, int croisement_orientation, int voie, int traverse, int type)
@@ -217,7 +206,7 @@ void create_question(Requete *req, Voiture *v, int carrefour, int croisement_pre
 	P(MUTEX);
 	constructionRequete(req, v, carrefour, croisement_precedent, croisement_precedent_orientation, croisement, croisement_orientation, voie, traverse, type);
 	affichageRequete(req);
-	msgsnd(msgid,req,tailleReq,0);
+	msgsnd(msgid_carrefour[carrefour-1],req,tailleReq,0);
 	V(MUTEX);
 }
 
@@ -232,21 +221,23 @@ void create_question(Requete *req, Voiture *v, int carrefour, int croisement_pre
  * \param req Pointeur vers la requete qui a ete envoyee.
  * \param rep Pointeur vers la reponse a afficher.
  */
-void receive_answer(Requete *req, Reponse *rep)
+void receive_answer(Requete *req, int carrefour)
 {
-	msgrcv(msgid,rep,tailleRep,getpid(),0);
+	Reponse rep;
+	msgrcv(msgid_carrefour[carrefour-1],&rep,tailleRep,getpid(),0);
 	P(MUTEX);
-	affichageReponse(req,rep);
+	affichageRequete(req);		
+	affichageReponse(req,&rep);
 	V(MUTEX);
-	if (rep->autorisation == 0) {
-		while (rep->autorisation == 0) {
-			msgsnd(msgid,req,tailleReq,0);
-			msgrcv(msgid,rep,tailleRep,getpid(),0);
-			sleep(1);
-		}
+	if (rep.autorisation == 0) {
+		do {
+			msgsnd(msgid_carrefour[carrefour-1],req,tailleReq,0);
+			msgrcv(msgid_carrefour[carrefour-1],&rep,tailleRep,getpid(),0);
+			usleep(MINPAUSE);
+		} while (rep.autorisation == 0);
 		P(MUTEX);
 		affichageRequete(req);
-		affichageReponse(req,rep);
+		affichageReponse(req,&rep);
 		V(MUTEX);
 	}
 }
