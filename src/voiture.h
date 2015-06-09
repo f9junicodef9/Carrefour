@@ -5,6 +5,8 @@
 
 void affiche_voiture(Voiture *v);
 
+void affiche_carrefours();
+
 void initRand();
 
 void voiture(int numero, int voie);

@@ -21,6 +21,12 @@ Voie voies[12] = {	{1,{15,16,17,13,8,3},{11,7,10,4,7,8},{HO,HO,VE,VE,VE,VE}},
 					{11,{0,5,15,20,-1},{8,4,1,2,-1},{VE,VE,VE,VE}},
 					{12,{-1},{-1}}	};
 
+int assoc_voies[] = {4,2,12,7,5,3,10,8,6,1,11,9};
+int assoc_carrefours[][12] = {	{-1,2,3,-1,-1,2,3,-1,-1,2,3,-1},
+										{-1,-1,4,1,-1,-1,4,1,-1,-1,4,1},
+										{1,4,-1,-1,1,4,-1,-1,1,4,-1,-1},
+										{2,-1,-1,3,2,-1,-1,3,2,-1,-1,3}	};
+
 /**
  * \fn void initRand()
  * \brief Permet de generer de nouveaux nombres aleatoires.
@@ -49,6 +55,22 @@ void affiche_voiture(Voiture *v)
 		i++;
 	}
 	printf("}\n");
+}
+
+void affiche_carrefours()
+{
+	int i,j;
+	
+	for (i=0;i<4;i++) {
+		printf("---------------------------\n");
+		printf("Carrefour %d :\n", i+1);
+		
+		for (j=0;j<12;j++) {
+			printf("Voie %d sort sur carrefour %d voie %d\n", j+1, assoc_carrefours[i][j], assoc_voies[j]);
+		}
+		
+		printf("---------------------------\n");
+	}
 }
 
 /**
