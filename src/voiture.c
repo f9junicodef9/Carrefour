@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include "project.h"
 #include "voiture.h"
+#include "time.h"
 
 /*! Represente les 12 voies du carrefour. */
 Voie voies[12] = {	{1,{15,16,17,13,8,3},{11,7,10,4,7,8},{HO,HO,VE,VE,VE,VE}},
@@ -34,7 +35,7 @@ int assoc_carrefours[][12] = {	{-1,2,3,-1,-1,2,3,-1,-1,2,3,-1},
  */
 void initRand()
 {
-	srand(getpid());
+	srand(time(NULL));
 }
 
 /**
@@ -167,6 +168,10 @@ void voiture(int numero, int voie, int carrefour)
 	printf("Sort carrefour %d\n", assoc_carrefours[v.carrefour-1][v.voie->numero-1]);
 	printf("------------------------\n");
 	sleep(2);
+	
+	if (assoc_carrefours[v.carrefour-1][v.voie->numero-1] == -1) exit(0);
+	
+	voiture(v.numero, assoc_voies[v.voie->numero-1], assoc_carrefours[v.carrefour-1][v.voie->numero-1]);
 }
 
 /**
