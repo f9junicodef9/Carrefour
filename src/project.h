@@ -67,6 +67,7 @@ typedef struct Croisement {
 typedef struct Voiture {
 	int numero;	/*!< Le numero de la voiture. */
 	Voie *voie;	/*!< La voie attribuee a la voiture. */
+	int carrefour;
 	int position;	/*!< Le croisement ou se trouve la voiture le cas echeant. */
 	int position_traversee;	/*!< L'etat de traversement du croisement le cas echeant. */
 } Voiture;

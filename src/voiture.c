@@ -87,7 +87,7 @@ void affiche_carrefours()
  * - -1 : la voiture prendra une voie dont le numero est genere aleatoirement (1<=voie<=12)
  * - >0 : la voiture prendra la voie correspondant a ce numero
  */
-void voiture(int numero, int voie)
+void voiture(int numero, int voie, int carrefour)
 {
 	Voiture v;
 	Requete req;
@@ -103,6 +103,17 @@ void voiture(int numero, int voie)
 		v.voie = &voies[voie_random-1];
 	} else
 		v.voie = &voies[voie-1];
+
+	if (carrefour == -1) {
+		int carrefour_random = rand()%4+1;
+		v.carrefour = carrefour_random;
+	} else
+		v.carrefour = carrefour;
+
+	printf("------------------------\n");
+	printf("Arrive carrefour %d\n", v.carrefour);
+	printf("------------------------\n");
+	sleep(2);
 
 	create_question(&req, &v, -1, -1, -1, -1, v.voie->numero, -1, MESSARRIVE);		
 	
@@ -151,6 +162,11 @@ void voiture(int numero, int voie)
 	} else {
 		create_question(&req, &v, croisement_precedent_numero, croisement_precedent_orientation, -1, -1, v.voie->numero, -1, MESSSORT);			
 	}
+	
+	printf("------------------------\n");
+	printf("Sort carrefour %d\n", assoc_carrefours[v.carrefour-1][v.voie->numero-1]);
+	printf("------------------------\n");
+	sleep(2);
 }
 
 /**

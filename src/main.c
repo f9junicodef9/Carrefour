@@ -87,13 +87,13 @@ void forkn(int nbFils, char *voies[], void (*fonction)())
 	if (voies == NULL) {
 		for (i=0;i<nbFils;i++)
 			if (fork()==0) {
-				(*fonction) (i, -1);
+				(*fonction) (i, -1, -1);
 				exit(0);
 			}
 	} else {
 		for (i=0;i<nbFils;i++)
 			if (fork()==0) {
-				(*fonction) (i, atoi(voies[i+1]));
+				(*fonction) (i, atoi(voies[i+1]), -1);
 				exit(0);
 			}
 	}
