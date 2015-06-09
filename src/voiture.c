@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include "project.h"
 #include "voiture.h"
-#include "time.h"
+#include "sys/time.h"
 
 /*! Represente les 12 voies du carrefour. */
 Voie voies[12] = {	{1,{15,16,17,13,8,3},{11,7,10,4,7,8},{HO,HO,VE,VE,VE,VE}},
@@ -35,7 +35,9 @@ int assoc_carrefours[][12] = {	{-1,2,3,-1,-1,2,3,-1,-1,2,3,-1},
  */
 void initRand()
 {
-	srand(time(NULL));
+	struct timeval t;
+	gettimeofday(&t, NULL);
+	srand(t.tv_usec * t.tv_sec * getpid());
 }
 
 /**
