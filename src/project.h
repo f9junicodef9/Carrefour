@@ -3,7 +3,7 @@
 
 #define MUTEX 1
 
-#define MAXPAUSE 3
+#define MAXPAUSE 1
 
 #define MESSARRIVE 1
 #define MESSDEMANDE 2
@@ -99,6 +99,7 @@ typedef struct {
 	long  type;	/*!< Le type de message. */
 	pid_t pidEmetteur;	/*!< Le pid du processus emetteur. */
 	Voiture v;	/*!< La copie de la voiture qui emet la requete. */
+	int carrefour;	/*!< Numero du carrefour ou se trouve la voiture effectuant la requete. */
 	int croisement;	/*!< L'indice du croisement. */
 	int croisement_orientation;	/*!< L'orientation (horizontal / vertical) du croisement. */
 	int croisement_precedent;	/*!< L'indice du croisement precedent. */

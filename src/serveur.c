@@ -69,14 +69,14 @@ void affichageReponse(Requete *req,Reponse *rep)
 	int traverse = req->traverse;
 	
 	if (traverse == AVANT) {
-		if (rep->autorisation == 1) snprintf(buffer, sizeof(buffer), "Autorise. avant voie %d\n", req->voie);
-		else if (rep->autorisation == 0) snprintf(buffer, sizeof(buffer), "Interdit. avant voie %d\n", req->voie);
+		if (rep->autorisation == 1) sprintf(buffer, "   Aut. av. voie %d\n", req->voie);
+		else if (rep->autorisation == 0) sprintf(buffer, "   Int. av. voie %d\n", req->voie);
 	} else if (traverse == PENDANT) {
-		if (rep->autorisation == 1) snprintf(buffer, sizeof(buffer), "Autorise. traverse voie %d\n", req->voie);
-		else if (rep->autorisation == 0) snprintf(buffer, sizeof(buffer), "Interdit. traverse voie %d\n", req->voie);
+		if (rep->autorisation == 1) sprintf(buffer, "   Aut. trav. voie %d\n", req->voie);
+		else if (rep->autorisation == 0) sprintf(buffer, "   Int. trav. voie %d\n", req->voie);
 	} else if (traverse == APRES) {
-		if (rep->autorisation == 1) snprintf(buffer, sizeof(buffer), "Autorise. apres voie %d\n", req->voie);
-		else if (rep->autorisation == 0) snprintf(buffer, sizeof(buffer), "Interdit. apres voie %d\n", req->voie);
+		if (rep->autorisation == 1) sprintf(buffer, "   Aut. ap. voie %d\n", req->voie);
+		else if (rep->autorisation == 0) sprintf(buffer, "   Int. ap. voie %d\n", req->voie);
 	}
 				
 	message(req->v.numero, buffer);

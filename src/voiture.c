@@ -114,13 +114,8 @@ void voiture(int numero, int voie, int carrefour)
 		int voie_random = random_voie(voie);
 		v.voie = &voies[voie_random-1];
 	}
-	
-	printf("------------------------\n");
-	printf("Arrive carrefour %d\n", v.carrefour);
-	printf("------------------------\n");
-	sleep(2);
 
-	create_question(&req, &v, -1, -1, -1, -1, v.voie->numero, -1, MESSARRIVE);		
+	create_question(&req, &v, v.carrefour, -1, -1, -1, -1, v.voie->numero, -1, MESSARRIVE);		
 	
 	for (i=0 ; i < 6 ; i++) {
 		croisement_numero = v.voie->sem_num[i];
@@ -137,44 +132,41 @@ void voiture(int numero, int voie, int carrefour)
 			croisement_precedent_orientation = v.voie->orientation[i-1];
 		}
 
-		create_question(&req, &v, croisement_precedent_numero, croisement_precedent_orientation, croisement_numero, croisement_orientation, croisement_voie, AVANT, MESSDEMANDE);
+		create_question(&req, &v, v.carrefour, croisement_precedent_numero, croisement_precedent_orientation, croisement_numero, croisement_orientation, croisement_voie, AVANT, MESSDEMANDE);
 		receive_answer(&req,&rep);
 		
-		create_question(&req, &v, croisement_precedent_numero, croisement_precedent_orientation, croisement_numero, croisement_orientation, croisement_voie, AVANT, MESSINFO);
+		create_question(&req, &v, v.carrefour, croisement_precedent_numero, croisement_precedent_orientation, croisement_numero, croisement_orientation, croisement_voie, AVANT, MESSINFO);
 
-		sleep(rand()%MAXPAUSE);
+		sleep(rand()%MAXPAUSE+1);
 		
-		create_question(&req, &v, croisement_precedent_numero, croisement_precedent_orientation, croisement_numero, croisement_orientation, croisement_voie, PENDANT, MESSDEMANDE);		
+		create_question(&req, &v, v.carrefour, croisement_precedent_numero, croisement_precedent_orientation, croisement_numero, croisement_orientation, croisement_voie, PENDANT, MESSDEMANDE);		
 		receive_answer(&req,&rep);		
 
-		create_question(&req, &v, croisement_precedent_numero, croisement_precedent_orientation, croisement_numero, croisement_orientation, croisement_voie, PENDANT, MESSINFO);
+		create_question(&req, &v, v.carrefour, croisement_precedent_numero, croisement_precedent_orientation, croisement_numero, croisement_orientation, croisement_voie, PENDANT, MESSINFO);
 		
-		sleep(rand()%MAXPAUSE);
+		sleep(rand()%MAXPAUSE+1);
 
-		create_question(&req, &v, croisement_precedent_numero, croisement_precedent_orientation, croisement_numero, croisement_orientation, croisement_voie, APRES, MESSDEMANDE);		
+		create_question(&req, &v, v.carrefour, croisement_precedent_numero, croisement_precedent_orientation, croisement_numero, croisement_orientation, croisement_voie, APRES, MESSDEMANDE);		
 		receive_answer(&req,&rep);
 
-		create_question(&req, &v, croisement_precedent_numero, croisement_precedent_orientation, croisement_numero, croisement_orientation, croisement_voie, APRES, MESSINFO);
+		create_question(&req, &v, v.carrefour, croisement_precedent_numero, croisement_precedent_orientation, croisement_numero, croisement_orientation, croisement_voie, APRES, MESSINFO);
 
-		sleep(rand()%MAXPAUSE);
+		sleep(rand()%MAXPAUSE+1);
 	}
 	
 	croisement_precedent_numero = v.voie->sem_num[i-1];
 	croisement_precedent_orientation = v.voie->orientation[i-1];
 
 	if (i == 0) {
-		create_question(&req, &v, -1, -1, -1, -1, v.voie->numero, -1, MESSSORT);		
+		create_question(&req, &v, v.carrefour, -1, -1, -1, -1, v.voie->numero, -1, MESSSORT);		
 	} else {
-		create_question(&req, &v, croisement_precedent_numero, croisement_precedent_orientation, -1, -1, v.voie->numero, -1, MESSSORT);			
+		create_question(&req, &v, v.carrefour, croisement_precedent_numero, croisement_precedent_orientation, -1, -1, v.voie->numero, -1, MESSSORT);			
 	}
-	
-	printf("------------------------\n");
-	printf("Sort carrefour %d\n", assoc_carrefours[v.carrefour-1][v.voie->numero-1]);
-	printf("------------------------\n");
-	sleep(2);
-	
+
 	if (assoc_carrefours[v.carrefour-1][v.voie->numero-1] == -1) exit(0);
 	
+	sleep(rand()%MAXPAUSE+1);
+			
 	voiture(v.numero, assoc_voies[v.voie->numero-1], assoc_carrefours[v.carrefour-1][v.voie->numero-1]);
 }
 
@@ -218,10 +210,10 @@ void maj_position(Voiture *v, int position, int traverse)
  * - MESSINFO
  * - MESSSORT
  */
-void create_question(Requete *req, Voiture *v, int croisement_precedent, int croisement_precedent_orientation, int croisement, int croisement_orientation, int voie, int traverse, int type)
+void create_question(Requete *req, Voiture *v, int carrefour, int croisement_precedent, int croisement_precedent_orientation, int croisement, int croisement_orientation, int voie, int traverse, int type)
 {
 	P(MUTEX);
-	constructionRequete(req, v, croisement_precedent, croisement_precedent_orientation, croisement, croisement_orientation, voie, traverse, type);
+	constructionRequete(req, v, carrefour, croisement_precedent, croisement_precedent_orientation, croisement, croisement_orientation, voie, traverse, type);
 	affichageRequete(req);
 	msgsnd(msgid,req,tailleReq,0);
 	V(MUTEX);
