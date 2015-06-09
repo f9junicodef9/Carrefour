@@ -17,4 +17,6 @@ void create_question(Requete *req, Voiture *v, int croisement_precedent, int cro
 
 void receive_answer(Requete *req, Reponse *rep);
 
+int random_voie(int voie);
+
 #endif

@@ -99,18 +99,22 @@ void voiture(int numero, int voie, int carrefour)
 
 	initRand();
 
-	if (voie == -1) {
-		int voie_random = rand()%12+1;
-		v.voie = &voies[voie_random-1];
-	} else
-		v.voie = &voies[voie-1];
-
 	if (carrefour == -1) {
 		int carrefour_random = rand()%4+1;
 		v.carrefour = carrefour_random;
-	} else
-		v.carrefour = carrefour;
 
+		if (voie == -1) {
+			int voie_random = rand()%12+1;
+			v.voie = &voies[voie_random-1];
+		} else
+			v.voie = &voies[voie-1];
+	} else {
+		v.carrefour = carrefour;
+		
+		int voie_random = random_voie(voie);
+		v.voie = &voies[voie_random-1];
+	}
+	
 	printf("------------------------\n");
 	printf("Arrive carrefour %d\n", v.carrefour);
 	printf("------------------------\n");
@@ -251,4 +255,15 @@ void receive_answer(Requete *req, Reponse *rep)
 		affichageReponse(req,rep);
 		V(MUTEX);
 	}
+}
+
+int random_voie(int v)
+{
+		if (v == 1 || v == 2 || v == 3)
+			return rand()%3+1;
+		if (v == 4 || v == 5 || v == 6)
+			return rand()%3+4;
+		if (v == 7 || v == 8 || v == 9)
+			return rand()%3+7;
+		return rand()%3+10;
 }
