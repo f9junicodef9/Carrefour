@@ -20,6 +20,7 @@
  *
  * \param req Pointeur vers la requete qui va etre renseignee.
  * \param v Pointeur vers la voiture effectuant la requete.
+ * \param carrefour Numero du carrefour ou se trouve la voiture effectuant la requete.
  * \param croisement_precedent L'indice de la zone critique (<=> le croisement) precedemment visitee le cas echeant (utile lorsque la voiture quitte un croisement pour modifier ce dernier).
  * \param croisement_precedent_orientation L'orientation (horizontal / vertical) du croisement precedent (utile pour mettre a jour les files d'attente du croisement precedent quand une voiture arrive a un nouveau croisement).
  * \param croisement L'indice de la zone critique (<=> le croisement) le cas echeant.
@@ -34,10 +35,11 @@
  * - MESSINFO
  * - MESSSORT
  */
-void constructionRequete(Requete *req, Voiture *v, int croisement_precedent, int croisement_precedent_orientation, int croisement, int croisement_orientation, int voie, int traverse, int type)
+void constructionRequete(Requete *req, Voiture *v, int carrefour, int croisement_precedent, int croisement_precedent_orientation, int croisement, int croisement_orientation, int voie, int traverse, int type)
 {
 	req->pidEmetteur = getpid();
 	req->v = *v;
+	req->carrefour = carrefour;
 	req->croisement = croisement;
 	req->croisement_orientation = croisement_orientation;
 	req->croisement_precedent = croisement_precedent;
@@ -56,17 +58,26 @@ void constructionRequete(Requete *req, Voiture *v, int croisement_precedent, int
 void affichageRequete(Requete *req)
 {
 	if (req->type == MESSARRIVE) {
-		snprintf(buffer, sizeof(buffer), "Arrive voie %d\n", req->voie);
+		message(req->v.numero, "---------------------\n");		
+		sprintf(buffer, "Arrive carrefour %d\n\n", req->carrefour);
+		message(req->v.numero, buffer);		
+		sprintf(buffer, "Arrive voie %d\n\n", req->voie);		
 	} else if (req->type == MESSDEMANDE) {
-		if (req->traverse == AVANT) snprintf(buffer, sizeof(buffer), "Dem. avant voie %d\n", req->voie);
-		else if (req->traverse == PENDANT) snprintf(buffer, sizeof(buffer), "Dem. traverse voie %d\n", req->voie);
-		else if (req->traverse == APRES) snprintf(buffer, sizeof(buffer), "Dem. apres voie %d\n", req->voie);		
+		if (req->traverse == AVANT) sprintf(buffer, "Dem. av. voie %d\n", req->voie);
+		else if (req->traverse == PENDANT) sprintf(buffer, "Dem. trav. voie %d\n", req->voie);
+		else if (req->traverse == APRES) sprintf(buffer, "Dem. ap. voie %d\n", req->voie);		
 	} else if (req->type == MESSINFO) {
-		if (req->traverse == AVANT) snprintf(buffer, sizeof(buffer), "Arrive. avant voie %d\n", req->voie);
-		else if (req->traverse == PENDANT) snprintf(buffer, sizeof(buffer), "Traverse voie %d\n", req->voie);
-		else if (req->traverse == APRES) snprintf(buffer, sizeof(buffer), "Arrive. apres voie %d\n", req->voie);		
+		if (req->traverse == AVANT) sprintf(buffer, "Arrive av. voie %d\n", req->voie);
+		else if (req->traverse == PENDANT) sprintf(buffer, "Trav. voie %d\n", req->voie);
+		else if (req->traverse == APRES) sprintf(buffer, "Arrive ap. voie %d\n", req->voie);		
 	} else if (req->type == MESSSORT) {
-		snprintf(buffer, sizeof(buffer), "Sort voie %d\n", req->voie);
+		message(req->v.numero, "\n");	
+		sprintf(buffer, "Sort voie %d\n\n", req->voie);
+		message(req->v.numero, buffer);		
+		sprintf(buffer, "Sort carrefour %d\n", req->carrefour);
+		message(req->v.numero, buffer);
+		message(req->v.numero, "---------------------\n");
+		sprintf(buffer, "#####################\n");
 	}
 
 	message(req->v.numero, buffer);

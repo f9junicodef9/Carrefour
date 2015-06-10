@@ -10,6 +10,18 @@
 
 #define MAXFILE 1
 
+void serveur()
+{
+	Requete req;
+	Reponse rep;
+
+	while (1) {
+		msgrcv(msgid_serveur,&req,tailleReq,getpid(),0);
+		constructionReponse(&req, &rep);
+		msgsnd(msgid_serveur,&rep,tailleRep,0);
+	}
+}
+
 /**
  * \fn void constructionReponse(Requete *req,Reponse *rep)
  * \brief Construit une reponse pour le client.
@@ -22,39 +34,50 @@
  */
 void constructionReponse(Requete *req,Reponse *rep)
 {
+	P(MUTEX);
 	rep->type = req->pidEmetteur;
 
 	int i = req->croisement;
 	int traverse = req->traverse;
 	int orientation = req->croisement_orientation;
-
+	int numero = req->carrefour;
+	
 	rep->autorisation = 0;
+	
+	Carrefour *c;
+	
+	c = (Carrefour *) shmat(shm_id[numero-1], NULL, 0);
+	
 	
 	if (traverse == AVANT) {
 		if (orientation == HO) {
-			if (croisements[i].avantH < MAXFILE) {
+			if (c->croisements[i].avantH < MAXFILE) {
 				rep->autorisation = 1;
 			}
 		} else {
-			if (croisements[i].avantV < MAXFILE) {
+			if (c->croisements[i].avantV < MAXFILE) {
 				rep->autorisation = 1;
 			}
 		}
 	} else if (traverse == PENDANT) {
-			if (croisements[i].etat == 0) {
+			if (c->croisements[i].etat == 0) {
 				rep->autorisation = 1;
 			}
 	} else if (traverse == APRES) {
 		if (orientation == HO) {
-			if (croisements[i].apresH < MAXFILE) {
+			if (c->croisements[i].apresH < MAXFILE) {
 				rep->autorisation = 1;
 			}
 		} else {
-			if (croisements[i].apresV < MAXFILE) {
+			if (c->croisements[i].apresV < MAXFILE) {
 				rep->autorisation = 1;
 			}	
 		}
 	}
+	
+	shmdt(c);
+	
+	V(MUTEX);
 }
 
 /**
@@ -69,14 +92,14 @@ void affichageReponse(Requete *req,Reponse *rep)
 	int traverse = req->traverse;
 	
 	if (traverse == AVANT) {
-		if (rep->autorisation == 1) snprintf(buffer, sizeof(buffer), "Autorise. avant voie %d\n", req->voie);
-		else if (rep->autorisation == 0) snprintf(buffer, sizeof(buffer), "Interdit. avant voie %d\n", req->voie);
+		if (rep->autorisation == 1) sprintf(buffer, "   Aut. av. voie %d\n", req->voie);
+		else if (rep->autorisation == 0) sprintf(buffer, "   Int. av. voie %d\n", req->voie);
 	} else if (traverse == PENDANT) {
-		if (rep->autorisation == 1) snprintf(buffer, sizeof(buffer), "Autorise. traverse voie %d\n", req->voie);
-		else if (rep->autorisation == 0) snprintf(buffer, sizeof(buffer), "Interdit. traverse voie %d\n", req->voie);
+		if (rep->autorisation == 1) sprintf(buffer, "   Aut. trav. voie %d\n", req->voie);
+		else if (rep->autorisation == 0) sprintf(buffer, "   Int. trav. voie %d\n", req->voie);
 	} else if (traverse == APRES) {
-		if (rep->autorisation == 1) snprintf(buffer, sizeof(buffer), "Autorise. apres voie %d\n", req->voie);
-		else if (rep->autorisation == 0) snprintf(buffer, sizeof(buffer), "Interdit. apres voie %d\n", req->voie);
+		if (rep->autorisation == 1) sprintf(buffer, "   Aut. ap. voie %d\n", req->voie);
+		else if (rep->autorisation == 0) sprintf(buffer, "   Int. ap. voie %d\n", req->voie);
 	}
 				
 	message(req->v.numero, buffer);

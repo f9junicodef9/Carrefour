@@ -11,31 +11,40 @@
 #define TAILLE 5
 
 /*! Represente le carrefour. Les valeurs 0 representent des sections critiques ; Les valeurs -1 representent des sections non critiques, donc facultatives, mais tout de meme representees par soucis de simplicite. */
-Croisement croisements[25] = {{0},{0},{-1},{0},{0},{0},{0},{0},{0},{0},{-1},{0},{-1},{0},{-1},{0},{0},{0},{0},{0},{0},{0},{-1},{0},{0}};
 
 /**
  * \fn void carrefour()
  * \brief Fonction realisee par chaque carrefour.
  */
-void carrefour()
+void carrefour(int numero, pid_t pid_Serveur)
 {
-	Requete req;
+	Requete req, req_serveur;
 	Reponse rep;
+	
+//	long pidVoiture;
 
-	initRand();
+	Carrefour *c;
+	
+	c = (Carrefour *) shmat(shm_id[numero-1], NULL, 0);
 
 	while (1) {
-		msgrcv(msgid,&req,tailleReq,0,0);
-
+		msgrcv(msgid_carrefour[numero-1],&req,tailleReq,0,0);
 		if (req.type == MESSSORT) {
-			maj_carrefour(&req);
+			maj_carrefour(&req, c);
 		}
 
 		if (req.type == MESSDEMANDE) {
-			constructionReponse(&req,&rep);
-			if (rep.autorisation == 1)
-				maj_carrefour(&req);
-			msgsnd(msgid,&rep,tailleRep,0);
+			req_serveur = req;
+			req_serveur.type = pid_Serveur;
+			req_serveur.pidEmetteur = getpid();
+			msgsnd(msgid_serveur,&req_serveur,tailleReq,0);
+			msgrcv(msgid_serveur,&rep,tailleRep,getpid(),0);
+			if (rep.autorisation == 1) {
+				maj_carrefour(&req, c);
+			}
+			rep.type = req.pidEmetteur;
+			usleep(MINPAUSE);
+			msgsnd(msgid_carrefour[numero-1],&rep,tailleRep,0);
 		}
 	}
 }
@@ -46,10 +55,10 @@ void carrefour()
  *
  * \param req Pointeur sur la requete recue.
  */
-void maj_carrefour(Requete *req)
+void maj_carrefour(Requete *req, Carrefour *c)
 {
 	P(MUTEX);
-	
+
 	int i = req->croisement;
 	int j = req->croisement_precedent;
 	int etat = req->traverse;
@@ -60,9 +69,9 @@ void maj_carrefour(Requete *req)
 	if (type == MESSSORT) {
 		if (j != -1) {
 			if (orientation_precedent == HO) {
-				croisements[j].apresH--;
+				c->croisements[j].apresH--;
 			} else {
-				croisements[j].apresV--;
+				c->croisements[j].apresV--;
 			}		
 		}
 	}
@@ -70,30 +79,30 @@ void maj_carrefour(Requete *req)
 	if (etat == AVANT) {
 		if (j != -1) {
 			if (orientation_precedent == HO) {
-				croisements[j].apresH--;
+				c->croisements[j].apresH--;
 			} else {
-				croisements[j].apresV--;
+				c->croisements[j].apresV--;
 			}
 		}
 		
 		if (orientation == HO) {
-			croisements[i].avantH++;
+			c->croisements[i].avantH++;
 		} else {
-			croisements[i].avantV++;
+			c->croisements[i].avantV++;
 		}
 	} else if (etat == PENDANT) {
 		if (orientation == HO) {
-			croisements[i].avantH--;
+			c->croisements[i].avantH--;
 		} else {
-			croisements[i].avantV--;
+			c->croisements[i].avantV--;
 		}
-		croisements[i].etat = 1;
+		c->croisements[i].etat = 1;
 	} else if (etat == APRES) {
-		croisements[i].etat = 0;
+		c->croisements[i].etat = 0;
 		if (orientation == HO) {
-			croisements[i].apresH++;
+			c->croisements[i].apresH++;
 		} else {
-			croisements[i].apresV++;
+			c->croisements[i].apresV++;
 		}
 	}
 	
@@ -105,17 +114,17 @@ void maj_carrefour(Requete *req)
  * \fn void affiche_carrefour()
  * \brief Affiche les informations d'un carrefour.
  */
-void affiche_carrefour()
+void affiche_carrefour(Carrefour *c)
 {
 	int i, j;
 
 	printf("\n--------------------------------------------\n");
 	for (i=0;i<TAILLE;i++) {
 		for (j=0;j<TAILLE;j++) {
-			if (croisements[i*TAILLE+j].etat == -1)
+			if (c->croisements[i*TAILLE+j].etat == -1)
 				printf(" \t");
 			else
-				printf("%d\t", croisements[i*TAILLE+j].etat);
+				printf("%d\t", c->croisements[i*TAILLE+j].etat);
 		}
 		printf("\n");
 	}
