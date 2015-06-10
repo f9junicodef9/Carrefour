@@ -1,3 +1,7 @@
+/**
+ * \file project.h
+ * \brief Contient les structures et variables globales liees au projet.
+ */
 #ifndef __PROJECT__ 
 #define __PROJECT__
 
@@ -23,7 +27,7 @@
  * \brief Represente une voie d'un carrefour.
  *
  * Une voie d'un carrefour est caracterisee par un numero (de 1 a 12).
- * Chaque voie possede un maximum de 6 sections critiques representant les intersections (et donc collisions possibles) avec les autres voies.
+ * Chaque voie possede un maximum de 6 sections critiques representant les intersections (et donc collisions possibles) avec les autres voies : les croisements.
  */
 typedef struct Voie {
 	int numero;	/*!< Le numero de la voie. */
@@ -36,13 +40,17 @@ typedef struct Voie {
  * \struct Croisement
  * \brief Represente un croisement d'un carrefour.
  *
- * 5 croisements sont "inutiles" car ne croisent aucune autre voie (N°2, 10, 12, 14 et 22).
- * Chaque croisement possede deux compteurs :
- * - avant : Le nombre de vehicules en attente avant le croisement.
- * - apres : Le nombre de vehicules en attente apres le croisement.
- * Et une variable indiquant l'etat du croisement. Peut valoir :
- * - 0 : Personne n'est en train de traverser le croisement
- * - 1 : Quelqu'un est en train de traverser le croisement
+ * 5 croisements sont "inutiles" car ne croisent aucune autre voie (N°2, 10, 12, 14 et 22), mais gardes par soucis de simplicite d'affichage.
+ * Chaque croisement possede :
+ * - 4 compteurs indiquant :
+ *  - Le nombre de vehicules en attente avant le croisement horizontal.
+ *  - Le nombre de vehicules en attente apres le croisement horizontal.
+ *  - Le nombre de vehicules en attente avant le croisement vertical.
+ *  - Le nombre de vehicules en attente apres le croisement vertical.
+ * - Une variable indiquant l'etat du croisement. Peut valoir :
+ *  - -1 : Le croisement est inutile car ne croise aucune autre voie (utilise uniquement a des fins d'affichage).
+ *  - 0 : Personne n'est en train de traverser le croisement.
+ *  - 1 : Quelqu'un est en train de traverser le croisement.
  */
 typedef struct Croisement {
 	int etat;	/*!< L'etat du croisement. */
@@ -58,48 +66,44 @@ typedef struct Croisement {
  *
  * Une voiture est caracterisee par :
  * - Un numero
- * - Une voie qui lui est attribuee et qu'elle suivra depuis son entree dans le carrefour jusqu'a sa sortie
- * - L'indice du croisement ou elle se trouve dans le carrefour (n'a pas de sens lorsqu'elle est en entree/sortie du carrefour)
- * L'etat de traversement (directement lie aux informations de traversement). Peut valoir :
- *  - AVANT
- *  - PENDANT
- *  - APRES
+ * - Une voie qui lui est attribuee et qu'elle suivra depuis son entree dans le carrefour jusqu'a sa sortie (1<=voie<=12).
+ * - Un carrefour sur lequel elle se trouve (1<=carrefour<=4).
  */
 typedef struct Voiture {
 	int numero;	/*!< Le numero de la voiture. */
 	Voie *voie;	/*!< La voie attribuee a la voiture. */
-	int carrefour;
+	int carrefour;	/*!< Le carrefour ou se trouve la voiture. */
 } Voiture;
 
 /**
  * \struct Requete
- * \brief Represente une requete du client pour le serveur (d'une voiture pour un carrefour).
+ * \brief Represente une requete du client pour le serveur (d'une voiture pour un carrefour / le serveur).
  *
  * Une requete est caracterisee par :
  * - Son type. Peut valoir :
- *  - MESSARRIVE : Indique que la voiture arrive sur le carrefour par la voie indiquee.
- *  - MESSDEMANDE : Demande au serveur (carrefour) la permission de traverser le croisement indique.
- *  - MESSTRAVERSE : Indique que la voiture debute le traversement du croisement indique.
- *  - MESSATRAVERSE : Indique que la voiture a traverse le croisement indique.
- *  - MESSSORT : Indique que la voiture quitte le carrefour par la voie indiquee.
- * - Le pid du processus qui emet la requete (la voiture).
+ *  - MESSARRIVE : message d'information d'arrivee sur un carrefour. N'implique aucun traitement, affiche juste l'information.
+ *  - MESSDEMANDE : demande d'arrivee en zone avant, pendant, ou apres un croisement. Implique une demande au serveur (depuis le carrefour) qui va analyser le carrefour pour prendre une decision.
+ *  - MESSINFO : message d'information d'arrivee avant, pendant, ou apres un croisement. N'implique aucun traitement, affiche juste l'information.
+ *  - MESSSORT : message d'information de sortie d'un carrefour. Implique de mettre a jour la file d'attente "apres" le croisement precedent.
+ * - Le pid du processus qui emet la requete (la voiture si entre voiture-carrefour, le carrefour si entre carrefour-serveur).
  * - Une copie de la voiture qui emet la requete.
  * - L'indice du croisement ou se trouve la voiture.
  * - Le numero de la voie, selon le cas :
- *  - ou se trouve la voiture
- *  - qui est traversee au croisement indique
+ *  - ou se trouve la voiture (pour les informations d'entree / sortie de carrefour)
+ *  - qui est traversee au croisement indique (pour les demandes au serveur et informations aux carrefours)
  * - L'indice du croisement ou se trouve la voiture.
- * - L'etat de traversement (directement lie aux informations de traversement). Peut valoir :
+ * - L'etat de traversement du croisement (directement lie aux informations de traversement). Peut valoir :
  *  - AVANT
  *  - PENDANT
  *  - APRES
+ *  - -1 si inaproprié (arrivee / sortie d'un carrefour => pas de croisement)
  */
 typedef struct {
 	long  type;	/*!< Le type de message. */
 	pid_t pidEmetteur;	/*!< Le pid du processus emetteur. */
 	Voiture v;	/*!< La copie de la voiture qui emet la requete. */
 	int carrefour;	/*!< Numero du carrefour ou se trouve la voiture effectuant la requete. */
-	int croisement;	/*!< L'indice du croisement. */
+	int croisement;	/*!< L'indice du croisement ou se trouve la voiture. */
 	int croisement_orientation;	/*!< L'orientation (horizontal / vertical) du croisement. */
 	int croisement_precedent;	/*!< L'indice du croisement precedent. */
 	int croisement_precedent_orientation;	/*!< L'orientation (horizontal / vertical) du croisement precedent. */
@@ -109,20 +113,27 @@ typedef struct {
 
 /**
  * \struct Reponse
- * \brief Represente une reponse du serveur pour le client (d'un carrefour pour une voiture).
+ * \brief Represente une reponse du serveur pour le client (du serveur pour une voiture).
  *
  * Une requete est caracterisee par :
- * - Son type. Vaut le pid du client ayant emis la requete.
+ * - Son type. Vaut le pid du client ayant emis la requete (le carrefour quand la reponse part du serveur ; la voiture quand la reponse repart du carrefour).
  * - La reponse a la requete. Peut valoir :
- *  - 1 : autorise la voiture a traverser le croisement demande
- *  - 2 : interdit la voiture de traverser le croisement demande
+ *  - 1 : autorise la voiture a avancer / traverser dans la zone / le croisement demande.
+ *  - 0 : interdit la voiture de avancer / traverser dans la zone / le croisement demande.
  */
 typedef struct {
 	long  type;	/*!< Le type de message. */
 	int autorisation;	/*!< La reponse a la requete. */
-	Voiture v;
+	Voiture v;	/*!< Variable necessaire pour eviter un plantage (explication a trouver). */
 } Reponse;
 
+/**
+ * \struct Carrefour
+ * \brief Represente un carrefour.
+ *
+ * Un carrefour est caracterise par 25 croisements.
+ * 5 croisements sont "inutiles" car ne croisent aucune autre voie (N°2, 10, 12, 14 et 22), mais gardes par soucis de simplicite d'affichage.
+ */
 typedef struct Carrefour {
 	Croisement croisements[25];
 } Carrefour;
@@ -130,10 +141,10 @@ typedef struct Carrefour {
 extern int tailleReq;	/*!< La taille d'une requete. */
 extern int tailleRep;	/*!< La taille d'une reponse. */
 
-extern int msgid_serveur;	/*!< La file de message utilisee pour communiquer entre le serveur et les carrefour */
-extern int msgid_carrefour[];	/*!< Les files de message utilisees pour communiquer entre les voitures et les carrefour */
-extern int sem_id;	/*!< L'identifiant de l'ensemble de semaphores */
-extern int shm_id[4];
-extern int compteur;
+extern int msgid_serveur;	/*!< La file de message utilisee pour communiquer entre le serveur et les carrefour. */
+extern int msgid_carrefour[];	/*!< Les files de message utilisees pour communiquer entre les voitures et les carrefour (4 files). */
+extern int sem_id;	/*!< L'identifiant de l'ensemble de semaphores (1 semaphore). */
+extern int shm_id[4];	/*!< Les 4 carrefours, accessibles par les autres processus en tant que segments de memoire partagee. */
+extern int compteur;	/*!< Le compteur de voitures sorties, accessible par les autres processus en tant que segment de memoire partagee. */
 
 #endif
