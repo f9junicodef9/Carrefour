@@ -1,6 +1,8 @@
 /**
  * \file serveur.c
  * \brief Contient le code du serveur dans le modele client-serveur (le serveur).
+ *
+ * Ici, le serveur est un serveur pour les carrefours, selon le modele client-serveur. Il recoit des requetes des carrefours et leur renvoie des reponses.
  */
 #include <stdio.h>
 #include <stdlib.h>
@@ -10,6 +12,12 @@
 
 #define MAXFILE 1
 
+/**
+ * \fn void serveur()
+ * \brief Fonction realisee par le serveur.
+ *
+ * Receptionne sans arret les requetes des carrefours dans sa file de message (1 pour tous les carrefours), les traite et retourne les reponses dans sa file.
+ */
 void serveur()
 {
 	Requete req;
@@ -24,13 +32,14 @@ void serveur()
 
 /**
  * \fn void constructionReponse(Requete *req,Reponse *rep)
- * \brief Construit une reponse pour le client.
- * La reponse peut prendre 2 formes :
- * - Autorisation : autorise la voiture a traverser le croisement demande
- * - Interdiction : interdit la voiture de traverser le croisement demande
+ * \brief Construit une reponse pour la voiture, qui sera retransmise par l'intermediaire du carrefour.
  *
- * \param req Pointeur vers la requete qui a ete recue.
- * \param rep Pointeur vers la reponse qui va etre renseignee.
+ * La reponse peut prendre 2 formes :
+ * - Autorisation : autorise la voiture a avancer / traverser dans la zone / le croisement demande.
+ * - Interdiction : interdit la voiture de avancer / traverser dans la zone / le croisement demande.
+ *
+ * \param req Pointeur sur la requete qui a ete recue.
+ * \param rep Pointeur sur la reponse qui va etre renseignee.
  */
 void constructionReponse(Requete *req,Reponse *rep)
 {
@@ -84,8 +93,8 @@ void constructionReponse(Requete *req,Reponse *rep)
  * \fn void affichageReponse(Requete *req,Reponse *rep)
  * \brief Affiche la nature et les informations de la reponse a la requete.
  *
- * \param req Pointeur vers la requete qui a ete recue.
- * \param rep Pointeur vers la reponse a afficher.
+ * \param req Pointeur sur la requete qui a ete recue.
+ * \param rep Pointeur sur la reponse a afficher.
  */
 void affichageReponse(Requete *req,Reponse *rep)
 {
