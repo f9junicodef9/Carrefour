@@ -110,7 +110,7 @@ $(document).ready(function(){initNavTree('struct_requete.html','');});
 </div><!--header-->
 <div class="contents">
 
-<p>Represente une requete du client pour le serveur (d'une voiture pour un carrefour).  
+<p>Represente une requete du client pour le serveur (d'une voiture pour un carrefour / le serveur).  
  <a href="struct_requete.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="project_8h_source.html">project.h</a>&gt;</code></p>
@@ -123,41 +123,62 @@ Data Fields</h2></td></tr>
 <tr class="separator:a3041e2766c91f9b17975056266bfc841"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a76a64000aab59dcc4195c1b6e1605eb3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_voiture.html">Voiture</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_requete.html#a76a64000aab59dcc4195c1b6e1605eb3">v</a></td></tr>
 <tr class="separator:a76a64000aab59dcc4195c1b6e1605eb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49c1ca0385a5b276704a97cdceef2d83"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_requete.html#a49c1ca0385a5b276704a97cdceef2d83">carrefour</a></td></tr>
+<tr class="separator:a49c1ca0385a5b276704a97cdceef2d83"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a558796b11448541e07f81ec0df5bf2bc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_requete.html#a558796b11448541e07f81ec0df5bf2bc">croisement</a></td></tr>
 <tr class="separator:a558796b11448541e07f81ec0df5bf2bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b2b0b49307840329ff724e792091c94"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_requete.html#a0b2b0b49307840329ff724e792091c94">croisement_orientation</a></td></tr>
+<tr class="separator:a0b2b0b49307840329ff724e792091c94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1a425fa3b56a376a3fcac1f4491b1d0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_requete.html#ab1a425fa3b56a376a3fcac1f4491b1d0">croisement_precedent</a></td></tr>
+<tr class="separator:ab1a425fa3b56a376a3fcac1f4491b1d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ee9e497cd0d78d4214a6507a550239c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_requete.html#a9ee9e497cd0d78d4214a6507a550239c">croisement_precedent_orientation</a></td></tr>
+<tr class="separator:a9ee9e497cd0d78d4214a6507a550239c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad5ecb866a563750cd63db63b9b56c060"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_requete.html#ad5ecb866a563750cd63db63b9b56c060">voie</a></td></tr>
 <tr class="separator:ad5ecb866a563750cd63db63b9b56c060"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a276684defbdd9a2e8b95ce40b8ef3576"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_requete.html#a276684defbdd9a2e8b95ce40b8ef3576">traverse</a></td></tr>
 <tr class="separator:a276684defbdd9a2e8b95ce40b8ef3576"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Represente une requete du client pour le serveur (d'une voiture pour un carrefour). </p>
+<div class="textblock"><p>Represente une requete du client pour le serveur (d'une voiture pour un carrefour / le serveur). </p>
 <p>Une requete est caracterisee par :</p><ul>
 <li>Son type. Peut valoir :<ul>
-<li>MESSARRIVE : Indique que la voiture arrive sur le carrefour par la voie indiquee.</li>
-<li>MESSDEMANDE : Demande au serveur (carrefour) la permission de traverser le croisement indique.</li>
-<li>MESSTRAVERSE : Indique que la voiture debute le traversement du croisement indique.</li>
-<li>MESSATRAVERSE : Indique que la voiture a traverse le croisement indique.</li>
-<li>MESSSORT : Indique que la voiture quitte le carrefour par la voie indiquee.</li>
+<li>MESSARRIVE : message d'information d'arrivee sur un carrefour. N'implique aucun traitement, affiche juste l'information.</li>
+<li>MESSDEMANDE : demande d'arrivee en zone avant, pendant, ou apres un croisement. Implique une demande au serveur (depuis le carrefour) qui va analyser le carrefour pour prendre une decision.</li>
+<li>MESSINFO : message d'information d'arrivee avant, pendant, ou apres un croisement. N'implique aucun traitement, affiche juste l'information.</li>
+<li>MESSSORT : message d'information de sortie d'un carrefour. Implique de mettre a jour la file d'attente "apres" le croisement precedent.</li>
 </ul>
 </li>
-<li>Le pid du processus qui emet la requete (la voiture).</li>
+<li>Le pid du processus qui emet la requete (la voiture si entre voiture-carrefour, le carrefour si entre carrefour-serveur).</li>
 <li>Une copie de la voiture qui emet la requete.</li>
 <li>L'indice du croisement ou se trouve la voiture.</li>
 <li>Le numero de la voie, selon le cas :<ul>
-<li>ou se trouve la voiture</li>
-<li>qui est traversee au croisement indique</li>
+<li>ou se trouve la voiture (pour les informations d'entree / sortie de carrefour)</li>
+<li>qui est traversee au croisement indique (pour les demandes au serveur et informations aux carrefours)</li>
 </ul>
 </li>
 <li>L'indice du croisement ou se trouve la voiture.</li>
-<li>L'etat de traversement (directement lie aux informations de traversement). Peut valoir :<ul>
-<li>PASTRAVERSE</li>
-<li>TRAVERSE</li>
-<li>ATRAVERSE </li>
+<li>L'etat de traversement du croisement (directement lie aux informations de traversement). Peut valoir :<ul>
+<li>AVANT</li>
+<li>PENDANT</li>
+<li>APRES</li>
+<li>-1 si inaproprié (arrivee / sortie d'un carrefour =&gt; pas de croisement) </li>
 </ul>
 </li>
 </ul>
 </div><h2 class="groupheader">Field Documentation</h2>
+<a class="anchor" id="a49c1ca0385a5b276704a97cdceef2d83"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int carrefour</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Numero du carrefour ou se trouve la voiture effectuant la requete. </p>
+
+</div>
+</div>
 <a class="anchor" id="a558796b11448541e07f81ec0df5bf2bc"></a>
 <div class="memitem">
 <div class="memproto">
@@ -167,7 +188,46 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>L'indice du croisement. </p>
+<p>L'indice du croisement ou se trouve la voiture. </p>
+
+</div>
+</div>
+<a class="anchor" id="a0b2b0b49307840329ff724e792091c94"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int croisement_orientation</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>L'orientation (horizontal / vertical) du croisement. </p>
+
+</div>
+</div>
+<a class="anchor" id="ab1a425fa3b56a376a3fcac1f4491b1d0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int croisement_precedent</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>L'indice du croisement precedent. </p>
+
+</div>
+</div>
+<a class="anchor" id="a9ee9e497cd0d78d4214a6507a550239c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int croisement_precedent_orientation</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>L'orientation (horizontal / vertical) du croisement precedent. </p>
 
 </div>
 </div>
@@ -245,7 +305,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="struct_requete.html">Requete</a></li>
-    <li class="footer">Generated on Tue Jun 2 2015 21:16:37 for Carrefour by
+    <li class="footer">Generated on Thu Jun 11 2015 00:28:40 for Carrefour by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

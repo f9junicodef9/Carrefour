@@ -9,11 +9,20 @@ Contient le code du serveur dans le modele client-\/serveur (le serveur).
 {\ttfamily \#include $<$stdlib.\+h$>$}\\*
 {\ttfamily \#include \char`\"{}project.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}serveur.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}interface.\+h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{serveur_8c_a714b2485a6dd312e37226e1f833728a9}{}\#define {\bfseries M\+A\+X\+F\+I\+L\+E}~1\label{serveur_8c_a714b2485a6dd312e37226e1f833728a9}
+
+\end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
+void \hyperlink{serveur_8c_adb723d4c0b7a57a31a2de35be952a566}{serveur} ()
+\begin{DoxyCompactList}\small\item\em Fonction realisee par le serveur. \end{DoxyCompactList}\item 
 void \hyperlink{serveur_8c_abfc917730b130b41ae69504895664b93}{construction\+Reponse} (\hyperlink{struct_requete}{Requete} $\ast$req, \hyperlink{struct_reponse}{Reponse} $\ast$rep)
-\begin{DoxyCompactList}\small\item\em Construit une reponse pour le client. La reponse peut prendre 2 formes \+: \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Construit une reponse pour la voiture, qui sera retransmise par l\textquotesingle{}intermediaire du carrefour. \end{DoxyCompactList}\item 
 void \hyperlink{serveur_8c_ad4ed2a03e4b3f3dea1e3493e749a5155}{affichage\+Reponse} (\hyperlink{struct_requete}{Requete} $\ast$req, \hyperlink{struct_reponse}{Reponse} $\ast$rep)
 \begin{DoxyCompactList}\small\item\em Affiche la nature et les informations de la reponse a la requete. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -21,7 +30,7 @@ void \hyperlink{serveur_8c_ad4ed2a03e4b3f3dea1e3493e749a5155}{affichage\+Reponse
 \subsection{Detailed Description}
 Contient le code du serveur dans le modele client-\/serveur (le serveur). 
 
-
+Ici, le serveur est un serveur pour les carrefours, selon le modele client-\/serveur. Il recoit des requetes des carrefours et leur renvoie des reponses. 
 
 \subsection{Function Documentation}
 \hypertarget{serveur_8c_ad4ed2a03e4b3f3dea1e3493e749a5155}{}\index{serveur.\+c@{serveur.\+c}!affichage\+Reponse@{affichage\+Reponse}}
@@ -38,9 +47,9 @@ Affiche la nature et les informations de la reponse a la requete.
 
 
 \begin{DoxyParams}{Parameters}
-{\em req} & Pointeur vers la requete qui a ete recue. \\
+{\em req} & Pointeur sur la requete qui a ete recue. \\
 \hline
-{\em rep} & Pointeur vers la reponse a afficher. \\
+{\em rep} & Pointeur sur la reponse a afficher. \\
 \hline
 \end{DoxyParams}
 \hypertarget{serveur_8c_abfc917730b130b41ae69504895664b93}{}\index{serveur.\+c@{serveur.\+c}!construction\+Reponse@{construction\+Reponse}}
@@ -53,18 +62,30 @@ Affiche la nature et les informations de la reponse a la requete.
 )}\label{serveur_8c_abfc917730b130b41ae69504895664b93}
 
 
-Construit une reponse pour le client. La reponse peut prendre 2 formes \+: 
+Construit une reponse pour la voiture, qui sera retransmise par l\textquotesingle{}intermediaire du carrefour. 
 
-
+La reponse peut prendre 2 formes \+:
 \begin{DoxyItemize}
-\item Autorisation \+: autorise la voiture a traverser le croisement demande
-\item Interdiction \+: interdit la voiture de traverser le croisement demande
+\item Autorisation \+: autorise la voiture a avancer / traverser dans la zone / le croisement demande.
+\item Interdiction \+: interdit la voiture de avancer / traverser dans la zone / le croisement demande.
 \end{DoxyItemize}
 
 
 \begin{DoxyParams}{Parameters}
-{\em req} & Pointeur vers la requete qui a ete recue. \\
+{\em req} & Pointeur sur la requete qui a ete recue. \\
 \hline
-{\em rep} & Pointeur vers la reponse qui va etre renseignee. \\
+{\em rep} & Pointeur sur la reponse qui va etre renseignee. \\
 \hline
 \end{DoxyParams}
+\hypertarget{serveur_8c_adb723d4c0b7a57a31a2de35be952a566}{}\index{serveur.\+c@{serveur.\+c}!serveur@{serveur}}
+\index{serveur@{serveur}!serveur.\+c@{serveur.\+c}}
+\subsubsection[{serveur}]{\setlength{\rightskip}{0pt plus 5cm}void serveur (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{serveur_8c_adb723d4c0b7a57a31a2de35be952a566}
+
+
+Fonction realisee par le serveur. 
+
+Receptionne sans arret les requetes des carrefours dans sa file de message (1 pour tous les carrefours), les traite et retourne les reponses dans sa file. 

@@ -16,9 +16,7 @@ int \hyperlink{struct_voiture_a2c30f43104974e72e2809fb4569804b0}{numero}
 \item 
 \hyperlink{struct_voie}{Voie} $\ast$ \hyperlink{struct_voiture_acce856164d15fb4096637b544821166d}{voie}
 \item 
-int \hyperlink{struct_voiture_a401e942526aac47cef94f478182486e7}{position}
-\item 
-int \hyperlink{struct_voiture_a27b8d3667f2e477b9e64e14cf46056f9}{position\+\_\+traversee}
+int \hyperlink{struct_voiture_a49c1ca0385a5b276704a97cdceef2d83}{carrefour}
 \end{DoxyCompactItemize}
 
 
@@ -28,30 +26,22 @@ Represente une voiture.
 Une voiture est caracterisee par \+:
 \begin{DoxyItemize}
 \item Un numero
-\item Une voie qui lui est attribuee et qu\textquotesingle{}elle suivra depuis son entree dans le carrefour jusqu\textquotesingle{}a sa sortie
-\item L\textquotesingle{}indice du croisement ou elle se trouve dans le carrefour (n\textquotesingle{}a pas de sens lorsqu\textquotesingle{}elle est en entree/sortie du carrefour) L\textquotesingle{}etat de traversement (directement lie aux informations de traversement). Peut valoir \+:
-\begin{DoxyItemize}
-\item P\+A\+S\+T\+R\+A\+V\+E\+R\+S\+E
-\item T\+R\+A\+V\+E\+R\+S\+E
-\item A\+T\+R\+A\+V\+E\+R\+S\+E 
-\end{DoxyItemize}
+\item Une voie qui lui est attribuee et qu\textquotesingle{}elle suivra depuis son entree dans le carrefour jusqu\textquotesingle{}a sa sortie (1$<$=voie$<$=12).
+\item Un carrefour sur lequel elle se trouve (1$<$=carrefour$<$=4). 
 \end{DoxyItemize}
 
 \subsection{Field Documentation}
-\hypertarget{struct_voiture_a2c30f43104974e72e2809fb4569804b0}{}\index{Voiture@{Voiture}!numero@{numero}}
+\hypertarget{struct_voiture_a49c1ca0385a5b276704a97cdceef2d83}{}\index{Voiture@{Voiture}!carrefour@{carrefour}}
+\index{carrefour@{carrefour}!Voiture@{Voiture}}
+\subsubsection[{carrefour}]{\setlength{\rightskip}{0pt plus 5cm}int carrefour}\label{struct_voiture_a49c1ca0385a5b276704a97cdceef2d83}
+Le carrefour ou se trouve la voiture. \hypertarget{struct_voiture_a2c30f43104974e72e2809fb4569804b0}{}\index{Voiture@{Voiture}!numero@{numero}}
 \index{numero@{numero}!Voiture@{Voiture}}
 \subsubsection[{numero}]{\setlength{\rightskip}{0pt plus 5cm}int numero}\label{struct_voiture_a2c30f43104974e72e2809fb4569804b0}
-Le numero de la voiture. \hypertarget{struct_voiture_a401e942526aac47cef94f478182486e7}{}\index{Voiture@{Voiture}!position@{position}}
-\index{position@{position}!Voiture@{Voiture}}
-\subsubsection[{position}]{\setlength{\rightskip}{0pt plus 5cm}int position}\label{struct_voiture_a401e942526aac47cef94f478182486e7}
-Le croisement ou se trouve la voiture le cas echeant. \hypertarget{struct_voiture_a27b8d3667f2e477b9e64e14cf46056f9}{}\index{Voiture@{Voiture}!position\+\_\+traversee@{position\+\_\+traversee}}
-\index{position\+\_\+traversee@{position\+\_\+traversee}!Voiture@{Voiture}}
-\subsubsection[{position\+\_\+traversee}]{\setlength{\rightskip}{0pt plus 5cm}int position\+\_\+traversee}\label{struct_voiture_a27b8d3667f2e477b9e64e14cf46056f9}
-L\textquotesingle{}etat de traversement du croisement le cas echeant. \hypertarget{struct_voiture_acce856164d15fb4096637b544821166d}{}\index{Voiture@{Voiture}!voie@{voie}}
+Le numero de la voiture. \hypertarget{struct_voiture_acce856164d15fb4096637b544821166d}{}\index{Voiture@{Voiture}!voie@{voie}}
 \index{voie@{voie}!Voiture@{Voiture}}
 \subsubsection[{voie}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Voie}$\ast$ voie}\label{struct_voiture_acce856164d15fb4096637b544821166d}
 La voie attribuee a la voiture. 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-src/project.\+h\end{DoxyCompactItemize}
+src/\hyperlink{project_8h}{project.\+h}\end{DoxyCompactItemize}

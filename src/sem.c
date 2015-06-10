@@ -39,7 +39,7 @@ void V(int semnum)
 
 /**
  * \fn int initsem()
- * \brief Initialise les semaphores.
+ * \brief Initialise les semaphores. Un seul semaphore est utilise ici.
  */
 int initsem()
 {

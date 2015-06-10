@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['sem_5fid',['sem_id',['../main_8c.html#a9825b926ad2a4aa0e6688dc15b2d9a23',1,'sem_id():&#160;main.c'],['../project_8h.html#a9825b926ad2a4aa0e6688dc15b2d9a23',1,'sem_id():&#160;main.c']]],
-  ['sem_5fnum',['sem_num',['../struct_voie.html#ac9436ae55f35dfc5e3dc8e676c73aeb5',1,'Voie']]],
-  ['sem_5foper',['sem_oper',['../sem_8h.html#aeabb250b23d123daea740fd15f28b8df',1,'sem.h']]]
+  ['taillerep',['tailleRep',['../main_8c.html#a3fe87526483f6339598948503bc72f4a',1,'tailleRep():&#160;main.c'],['../project_8h.html#a3fe87526483f6339598948503bc72f4a',1,'tailleRep():&#160;main.c']]],
+  ['taillereq',['tailleReq',['../main_8c.html#a12872499b11c7292c4135f74e7a4fdcc',1,'tailleReq():&#160;main.c'],['../project_8h.html#a12872499b11c7292c4135f74e7a4fdcc',1,'tailleReq():&#160;main.c']]],
+  ['traverse',['traverse',['../struct_requete.html#a276684defbdd9a2e8b95ce40b8ef3576',1,'Requete']]],
+  ['type',['type',['../struct_requete.html#a6a83a8677f7c78fd146859325e08209a',1,'Requete::type()'],['../struct_reponse.html#a6a83a8677f7c78fd146859325e08209a',1,'Reponse::type()']]]
 ];

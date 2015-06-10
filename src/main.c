@@ -1,8 +1,6 @@
 /**
  * \file main.c
  * \brief Effectue les premieres operation du programme.
- *
- * Cree les processus fils, les objets IPC, affiche les premieres informations.
  */
 #include <stdio.h>
 #include <stdlib.h>
@@ -23,6 +21,10 @@ int sem_id;
 int shm_id[4];
 int compteur;
 
+/**
+ * \fn main(int argc,char* argv[])
+ * \brief Cree les processus fils (voitures, carrefours, serveur), les objets IPC, affiche les premieres informations.
+ */
 main(int argc,char* argv[])
 {
 	key_t cle[5];
@@ -102,7 +104,7 @@ void erreurFin(const char* msg){ perror(msg); exit(1); }
  * Si voies est non NULL, cree nbFils voitures avec une la voie correspondant aux differents membres de voies.
  *
  * \param nbFils Le nombre de voitures a creer.
- * \param voies Le tableau des voies a affecter aux voitures.
+ * \param voies Le tableau des voies a affecter aux voitures le cas echeant.
  * \param fonction La fonction qui sera exectuee par les voitures.
  */
 void forkn(int nbFils, char *voies[], void (*fonction)())
@@ -124,6 +126,12 @@ void forkn(int nbFils, char *voies[], void (*fonction)())
 	}
 }
 
+/**
+ * \fn void forkCarrefours(pid_t pid_Serveur)
+ * \brief Cree 4 processus fils (carrefours) qui executent la meme fonction.
+ *
+ * \param pid_Serveur Le pid du processus serveur. Utile pour adresser les requetes au serveur, dans la file de message du serveur.
+ */
 void forkCarrefours(pid_t pid_Serveur)
 {
 	int i;
@@ -135,6 +143,12 @@ void forkCarrefours(pid_t pid_Serveur)
 	}
 }
 
+/**
+ * \fn void forkCarrefours(pid_t pid_Serveur)
+ * \brief Cree 1 processus fils (serveur) qui executent une fonction.
+ *
+ * \return Le pid du processus serveur. Utile pour adresser les requetes au serveur, dans la file de message du serveur.
+ */
 pid_t forkServeur()
 {
 	pid_t pid_Serveur;
@@ -144,12 +158,14 @@ pid_t forkServeur()
 		serveur();
 	} else return pid_Serveur;
 }
+
 /**
  * \fn void traitantSIGINT(int s)
- * \brief Redefini le signal SIGINT.
+ * \brief Redefini le traitant du signal SIGINT.
+ *
  * Supprime les objets IPC lors de l'interception d'un signal SIGINT.
  *
- * \param s Le numero du signal intercepte.
+ * \param s Le numero du signal intercepte (SIGINT).
  */ 
 void traitantSIGINT(int s)
 {
@@ -166,9 +182,10 @@ void traitantSIGINT(int s)
 /**
  * \fn void premiere_ligne(int num)
  * \brief Affiche la premiere ligne d'informations.
- * Affiche sous forme de colonnes les differentes voitures creees.
  *
- * \param num Le nombre de voitures creees (<=> le nombre de colonnes)
+ * Affiche sous forme de colonnes les differentes voitures creees (forme "Voiture i    Voiture j...").
+ *
+ * \param num Le nombre de voitures creees (<=> le nombre de colonnes).
  */
 void premiere_ligne(int num)
 {
@@ -182,6 +199,13 @@ void premiere_ligne(int num)
 	V(MUTEX);
 }
 
+/**
+ * \fn void initialise_carrefours()
+ * \brief Cree un segment de memoire partagee pour chaque carrefour.
+ *
+ * Permet d'acceder aux informations des carrefours et de les modifier depuis les autres processus.
+ * Initialise les carrefours avec certaines informations de base.
+ */
 void initialise_carrefours()
 {
 	int i,j;
@@ -198,6 +222,12 @@ void initialise_carrefours()
 	}
 }
 
+/**
+ * \fn void initialise_compteur()
+ * \brief Cree un segment de memoire partagee pour le compteur de voitures sorties.
+ *
+ * Permet a chaque voiture d'incrementer un compteur lorsqu'elle quitte la carte (<=> un processus voiture se termine), pour verifier si aucune voiture n'est bloquee sur un carrefour.
+ */
 void initialise_compteur()
 {
 	compteur = shmget(IPC_PRIVATE, sizeof(int), IPC_CREAT | 0666);

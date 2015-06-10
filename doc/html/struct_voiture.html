@@ -121,24 +121,30 @@ Data Fields</h2></td></tr>
 <tr class="separator:a2c30f43104974e72e2809fb4569804b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acce856164d15fb4096637b544821166d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_voie.html">Voie</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_voiture.html#acce856164d15fb4096637b544821166d">voie</a></td></tr>
 <tr class="separator:acce856164d15fb4096637b544821166d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a401e942526aac47cef94f478182486e7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_voiture.html#a401e942526aac47cef94f478182486e7">position</a></td></tr>
-<tr class="separator:a401e942526aac47cef94f478182486e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a27b8d3667f2e477b9e64e14cf46056f9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_voiture.html#a27b8d3667f2e477b9e64e14cf46056f9">position_traversee</a></td></tr>
-<tr class="separator:a27b8d3667f2e477b9e64e14cf46056f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49c1ca0385a5b276704a97cdceef2d83"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_voiture.html#a49c1ca0385a5b276704a97cdceef2d83">carrefour</a></td></tr>
+<tr class="separator:a49c1ca0385a5b276704a97cdceef2d83"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represente une voiture. </p>
 <p>Une voiture est caracterisee par :</p><ul>
 <li>Un numero</li>
-<li>Une voie qui lui est attribuee et qu'elle suivra depuis son entree dans le carrefour jusqu'a sa sortie</li>
-<li>L'indice du croisement ou elle se trouve dans le carrefour (n'a pas de sens lorsqu'elle est en entree/sortie du carrefour) L'etat de traversement (directement lie aux informations de traversement). Peut valoir :<ul>
-<li>PASTRAVERSE</li>
-<li>TRAVERSE</li>
-<li>ATRAVERSE </li>
-</ul>
-</li>
+<li>Une voie qui lui est attribuee et qu'elle suivra depuis son entree dans le carrefour jusqu'a sa sortie (1&lt;=voie&lt;=12).</li>
+<li>Un carrefour sur lequel elle se trouve (1&lt;=carrefour&lt;=4). </li>
 </ul>
 </div><h2 class="groupheader">Field Documentation</h2>
+<a class="anchor" id="a49c1ca0385a5b276704a97cdceef2d83"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int carrefour</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Le carrefour ou se trouve la voiture. </p>
+
+</div>
+</div>
 <a class="anchor" id="a2c30f43104974e72e2809fb4569804b0"></a>
 <div class="memitem">
 <div class="memproto">
@@ -149,32 +155,6 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Le numero de la voiture. </p>
-
-</div>
-</div>
-<a class="anchor" id="a401e942526aac47cef94f478182486e7"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int position</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Le croisement ou se trouve la voiture le cas echeant. </p>
-
-</div>
-</div>
-<a class="anchor" id="a27b8d3667f2e477b9e64e14cf46056f9"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int position_traversee</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>L'etat de traversement du croisement le cas echeant. </p>
 
 </div>
 </div>
@@ -200,7 +180,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="struct_voiture.html">Voiture</a></li>
-    <li class="footer">Generated on Tue Jun 2 2015 21:16:37 for Carrefour by
+    <li class="footer">Generated on Thu Jun 11 2015 00:28:40 for Carrefour by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

@@ -1,6 +1,11 @@
 /**
  * \file carrefour.c
  * \brief Contient les fonctions utiles au fonctionnement et a la representation des carrefours.
+ *
+ * Ici, les carrefours sont a la fois clients et serveurs, selon le modele client-serveur.
+ * Pour les voitures, ils font office de serveur : ils recoivent des requetes en renvoient des reponses.
+ * Pour le serveur, ils font office de clients : ils envoient des requetes et recoivent des reponses.
+ * Ce sont des intermediaires entre les voitures et le serveur.
  */
 #include <stdio.h>
 #include <stdlib.h>
@@ -10,18 +15,21 @@
 /*! Represente la taille du carrefour. La valeur indique le nombre maximal de sections critiques par ligne/colonne (le carrefour est suppose carre et toutes les voies sont identiques). */
 #define TAILLE 5
 
-/*! Represente le carrefour. Les valeurs 0 representent des sections critiques ; Les valeurs -1 representent des sections non critiques, donc facultatives, mais tout de meme representees par soucis de simplicite. */
-
 /**
- * \fn void carrefour()
+ * \fn void carrefour(int numero, pid_t pid_Serveur)
  * \brief Fonction realisee par chaque carrefour.
+ *
+ * Comprend 2 phases :
+ * - Se connecte a la file de message correspondant au carrefour (1 seule parmis les 4).
+ * - Receptionne sans arret les requetes des voitures dans sa file de message (1 par carrefour), les transmet au serveur si necessaire et retourne les reponses de ce dernier dans sa file le cas echeant.
+ *
+ * \param numero Le numero du carrefour (1<=numero<=4).
+ * \param pid_Serveur Le pid du processus serveur. Utile pour adresser les requetes au serveur, dans la file de message du serveur.
  */
 void carrefour(int numero, pid_t pid_Serveur)
 {
 	Requete req, req_serveur;
 	Reponse rep;
-	
-//	long pidVoiture;
 
 	Carrefour *c;
 	
@@ -50,10 +58,11 @@ void carrefour(int numero, pid_t pid_Serveur)
 }
 
 /**
- * \fn void maj_carrefour(Requete *req)
+ * \fn void maj_carrefour(Requete *req, Carrefour *c)
  * \brief Met a jour le carrefour avec les informations de la requete recue.
  *
  * \param req Pointeur sur la requete recue.
+ * \param c Pointeur sur le carrefour correspondant.
  */
 void maj_carrefour(Requete *req, Carrefour *c)
 {
@@ -111,8 +120,10 @@ void maj_carrefour(Requete *req, Carrefour *c)
 }
 
 /**
- * \fn void affiche_carrefour()
+ * \fn void affiche_carrefour(Carrefour *c)
  * \brief Affiche les informations d'un carrefour.
+ *
+ * \param c Pointeur sur le carrefour correspondant.
  */
 void affiche_carrefour(Carrefour *c)
 {

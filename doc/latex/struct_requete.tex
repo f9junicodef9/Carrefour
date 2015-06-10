@@ -2,7 +2,7 @@
 \label{struct_requete}\index{Requete@{Requete}}
 
 
-Represente une requete du client pour le serveur (d\textquotesingle{}une voiture pour un carrefour).  
+Represente une requete du client pour le serveur (d\textquotesingle{}une voiture pour un carrefour / le serveur).  
 
 
 
@@ -18,7 +18,15 @@ pid\+\_\+t \hyperlink{struct_requete_a3041e2766c91f9b17975056266bfc841}{pid\+Eme
 \item 
 \hyperlink{struct_voiture}{Voiture} \hyperlink{struct_requete_a76a64000aab59dcc4195c1b6e1605eb3}{v}
 \item 
+int \hyperlink{struct_requete_a49c1ca0385a5b276704a97cdceef2d83}{carrefour}
+\item 
 int \hyperlink{struct_requete_a558796b11448541e07f81ec0df5bf2bc}{croisement}
+\item 
+int \hyperlink{struct_requete_a0b2b0b49307840329ff724e792091c94}{croisement\+\_\+orientation}
+\item 
+int \hyperlink{struct_requete_ab1a425fa3b56a376a3fcac1f4491b1d0}{croisement\+\_\+precedent}
+\item 
+int \hyperlink{struct_requete_a9ee9e497cd0d78d4214a6507a550239c}{croisement\+\_\+precedent\+\_\+orientation}
 \item 
 int \hyperlink{struct_requete_ad5ecb866a563750cd63db63b9b56c060}{voie}
 \item 
@@ -27,40 +35,52 @@ int \hyperlink{struct_requete_a276684defbdd9a2e8b95ce40b8ef3576}{traverse}
 
 
 \subsection{Detailed Description}
-Represente une requete du client pour le serveur (d\textquotesingle{}une voiture pour un carrefour). 
+Represente une requete du client pour le serveur (d\textquotesingle{}une voiture pour un carrefour / le serveur). 
 
 Une requete est caracterisee par \+:
 \begin{DoxyItemize}
 \item Son type. Peut valoir \+:
 \begin{DoxyItemize}
-\item M\+E\+S\+S\+A\+R\+R\+I\+V\+E \+: Indique que la voiture arrive sur le carrefour par la voie indiquee.
-\item M\+E\+S\+S\+D\+E\+M\+A\+N\+D\+E \+: Demande au serveur (carrefour) la permission de traverser le croisement indique.
-\item M\+E\+S\+S\+T\+R\+A\+V\+E\+R\+S\+E \+: Indique que la voiture debute le traversement du croisement indique.
-\item M\+E\+S\+S\+A\+T\+R\+A\+V\+E\+R\+S\+E \+: Indique que la voiture a traverse le croisement indique.
-\item M\+E\+S\+S\+S\+O\+R\+T \+: Indique que la voiture quitte le carrefour par la voie indiquee.
+\item M\+E\+S\+S\+A\+R\+R\+I\+V\+E \+: message d\textquotesingle{}information d\textquotesingle{}arrivee sur un carrefour. N\textquotesingle{}implique aucun traitement, affiche juste l\textquotesingle{}information.
+\item M\+E\+S\+S\+D\+E\+M\+A\+N\+D\+E \+: demande d\textquotesingle{}arrivee en zone avant, pendant, ou apres un croisement. Implique une demande au serveur (depuis le carrefour) qui va analyser le carrefour pour prendre une decision.
+\item M\+E\+S\+S\+I\+N\+F\+O \+: message d\textquotesingle{}information d\textquotesingle{}arrivee avant, pendant, ou apres un croisement. N\textquotesingle{}implique aucun traitement, affiche juste l\textquotesingle{}information.
+\item M\+E\+S\+S\+S\+O\+R\+T \+: message d\textquotesingle{}information de sortie d\textquotesingle{}un carrefour. Implique de mettre a jour la file d\textquotesingle{}attente \char`\"{}apres\char`\"{} le croisement precedent.
 \end{DoxyItemize}
-\item Le pid du processus qui emet la requete (la voiture).
+\item Le pid du processus qui emet la requete (la voiture si entre voiture-\/carrefour, le carrefour si entre carrefour-\/serveur).
 \item Une copie de la voiture qui emet la requete.
 \item L\textquotesingle{}indice du croisement ou se trouve la voiture.
 \item Le numero de la voie, selon le cas \+:
 \begin{DoxyItemize}
-\item ou se trouve la voiture
-\item qui est traversee au croisement indique
+\item ou se trouve la voiture (pour les informations d\textquotesingle{}entree / sortie de carrefour)
+\item qui est traversee au croisement indique (pour les demandes au serveur et informations aux carrefours)
 \end{DoxyItemize}
 \item L\textquotesingle{}indice du croisement ou se trouve la voiture.
-\item L\textquotesingle{}etat de traversement (directement lie aux informations de traversement). Peut valoir \+:
+\item L\textquotesingle{}etat de traversement du croisement (directement lie aux informations de traversement). Peut valoir \+:
 \begin{DoxyItemize}
-\item P\+A\+S\+T\+R\+A\+V\+E\+R\+S\+E
-\item T\+R\+A\+V\+E\+R\+S\+E
-\item A\+T\+R\+A\+V\+E\+R\+S\+E 
+\item A\+V\+A\+N\+T
+\item P\+E\+N\+D\+A\+N\+T
+\item A\+P\+R\+E\+S
+\item -\/1 si inaproprié (arrivee / sortie d\textquotesingle{}un carrefour =$>$ pas de croisement) 
 \end{DoxyItemize}
 \end{DoxyItemize}
 
 \subsection{Field Documentation}
-\hypertarget{struct_requete_a558796b11448541e07f81ec0df5bf2bc}{}\index{Requete@{Requete}!croisement@{croisement}}
+\hypertarget{struct_requete_a49c1ca0385a5b276704a97cdceef2d83}{}\index{Requete@{Requete}!carrefour@{carrefour}}
+\index{carrefour@{carrefour}!Requete@{Requete}}
+\subsubsection[{carrefour}]{\setlength{\rightskip}{0pt plus 5cm}int carrefour}\label{struct_requete_a49c1ca0385a5b276704a97cdceef2d83}
+Numero du carrefour ou se trouve la voiture effectuant la requete. \hypertarget{struct_requete_a558796b11448541e07f81ec0df5bf2bc}{}\index{Requete@{Requete}!croisement@{croisement}}
 \index{croisement@{croisement}!Requete@{Requete}}
 \subsubsection[{croisement}]{\setlength{\rightskip}{0pt plus 5cm}int croisement}\label{struct_requete_a558796b11448541e07f81ec0df5bf2bc}
-L\textquotesingle{}indice du croisement. \hypertarget{struct_requete_a3041e2766c91f9b17975056266bfc841}{}\index{Requete@{Requete}!pid\+Emetteur@{pid\+Emetteur}}
+L\textquotesingle{}indice du croisement ou se trouve la voiture. \hypertarget{struct_requete_a0b2b0b49307840329ff724e792091c94}{}\index{Requete@{Requete}!croisement\+\_\+orientation@{croisement\+\_\+orientation}}
+\index{croisement\+\_\+orientation@{croisement\+\_\+orientation}!Requete@{Requete}}
+\subsubsection[{croisement\+\_\+orientation}]{\setlength{\rightskip}{0pt plus 5cm}int croisement\+\_\+orientation}\label{struct_requete_a0b2b0b49307840329ff724e792091c94}
+L\textquotesingle{}orientation (horizontal / vertical) du croisement. \hypertarget{struct_requete_ab1a425fa3b56a376a3fcac1f4491b1d0}{}\index{Requete@{Requete}!croisement\+\_\+precedent@{croisement\+\_\+precedent}}
+\index{croisement\+\_\+precedent@{croisement\+\_\+precedent}!Requete@{Requete}}
+\subsubsection[{croisement\+\_\+precedent}]{\setlength{\rightskip}{0pt plus 5cm}int croisement\+\_\+precedent}\label{struct_requete_ab1a425fa3b56a376a3fcac1f4491b1d0}
+L\textquotesingle{}indice du croisement precedent. \hypertarget{struct_requete_a9ee9e497cd0d78d4214a6507a550239c}{}\index{Requete@{Requete}!croisement\+\_\+precedent\+\_\+orientation@{croisement\+\_\+precedent\+\_\+orientation}}
+\index{croisement\+\_\+precedent\+\_\+orientation@{croisement\+\_\+precedent\+\_\+orientation}!Requete@{Requete}}
+\subsubsection[{croisement\+\_\+precedent\+\_\+orientation}]{\setlength{\rightskip}{0pt plus 5cm}int croisement\+\_\+precedent\+\_\+orientation}\label{struct_requete_a9ee9e497cd0d78d4214a6507a550239c}
+L\textquotesingle{}orientation (horizontal / vertical) du croisement precedent. \hypertarget{struct_requete_a3041e2766c91f9b17975056266bfc841}{}\index{Requete@{Requete}!pid\+Emetteur@{pid\+Emetteur}}
 \index{pid\+Emetteur@{pid\+Emetteur}!Requete@{Requete}}
 \subsubsection[{pid\+Emetteur}]{\setlength{\rightskip}{0pt plus 5cm}pid\+\_\+t pid\+Emetteur}\label{struct_requete_a3041e2766c91f9b17975056266bfc841}
 Le pid du processus emetteur. \hypertarget{struct_requete_a276684defbdd9a2e8b95ce40b8ef3576}{}\index{Requete@{Requete}!traverse@{traverse}}
@@ -79,4 +99,4 @@ Le numero de la voie.
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-src/project.\+h\end{DoxyCompactItemize}
+src/\hyperlink{project_8h}{project.\+h}\end{DoxyCompactItemize}

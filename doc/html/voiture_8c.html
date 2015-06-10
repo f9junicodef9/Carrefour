@@ -114,33 +114,66 @@ $(document).ready(function(){initNavTree('voiture_8c.html','');});
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
-<code>#include &quot;project.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="project_8h_source.html">project.h</a>&quot;</code><br />
 <code>#include &quot;voiture.h&quot;</code><br />
+<code>#include &quot;interface.h&quot;</code><br />
+<code>#include &lt;sys/time.h&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:affc667f54d3aad05a212a708a1967851"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="affc667f54d3aad05a212a708a1967851"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="voiture_8c.html#affc667f54d3aad05a212a708a1967851">initRand</a> ()</td></tr>
-<tr class="memdesc:affc667f54d3aad05a212a708a1967851"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de generer de nouveaux nombres aleatoires. Necessaire pour que les differents processus (les voitures) ne generent pas les memes nombres aleatoires (les memes voies). <br /></td></tr>
+<tr class="memitem:affc667f54d3aad05a212a708a1967851"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="voiture_8c.html#affc667f54d3aad05a212a708a1967851">initRand</a> ()</td></tr>
+<tr class="memdesc:affc667f54d3aad05a212a708a1967851"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de generer de nouveaux nombres aleatoires.  <a href="#affc667f54d3aad05a212a708a1967851">More...</a><br /></td></tr>
 <tr class="separator:affc667f54d3aad05a212a708a1967851"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aefdfaf590d5f158bba54b7bb0c081d9a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="voiture_8c.html#aefdfaf590d5f158bba54b7bb0c081d9a">affiche_voiture</a> (<a class="el" href="struct_voiture.html">Voiture</a> *v)</td></tr>
 <tr class="memdesc:aefdfaf590d5f158bba54b7bb0c081d9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Affiche les informations d'une voiture.  <a href="#aefdfaf590d5f158bba54b7bb0c081d9a">More...</a><br /></td></tr>
 <tr class="separator:aefdfaf590d5f158bba54b7bb0c081d9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a60a6644d2debba1f7e821e4d1977e0dd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="voiture_8c.html#a60a6644d2debba1f7e821e4d1977e0dd">voiture</a> (int numero, int voie)</td></tr>
-<tr class="memdesc:a60a6644d2debba1f7e821e4d1977e0dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction realisee par chaque processus (chaque voiture). Comprend 2 phases :  <a href="#a60a6644d2debba1f7e821e4d1977e0dd">More...</a><br /></td></tr>
-<tr class="separator:a60a6644d2debba1f7e821e4d1977e0dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a64d9e45e6fd28b23c6479afbc03c64f1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="voiture_8c.html#a64d9e45e6fd28b23c6479afbc03c64f1">maj_position</a> (<a class="el" href="struct_voiture.html">Voiture</a> *v, int position, int traverse)</td></tr>
-<tr class="memdesc:a64d9e45e6fd28b23c6479afbc03c64f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Met a jour la position de la voiture dans sa structure.  <a href="#a64d9e45e6fd28b23c6479afbc03c64f1">More...</a><br /></td></tr>
-<tr class="separator:a64d9e45e6fd28b23c6479afbc03c64f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d10ad75a89b2936ce3601a702def307"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="voiture_8c.html#a5d10ad75a89b2936ce3601a702def307">affiche_carrefours</a> ()</td></tr>
+<tr class="memdesc:a5d10ad75a89b2936ce3601a702def307"><td class="mdescLeft">&#160;</td><td class="mdescRight">Affiche les informations generales des carrefours.  <a href="#a5d10ad75a89b2936ce3601a702def307">More...</a><br /></td></tr>
+<tr class="separator:a5d10ad75a89b2936ce3601a702def307"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aedfbdc9be292191e867f1d6de85f7708"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="voiture_8c.html#aedfbdc9be292191e867f1d6de85f7708">voiture</a> (int numero, int voie, int <a class="el" href="carrefour_8c.html#a9444302434bb1140df71a3848edecee9">carrefour</a>)</td></tr>
+<tr class="memdesc:aedfbdc9be292191e867f1d6de85f7708"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction realisee par chaque voiture.  <a href="#aedfbdc9be292191e867f1d6de85f7708">More...</a><br /></td></tr>
+<tr class="separator:aedfbdc9be292191e867f1d6de85f7708"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab645261dc7b5e99edbe3283804fcdacc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="voiture_8c.html#ab645261dc7b5e99edbe3283804fcdacc">create_question</a> (<a class="el" href="struct_requete.html">Requete</a> *req, <a class="el" href="struct_voiture.html">Voiture</a> *v, int <a class="el" href="carrefour_8c.html#a9444302434bb1140df71a3848edecee9">carrefour</a>, int croisement_precedent, int croisement_precedent_orientation, int croisement, int croisement_orientation, int voie, int traverse, int type)</td></tr>
+<tr class="memdesc:ab645261dc7b5e99edbe3283804fcdacc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Effectue les operations permettant la construction d'une requete vers le carrefour, affiche la requete, et l'envoie au carrefour.  <a href="#ab645261dc7b5e99edbe3283804fcdacc">More...</a><br /></td></tr>
+<tr class="separator:ab645261dc7b5e99edbe3283804fcdacc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1337c11dfce7a46d9002b48ef1074419"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="voiture_8c.html#a1337c11dfce7a46d9002b48ef1074419">receive_answer</a> (<a class="el" href="struct_requete.html">Requete</a> *req, int <a class="el" href="carrefour_8c.html#a9444302434bb1140df71a3848edecee9">carrefour</a>)</td></tr>
+<tr class="memdesc:a1337c11dfce7a46d9002b48ef1074419"><td class="mdescLeft">&#160;</td><td class="mdescRight">Effectue les operations permettant la reception d'une reponse du serveur (depuis le carrefour), et affiche la reponse.  <a href="#a1337c11dfce7a46d9002b48ef1074419">More...</a><br /></td></tr>
+<tr class="separator:a1337c11dfce7a46d9002b48ef1074419"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6756eba029b24d748ae8f952ef7bfac"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="voiture_8c.html#ab6756eba029b24d748ae8f952ef7bfac">random_voie</a> (int v)</td></tr>
+<tr class="memdesc:ab6756eba029b24d748ae8f952ef7bfac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retourne un numero de voie aleatoire mais coherent selon la voie d'ou arrive la voiture.  <a href="#ab6756eba029b24d748ae8f952ef7bfac">More...</a><br /></td></tr>
+<tr class="separator:ab6756eba029b24d748ae8f952ef7bfac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:aa9246ae4d5b520f1e61ed589dd0bf1bf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_voie.html">Voie</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="voiture_8c.html#aa9246ae4d5b520f1e61ed589dd0bf1bf">voies</a> [12]</td></tr>
 <tr class="separator:aa9246ae4d5b520f1e61ed589dd0bf1bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af08111e35d8cfbdf7d1fa16fa39df0e1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="voiture_8c.html#af08111e35d8cfbdf7d1fa16fa39df0e1">assoc_voies</a> [] = {4,2,12,7,5,3,10,8,6,1,11,9}</td></tr>
+<tr class="separator:af08111e35d8cfbdf7d1fa16fa39df0e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93be13f9bf50258a179c57da90b76573"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="voiture_8c.html#a93be13f9bf50258a179c57da90b76573">assoc_carrefours</a> [][12]</td></tr>
+<tr class="separator:a93be13f9bf50258a179c57da90b76573"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Contient les fonctions utiles au fonctionnement et a la representation des voitures. </p>
+<p>Ici, les voitures sont des clients pour les carrefours, selon le modele client-serveur. Elles envoient des requetes aux carrefours et en recoivent des reponses. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a5d10ad75a89b2936ce3601a702def307"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void affiche_carrefours </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Affiche les informations generales des carrefours. </p>
+<p>Indique pour chaque voie de chaque carrefour, la voie et le carrefour sur lequel elle debouche. </p>
+
+</div>
+</div>
 <a class="anchor" id="aefdfaf590d5f158bba54b7bb0c081d9a"></a>
 <div class="memitem">
 <div class="memproto">
@@ -165,13 +198,19 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a64d9e45e6fd28b23c6479afbc03c64f1"></a>
+<a class="anchor" id="ab645261dc7b5e99edbe3283804fcdacc"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void maj_position </td>
+          <td class="memname">void create_question </td>
           <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_requete.html">Requete</a> *&#160;</td>
+          <td class="paramname"><em>req</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype"><a class="el" href="struct_voiture.html">Voiture</a> *&#160;</td>
           <td class="paramname"><em>v</em>, </td>
         </tr>
@@ -179,13 +218,49 @@ Variables</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>position</em>, </td>
+          <td class="paramname"><em>carrefour</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>traverse</em>&#160;</td>
+          <td class="paramname"><em>croisement_precedent</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>croisement_precedent_orientation</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>croisement</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>croisement_orientation</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>voie</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>traverse</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>type</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -195,15 +270,41 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Met a jour la position de la voiture dans sa structure. </p>
+<p>Effectue les operations permettant la construction d'une requete vers le carrefour, affiche la requete, et l'envoie au carrefour. </p>
+<p>void <a class="el" href="voiture_8c.html#ab645261dc7b5e99edbe3283804fcdacc" title="Effectue les operations permettant la construction d&#39;une requete vers le carrefour, affiche la requete, et l&#39;envoie au carrefour. ">create_question(Requete *req, Voiture *v, int carrefour, int croisement_precedent, int croisement_precedent_orientation, int croisement, int croisement_orientation, int voie, int traverse, int type)</a> La requete peut prendre 4 formes :</p><ul>
+<li>MESSARRIVE : message d'information d'arrivee sur un carrefour. N'implique aucun traitement, affiche juste l'information.</li>
+<li>MESSDEMANDE : demande d'arrivee en zone avant, pendant, ou apres un croisement. Implique une demande au serveur (depuis le carrefour) qui va analyser le carrefour pour prendre une decision.</li>
+<li>MESSINFO : message d'information d'arrivee avant, pendant, ou apres un croisement. N'implique aucun traitement, affiche juste l'information.</li>
+<li>MESSSORT : message d'information de sortie d'un carrefour. Implique de mettre a jour la file d'attente "apres" le croisement precedent.</li>
+</ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">v</td><td>Pointeur sur la voiture a mettre a jour. </td></tr>
-    <tr><td class="paramname">position</td><td>L'indice du croisement ou se trouve la voiture. </td></tr>
+    <tr><td class="paramname">req</td><td>Pointeur vers la requete qui va etre renseignee. </td></tr>
+    <tr><td class="paramname">v</td><td>Pointeur vers la voiture effectuant la requete. </td></tr>
+    <tr><td class="paramname">croisement_precedent</td><td>L'indice de la zone critique (&lt;=&gt; le croisement) precedemment visitee le cas echeant (utile lorsque la voiture quitte un croisement pour modifier le precedent). </td></tr>
+    <tr><td class="paramname">croisement_precedent_orientation</td><td>L'orientation (horizontal / vertical) du croisement precedent (utile pour mettre a jour les files d'attente du croisement precedent quand une voiture arrive a un nouveau croisement). Peut valoir :<ul>
+<li>HO : horizontal.</li>
+<li>VE : vertical. </li>
+</ul>
+</td></tr>
+    <tr><td class="paramname">croisement</td><td>L'indice de la zone critique (&lt;=&gt; le croisement) le cas echeant. </td></tr>
+    <tr><td class="paramname">croisement_orientation</td><td>L'orientation (horizontal / vertical) du croisement (utile pour mettre a jour les files d'attente du croisement). Peut valoir :<ul>
+<li>HO : horizontal.</li>
+<li>VE : vertical. </li>
+</ul>
+</td></tr>
+    <tr><td class="paramname">voie</td><td>L'indice de la voie d'arrivee, de depart, ou de croisement (&lt;=&gt; la voie qui croise avec celle de la voiture a l'endroit critique). </td></tr>
     <tr><td class="paramname">traverse</td><td>L'etat de traversement (directement lie aux informations de traversement). Peut valoir :<ul>
-<li>PASTRAVERSE</li>
-<li>TRAVERSE</li>
-<li>ATRAVERSE </li>
+<li>AVANT : avant la zone critique (file de voitures avant le croisement).</li>
+<li>PENDANT : pendant la zone critique (le croisement en lui meme).</li>
+<li>APRES : apres la zone critique (file de voitures apres le croisement). </li>
+</ul>
+</td></tr>
+    <tr><td class="paramname">type</td><td>Le type de requete. Peut valoir :<ul>
+<li>MESSARRIVE.</li>
+<li>MESSDEMANDE.</li>
+<li>MESSINFO.</li>
+<li>MESSSORT. </li>
 </ul>
 </td></tr>
   </table>
@@ -212,7 +313,93 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a60a6644d2debba1f7e821e4d1977e0dd"></a>
+<a class="anchor" id="affc667f54d3aad05a212a708a1967851"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void initRand </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Permet de generer de nouveaux nombres aleatoires. </p>
+<p>Necessaire pour que les differents processus (les voitures) ne generent pas les memes nombres aleatoires (les memes voies, carrefours, temps de pause, etc...). Genere un seed base sur 3 variables pour assurer l'aspect aleatoire. </p>
+
+</div>
+</div>
+<a class="anchor" id="ab6756eba029b24d748ae8f952ef7bfac"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int random_voie </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retourne un numero de voie aleatoire mais coherent selon la voie d'ou arrive la voiture. </p>
+<p>Deduit, selon la voie ou se trouvait la voiture sur le carrefour precedent, un numero de voie aleatoire en accord avec son arrivee sur le nouveau carrefour (&lt;=&gt; simule un changement de voie par le conducteur).</p>
+<p>Trois cas de figure :</p><ul>
+<li>voie d'arrivee : 1, 2 ou 3 =&gt; voie generee : 1, 2, ou 3.</li>
+<li>voie d'arrivee : 4, 5 ou 6 =&gt; voie generee : 4, 5 ou 6.</li>
+<li>voie d'arrivee : 7, 8 ou 9 =&gt; voie generee : 7, 8, ou 9.</li>
+<li>voie d'arrivee : 10, 11 ou 12 =&gt; voie generee : 10, 11 ou 12.</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v</td><td>Numero de la voie d'arrivee.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Le numero de voie aleatoire parmis les voies possibles. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a1337c11dfce7a46d9002b48ef1074419"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void receive_answer </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_requete.html">Requete</a> *&#160;</td>
+          <td class="paramname"><em>req</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>carrefour</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Effectue les operations permettant la reception d'une reponse du serveur (depuis le carrefour), et affiche la reponse. </p>
+<p>Ne retourne que lorsque la reponse du serveur aura ete positive. Permet de bloquer la voiture tant qu'elle n'a pas eu la permission d'avancer. Tant qu'elle est bloquee, la voiture renvoie des demandes au serveur (via le carrefour) a intervalles reguliers.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">req</td><td>Pointeur vers la requete qui a ete envoyee. </td></tr>
+    <tr><td class="paramname">carrefour</td><td>Le numero du carrefour ou se trouve la voiture. Utile pour n'ecouter que la file de message du carrefour concerne. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aedfbdc9be292191e867f1d6de85f7708"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -226,7 +413,13 @@ Variables</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>voie</em>&#160;</td>
+          <td class="paramname"><em>voie</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>carrefour</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -236,11 +429,23 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Fonction realisee par chaque processus (chaque voiture). Comprend 2 phases : </p>
-<ul>
-<li>Initialisation de la voiture, de deux facons :<ul>
-<li>Avec une voie aleatoire</li>
-<li>Avec une voie choisie par l'utilisateur</li>
+<p>Fonction realisee par chaque voiture. </p>
+<p>Comprend 2 phases :</p><ul>
+<li>Initialisation de la voiture, deux cas de figure :<ul>
+<li>Lancement du programme :<ul>
+<li>Le carrefour ou elle arrive sera aleatoire parmis les 4 (amelioration possible : permettre a l'utilisateur de choisir le carrefour).</li>
+<li>La voie, deux cas de figure :<ul>
+<li>Avec une voie aleatoire.</li>
+<li>Avec une voie choisie par l'utilisateur.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Programme deja lance, la voiture change de carrefour, elle rappelle cette fonction. Alors :<ul>
+<li>Le carrefour ou elle arrive sera celui qui "correspond dans la realite".</li>
+<li>La voie ou elle arrive sera aleatoire parmis les 3 "possibles dans la realite" selon la direction d'arrivee sur le carrefour (Nord, Ouest, Est, Sud) (&lt;=&gt; simule un changement de voie par le conducteur).</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>Parcours de la voie par la voiture.</li>
@@ -249,8 +454,12 @@ Variables</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">numero</td><td>Le numero de la voiture. </td></tr>
     <tr><td class="paramname">voie</td><td>Le numero de la voie. Peut valoir :<ul>
-<li>-1 : la voiture prendra une voie dont le numero est genere aleatoirement (1&lt;=voie&lt;=12)</li>
-<li>&gt;0 : la voiture prendra la voie correspondant a ce numero </li>
+<li>-1 : la voiture prendra une voie dont le numero est genere aleatoirement :<ul>
+<li>1&lt;=voie&lt;=12 si c'est le lancement du programme (la voiture arrive n'importe ou).</li>
+<li>1&lt;=voie&lt;=3 ; 4&lt;=voie&lt;=6 ; 7&lt;=voie&lt;=9 ; 10&lt;=voie&lt;=12 si la voiture venait respectivement des carrefours Ouest ; Sud ; Est ; Nord.</li>
+</ul>
+</li>
+<li>&gt;0 : la voiture prendra la voie correspondant a ce numero. </li>
 </ul>
 </td></tr>
   </table>
@@ -260,6 +469,36 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
+<a class="anchor" id="a93be13f9bf50258a179c57da90b76573"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int assoc_carrefours[][12]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= { {-1,2,3,-1,-1,2,3,-1,-1,2,3,-1},</div>
+<div class="line">                                        {-1,-1,4,1,-1,-1,4,1,-1,-1,4,1},</div>
+<div class="line">                                        {1,4,-1,-1,1,4,-1,-1,1,4,-1,-1},</div>
+<div class="line">                                        {2,-1,-1,3,2,-1,-1,3,2,-1,-1,3} }</div>
+</div><!-- fragment --><p>Represente les carrefours associes aux voies "de sorties" respectives. </p>
+
+</div>
+</div>
+<a class="anchor" id="af08111e35d8cfbdf7d1fa16fa39df0e1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int assoc_voies[] = {4,2,12,7,5,3,10,8,6,1,11,9}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Represente les voies "d'entree" associees aux voies "de sortie" respectives. </p>
+
+</div>
+</div>
 <a class="anchor" id="aa9246ae4d5b520f1e61ed589dd0bf1bf"></a>
 <div class="memitem">
 <div class="memproto">
@@ -269,17 +508,17 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= { {1,{15,16,17,13,8,3},{11,7,10,4,7,8}},</div>
-<div class="line">                    {2,{20,21,23,24,-1},{11,7,4,5,-1}},</div>
+<b>Initial value:</b><div class="fragment"><div class="line">= { {1,{15,16,17,13,8,3},{11,7,10,4,7,8},{HO,HO,VE,VE,VE,VE}},</div>
+<div class="line">                    {2,{20,21,23,24,-1},{11,7,4,5,-1},{HO,HO,HO,HO}},</div>
 <div class="line">                    {3,{-1},{-1}},</div>
-<div class="line">                    {4,{23,18,13,7,6,5},{2,10,1,7,10,11}},</div>
-<div class="line">                    {5,{24,19,9,4,-1},{2,10,7,8,-1}},</div>
+<div class="line">                    {4,{23,18,13,7,6,5},{2,10,1,7,10,11},{VE,VE,HO,HO,HO,HO}},</div>
+<div class="line">                    {5,{24,19,9,4,-1},{2,10,7,8,-1},{VE,VE,VE,VE}},</div>
 <div class="line">                    {6,{-1},{-1}},</div>
-<div class="line">                    {7,{9,8,7,11,16,21},{5,1,4,10,1,2}},</div>
-<div class="line">                    {8,{4,3,1,0,-1},{5,1,10,11,-1}},</div>
+<div class="line">                    {7,{9,8,7,11,16,21},{5,1,4,10,1,2},{HO,HO,VE,VE,VE,VE}},</div>
+<div class="line">                    {8,{4,3,1,0,-1},{5,1,10,11,-1},{HO,HO,HO,HO}},</div>
 <div class="line">                    {9,{-1},{-1}},</div>
-<div class="line">                    {10,{1,6,11,17,18,19},{8,4,7,1,4,5}},</div>
-<div class="line">                    {11,{0,5,15,20,-1},{8,4,1,2,-1}},</div>
+<div class="line">                    {10,{1,6,11,17,18,19},{8,4,7,1,4,5},{VE,VE,HO,HO,HO,HO}},</div>
+<div class="line">                    {11,{0,5,15,20,-1},{8,4,1,2,-1},{VE,VE,VE,VE}},</div>
 <div class="line">                    {12,{-1},{-1}}  }</div>
 </div><!-- fragment --><p>Represente les 12 voies du carrefour. </p>
 
@@ -291,7 +530,7 @@ Variables</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="voiture_8c.html">voiture.c</a></li>
-    <li class="footer">Generated on Tue Jun 2 2015 21:16:37 for Carrefour by
+    <li class="footer">Generated on Thu Jun 11 2015 00:28:40 for Carrefour by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>
