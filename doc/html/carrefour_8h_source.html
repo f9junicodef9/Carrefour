@@ -109,24 +109,25 @@ $(document).ready(function(){initNavTree('carrefour_8h_source.html','');});
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef __CARREFOUR__ </span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define __CARREFOUR__</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keywordtype">void</span> <a class="code" href="carrefour_8c.html#ab1d9341d38791a8fce241ec143e6d255">carrefour</a>();</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keywordtype">void</span> <a class="code" href="carrefour_8c.html#a9444302434bb1140df71a3848edecee9">carrefour</a>(<span class="keywordtype">int</span> numero, pid_t pid_Serveur);</div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keywordtype">void</span> <a class="code" href="carrefour_8c.html#a1ae2b77ffde381607ac30b45179d7a2a">maj_carrefour</a>(<a class="code" href="struct_requete.html">Requete</a> *req);</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keywordtype">void</span> <a class="code" href="carrefour_8c.html#a0ab54ed99820713ac1021630189d34b9">maj_carrefour</a>(<a class="code" href="struct_requete.html">Requete</a> *req, <a class="code" href="struct_carrefour.html">Carrefour</a> *c);</div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keywordtype">void</span> <a class="code" href="carrefour_8c.html#a5af4c48594b237bdc964107ce37d7f62">affiche_carrefour</a>();</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keywordtype">void</span> <a class="code" href="carrefour_8c.html#a48715161df946b7ffc91799f12703118">affiche_carrefour</a>(<a class="code" href="struct_carrefour.html">Carrefour</a> *c);</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="struct_requete_html"><div class="ttname"><a href="struct_requete.html">Requete</a></div><div class="ttdoc">Represente une requete du client pour le serveur (d&#39;une voiture pour un carrefour). </div><div class="ttdef"><b>Definition:</b> project.h:74</div></div>
-<div class="ttc" id="carrefour_8c_html_a5af4c48594b237bdc964107ce37d7f62"><div class="ttname"><a href="carrefour_8c.html#a5af4c48594b237bdc964107ce37d7f62">affiche_carrefour</a></div><div class="ttdeci">void affiche_carrefour()</div><div class="ttdoc">Affiche les informations d&#39;un carrefour. </div><div class="ttdef"><b>Definition:</b> carrefour.c:58</div></div>
-<div class="ttc" id="carrefour_8c_html_a1ae2b77ffde381607ac30b45179d7a2a"><div class="ttname"><a href="carrefour_8c.html#a1ae2b77ffde381607ac30b45179d7a2a">maj_carrefour</a></div><div class="ttdeci">void maj_carrefour(Requete *req)</div><div class="ttdoc">Met a jour le carrefour avec les informations de la requete recue. </div><div class="ttdef"><b>Definition:</b> carrefour.c:46</div></div>
-<div class="ttc" id="carrefour_8c_html_ab1d9341d38791a8fce241ec143e6d255"><div class="ttname"><a href="carrefour_8c.html#ab1d9341d38791a8fce241ec143e6d255">carrefour</a></div><div class="ttdeci">void carrefour()</div><div class="ttdoc">Fonction realisee par chaque carrefour. </div><div class="ttdef"><b>Definition:</b> carrefour.c:20</div></div>
+<div class="ttc" id="carrefour_8c_html_a9444302434bb1140df71a3848edecee9"><div class="ttname"><a href="carrefour_8c.html#a9444302434bb1140df71a3848edecee9">carrefour</a></div><div class="ttdeci">void carrefour(int numero, pid_t pid_Serveur)</div><div class="ttdoc">Fonction realisee par chaque carrefour. </div><div class="ttdef"><b>Definition:</b> carrefour.c:29</div></div>
+<div class="ttc" id="struct_requete_html"><div class="ttname"><a href="struct_requete.html">Requete</a></div><div class="ttdoc">Represente une requete du client pour le serveur (d&#39;une voiture pour un carrefour / le serveur)...</div><div class="ttdef"><b>Definition:</b> project.h:101</div></div>
+<div class="ttc" id="carrefour_8c_html_a48715161df946b7ffc91799f12703118"><div class="ttname"><a href="carrefour_8c.html#a48715161df946b7ffc91799f12703118">affiche_carrefour</a></div><div class="ttdeci">void affiche_carrefour(Carrefour *c)</div><div class="ttdoc">Affiche les informations d&#39;un carrefour. </div><div class="ttdef"><b>Definition:</b> carrefour.c:128</div></div>
+<div class="ttc" id="carrefour_8c_html_a0ab54ed99820713ac1021630189d34b9"><div class="ttname"><a href="carrefour_8c.html#a0ab54ed99820713ac1021630189d34b9">maj_carrefour</a></div><div class="ttdeci">void maj_carrefour(Requete *req, Carrefour *c)</div><div class="ttdoc">Met a jour le carrefour avec les informations de la requete recue. </div><div class="ttdef"><b>Definition:</b> carrefour.c:67</div></div>
+<div class="ttc" id="struct_carrefour_html"><div class="ttname"><a href="struct_carrefour.html">Carrefour</a></div><div class="ttdoc">Represente un carrefour. </div><div class="ttdef"><b>Definition:</b> project.h:137</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><b>carrefour.h</b></li>
-    <li class="footer">Generated on Tue Jun 2 2015 21:16:36 for Carrefour by
+    <li class="footer">Generated on Thu Jun 11 2015 00:28:40 for Carrefour by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

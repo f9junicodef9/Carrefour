@@ -17,25 +17,18 @@ Contient les fonctions utiles au fonctionnement et a la representation des carre
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{carrefour_8c_ab1d9341d38791a8fce241ec143e6d255}{}void \hyperlink{carrefour_8c_ab1d9341d38791a8fce241ec143e6d255}{carrefour} ()\label{carrefour_8c_ab1d9341d38791a8fce241ec143e6d255}
-
+void \hyperlink{carrefour_8c_a9444302434bb1140df71a3848edecee9}{carrefour} (int numero, pid\+\_\+t pid\+\_\+\+Serveur)
 \begin{DoxyCompactList}\small\item\em Fonction realisee par chaque carrefour. \end{DoxyCompactList}\item 
-void \hyperlink{carrefour_8c_a1ae2b77ffde381607ac30b45179d7a2a}{maj\+\_\+carrefour} (\hyperlink{struct_requete}{Requete} $\ast$req)
+void \hyperlink{carrefour_8c_a0ab54ed99820713ac1021630189d34b9}{maj\+\_\+carrefour} (\hyperlink{struct_requete}{Requete} $\ast$req, \hyperlink{struct_carrefour}{Carrefour} $\ast$c)
 \begin{DoxyCompactList}\small\item\em Met a jour le carrefour avec les informations de la requete recue. \end{DoxyCompactList}\item 
-\hypertarget{carrefour_8c_a5af4c48594b237bdc964107ce37d7f62}{}void \hyperlink{carrefour_8c_a5af4c48594b237bdc964107ce37d7f62}{affiche\+\_\+carrefour} ()\label{carrefour_8c_a5af4c48594b237bdc964107ce37d7f62}
-
+void \hyperlink{carrefour_8c_a48715161df946b7ffc91799f12703118}{affiche\+\_\+carrefour} (\hyperlink{struct_carrefour}{Carrefour} $\ast$c)
 \begin{DoxyCompactList}\small\item\em Affiche les informations d\textquotesingle{}un carrefour. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Variables}
-\begin{DoxyCompactItemize}
-\item 
-int \hyperlink{carrefour_8c_aa2407842a814646814b60ced53f7fe60}{croisements} \mbox{[}25\mbox{]} = \{0,0,-\/1,0,0,0,0,0,0,0,-\/1,0,-\/1,0,-\/1,0,0,0,0,0,0,0,-\/1,0,0\}
-\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 Contient les fonctions utiles au fonctionnement et a la representation des carrefours. 
 
-
+Ici, les carrefours sont a la fois clients et serveurs, selon le modele client-\/serveur. Pour les voitures, ils font office de serveur \+: ils recoivent des requetes en renvoient des reponses. Pour le serveur, ils font office de clients \+: ils envoient des requetes et recoivent des reponses. Ce sont des intermediaires entre les voitures et le serveur. 
 
 \subsection{Macro Definition Documentation}
 \hypertarget{carrefour_8c_a7b29335add3a553ed85d0e3ace85629c}{}\index{carrefour.\+c@{carrefour.\+c}!T\+A\+I\+L\+L\+E@{T\+A\+I\+L\+L\+E}}
@@ -44,13 +37,55 @@ Contient les fonctions utiles au fonctionnement et a la representation des carre
 Represente la taille du carrefour. La valeur indique le nombre maximal de sections critiques par ligne/colonne (le carrefour est suppose carre et toutes les voies sont identiques). 
 
 \subsection{Function Documentation}
-\hypertarget{carrefour_8c_a1ae2b77ffde381607ac30b45179d7a2a}{}\index{carrefour.\+c@{carrefour.\+c}!maj\+\_\+carrefour@{maj\+\_\+carrefour}}
+\hypertarget{carrefour_8c_a48715161df946b7ffc91799f12703118}{}\index{carrefour.\+c@{carrefour.\+c}!affiche\+\_\+carrefour@{affiche\+\_\+carrefour}}
+\index{affiche\+\_\+carrefour@{affiche\+\_\+carrefour}!carrefour.\+c@{carrefour.\+c}}
+\subsubsection[{affiche\+\_\+carrefour}]{\setlength{\rightskip}{0pt plus 5cm}void affiche\+\_\+carrefour (
+\begin{DoxyParamCaption}
+\item[{{\bf Carrefour} $\ast$}]{c}
+\end{DoxyParamCaption}
+)}\label{carrefour_8c_a48715161df946b7ffc91799f12703118}
+
+
+Affiche les informations d\textquotesingle{}un carrefour. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & Pointeur sur le carrefour correspondant. \\
+\hline
+\end{DoxyParams}
+\hypertarget{carrefour_8c_a9444302434bb1140df71a3848edecee9}{}\index{carrefour.\+c@{carrefour.\+c}!carrefour@{carrefour}}
+\index{carrefour@{carrefour}!carrefour.\+c@{carrefour.\+c}}
+\subsubsection[{carrefour}]{\setlength{\rightskip}{0pt plus 5cm}void carrefour (
+\begin{DoxyParamCaption}
+\item[{int}]{numero, }
+\item[{pid\+\_\+t}]{pid\+\_\+\+Serveur}
+\end{DoxyParamCaption}
+)}\label{carrefour_8c_a9444302434bb1140df71a3848edecee9}
+
+
+Fonction realisee par chaque carrefour. 
+
+Comprend 2 phases \+:
+\begin{DoxyItemize}
+\item Se connecte a la file de message correspondant au carrefour (1 seule parmis les 4).
+\item Receptionne sans arret les requetes des voitures dans sa file de message (1 par carrefour), les transmet au serveur si necessaire et retourne les reponses de ce dernier dans sa file le cas echeant.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em numero} & Le numero du carrefour (1$<$=numero$<$=4). \\
+\hline
+{\em pid\+\_\+\+Serveur} & Le pid du processus serveur. Utile pour adresser les requetes au serveur, dans la file de message du serveur. \\
+\hline
+\end{DoxyParams}
+\hypertarget{carrefour_8c_a0ab54ed99820713ac1021630189d34b9}{}\index{carrefour.\+c@{carrefour.\+c}!maj\+\_\+carrefour@{maj\+\_\+carrefour}}
 \index{maj\+\_\+carrefour@{maj\+\_\+carrefour}!carrefour.\+c@{carrefour.\+c}}
 \subsubsection[{maj\+\_\+carrefour}]{\setlength{\rightskip}{0pt plus 5cm}void maj\+\_\+carrefour (
 \begin{DoxyParamCaption}
-\item[{{\bf Requete} $\ast$}]{req}
+\item[{{\bf Requete} $\ast$}]{req, }
+\item[{{\bf Carrefour} $\ast$}]{c}
 \end{DoxyParamCaption}
-)}\label{carrefour_8c_a1ae2b77ffde381607ac30b45179d7a2a}
+)}\label{carrefour_8c_a0ab54ed99820713ac1021630189d34b9}
 
 
 Met a jour le carrefour avec les informations de la requete recue. 
@@ -59,11 +94,6 @@ Met a jour le carrefour avec les informations de la requete recue.
 \begin{DoxyParams}{Parameters}
 {\em req} & Pointeur sur la requete recue. \\
 \hline
+{\em c} & Pointeur sur le carrefour correspondant. \\
+\hline
 \end{DoxyParams}
-
-
-\subsection{Variable Documentation}
-\hypertarget{carrefour_8c_aa2407842a814646814b60ced53f7fe60}{}\index{carrefour.\+c@{carrefour.\+c}!croisements@{croisements}}
-\index{croisements@{croisements}!carrefour.\+c@{carrefour.\+c}}
-\subsubsection[{croisements}]{\setlength{\rightskip}{0pt plus 5cm}int croisements\mbox{[}25\mbox{]} = \{0,0,-\/1,0,0,0,0,0,0,0,-\/1,0,-\/1,0,-\/1,0,0,0,0,0,0,0,-\/1,0,0\}}\label{carrefour_8c_aa2407842a814646814b60ced53f7fe60}
-Represente le carrefour. Les valeurs 0 representent des sections critiques ; Les valeurs -\/1 representent des sections non critiques, donc facultatives, mais tout de meme representees par soucis de simplicite. 

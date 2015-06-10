@@ -2,7 +2,7 @@
 \label{struct_reponse}\index{Reponse@{Reponse}}
 
 
-Represente une reponse du serveur pour le client (d\textquotesingle{}un carrefour pour une voiture).  
+Represente une reponse du serveur pour le client (du serveur pour une voiture).  
 
 
 
@@ -16,21 +16,20 @@ long \hyperlink{struct_reponse_a6a83a8677f7c78fd146859325e08209a}{type}
 \item 
 int \hyperlink{struct_reponse_a9ae59baa7d0f7ac15cc2090faf0b5b43}{autorisation}
 \item 
-\hypertarget{struct_reponse_a76a64000aab59dcc4195c1b6e1605eb3}{}\hyperlink{struct_voiture}{Voiture} {\bfseries v}\label{struct_reponse_a76a64000aab59dcc4195c1b6e1605eb3}
-
+\hyperlink{struct_voiture}{Voiture} \hyperlink{struct_reponse_a76a64000aab59dcc4195c1b6e1605eb3}{v}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Represente une reponse du serveur pour le client (d\textquotesingle{}un carrefour pour une voiture). 
+Represente une reponse du serveur pour le client (du serveur pour une voiture). 
 
 Une requete est caracterisee par \+:
 \begin{DoxyItemize}
-\item Son type. Vaut le pid du client ayant emis la requete.
+\item Son type. Vaut le pid du client ayant emis la requete (le carrefour quand la reponse part du serveur ; la voiture quand la reponse repart du carrefour).
 \item La reponse a la requete. Peut valoir \+:
 \begin{DoxyItemize}
-\item 1 \+: autorise la voiture a traverser le croisement demande
-\item 2 \+: interdit la voiture de traverser le croisement demande 
+\item 1 \+: autorise la voiture a avancer / traverser dans la zone / le croisement demande.
+\item 0 \+: interdit la voiture de avancer / traverser dans la zone / le croisement demande. 
 \end{DoxyItemize}
 \end{DoxyItemize}
 
@@ -41,8 +40,11 @@ Une requete est caracterisee par \+:
 La reponse a la requete. \hypertarget{struct_reponse_a6a83a8677f7c78fd146859325e08209a}{}\index{Reponse@{Reponse}!type@{type}}
 \index{type@{type}!Reponse@{Reponse}}
 \subsubsection[{type}]{\setlength{\rightskip}{0pt plus 5cm}long type}\label{struct_reponse_a6a83a8677f7c78fd146859325e08209a}
-Le type de message. 
+Le type de message. \hypertarget{struct_reponse_a76a64000aab59dcc4195c1b6e1605eb3}{}\index{Reponse@{Reponse}!v@{v}}
+\index{v@{v}!Reponse@{Reponse}}
+\subsubsection[{v}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Voiture} v}\label{struct_reponse_a76a64000aab59dcc4195c1b6e1605eb3}
+Variable necessaire pour eviter un plantage (explication a trouver). 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-src/project.\+h\end{DoxyCompactItemize}
+src/\hyperlink{project_8h}{project.\+h}\end{DoxyCompactItemize}

@@ -17,17 +17,26 @@ Effectue les premieres operation du programme.
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{main_8c_ae0665038b72011f5c680c660fcb59459}{}{\bfseries main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})\label{main_8c_ae0665038b72011f5c680c660fcb59459}
+\hypertarget{main_8c_ae0665038b72011f5c680c660fcb59459}{}\hyperlink{main_8c_ae0665038b72011f5c680c660fcb59459}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})\label{main_8c_ae0665038b72011f5c680c660fcb59459}
 
-\item 
+\begin{DoxyCompactList}\small\item\em Cree les processus fils (voitures, carrefours, serveur), les objets I\+P\+C, affiche les premieres informations. \end{DoxyCompactList}\item 
 void \hyperlink{main_8c_a4899d2672ed5be6bbf5d5bd39858a431}{erreur\+Fin} (const char $\ast$msg)
 \begin{DoxyCompactList}\small\item\em Affiche un message d\textquotesingle{}erreur systeme. \end{DoxyCompactList}\item 
 void \hyperlink{main_8c_aff8ddc85a3c98758afa5317fdafb8fc6}{forkn} (int nb\+Fils, char $\ast$\hyperlink{voiture_8c_aa9246ae4d5b520f1e61ed589dd0bf1bf}{voies}\mbox{[}$\,$\mbox{]}, void($\ast$fonction)())
 \begin{DoxyCompactList}\small\item\em Cree nb\+Fils processus fils (voitures) qui executent la meme fonction. \end{DoxyCompactList}\item 
+void \hyperlink{main_8c_afcdcf417b1307bdb6263d5c357dd527f}{fork\+Carrefours} (pid\+\_\+t pid\+\_\+\+Serveur)
+\begin{DoxyCompactList}\small\item\em Cree 4 processus fils (carrefours) qui executent la meme fonction. \end{DoxyCompactList}\item 
+\hypertarget{main_8c_ada53546ca48fbca1465cffbcb7d65657}{}pid\+\_\+t {\bfseries fork\+Serveur} ()\label{main_8c_ada53546ca48fbca1465cffbcb7d65657}
+
+\item 
 void \hyperlink{main_8c_a0d1f47591ec999b15091537f2425173e}{traitant\+S\+I\+G\+I\+N\+T} (int s)
-\begin{DoxyCompactList}\small\item\em Redefini le signal S\+I\+G\+I\+N\+T. Supprime les objets I\+P\+C lors de l\textquotesingle{}interception d\textquotesingle{}un signal S\+I\+G\+I\+N\+T. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Redefini le traitant du signal S\+I\+G\+I\+N\+T. \end{DoxyCompactList}\item 
 void \hyperlink{main_8c_a7b4ac8163fd0cdad039da3015910ae86}{premiere\+\_\+ligne} (int num)
-\begin{DoxyCompactList}\small\item\em Affiche la premiere ligne d\textquotesingle{}informations. Affiche sous forme de colonnes les differentes voitures creees. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Affiche la premiere ligne d\textquotesingle{}informations. \end{DoxyCompactList}\item 
+void \hyperlink{main_8c_accbe80052af59caeb740dee9973e9d07}{initialise\+\_\+carrefours} ()
+\begin{DoxyCompactList}\small\item\em Cree un segment de memoire partagee pour chaque carrefour. \end{DoxyCompactList}\item 
+void \hyperlink{main_8c_a134b35acf6f6ce44c47187daa36510ef}{initialise\+\_\+compteur} ()
+\begin{DoxyCompactList}\small\item\em Cree un segment de memoire partagee pour le compteur de voitures sorties. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
@@ -35,16 +44,22 @@ int \hyperlink{main_8c_a12872499b11c7292c4135f74e7a4fdcc}{taille\+Req} = sizeof(
 \item 
 int \hyperlink{main_8c_a3fe87526483f6339598948503bc72f4a}{taille\+Rep} = sizeof(\hyperlink{struct_reponse}{Reponse})
 \item 
-int \hyperlink{main_8c_a6174c42da8c55c86e7255be2848dc4ac}{msgid}
+int \hyperlink{main_8c_ac35b1416f799d547427e175255d4dc74}{msgid\+\_\+serveur}
+\item 
+int \hyperlink{main_8c_a6c6e2e7b164d1ffb856e4391a4fd05b3}{msgid\+\_\+carrefour} \mbox{[}4\mbox{]}
 \item 
 int \hyperlink{main_8c_a9825b926ad2a4aa0e6688dc15b2d9a23}{sem\+\_\+id}
+\item 
+int \hyperlink{main_8c_ab0f845d7f9358fabe3daebab24cf858a}{shm\+\_\+id} \mbox{[}4\mbox{]}
+\item 
+int \hyperlink{main_8c_ade857a99d48bcb8cfaa57c4cd8d7d2e8}{compteur}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 Effectue les premieres operation du programme. 
 
-Cree les processus fils, les objets I\+P\+C, affiche les premieres informations. 
+
 
 \subsection{Function Documentation}
 \hypertarget{main_8c_a4899d2672ed5be6bbf5d5bd39858a431}{}\index{main.\+c@{main.\+c}!erreur\+Fin@{erreur\+Fin}}
@@ -63,6 +78,27 @@ Affiche un message d\textquotesingle{}erreur systeme.
 {\em msg} & Le message d\textquotesingle{}erreur a afficher. \\
 \hline
 \end{DoxyParams}
+\hypertarget{main_8c_afcdcf417b1307bdb6263d5c357dd527f}{}\index{main.\+c@{main.\+c}!fork\+Carrefours@{fork\+Carrefours}}
+\index{fork\+Carrefours@{fork\+Carrefours}!main.\+c@{main.\+c}}
+\subsubsection[{fork\+Carrefours}]{\setlength{\rightskip}{0pt plus 5cm}void fork\+Carrefours (
+\begin{DoxyParamCaption}
+\item[{pid\+\_\+t}]{pid\+\_\+\+Serveur}
+\end{DoxyParamCaption}
+)}\label{main_8c_afcdcf417b1307bdb6263d5c357dd527f}
+
+
+Cree 4 processus fils (carrefours) qui executent la meme fonction. 
+
+Cree 1 processus fils (serveur) qui executent une fonction.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pid\+\_\+\+Serveur} & Le pid du processus serveur. Utile pour adresser les requetes au serveur, dans la file de message du serveur.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Le pid du processus serveur. Utile pour adresser les requetes au serveur, dans la file de message du serveur. 
+\end{DoxyReturn}
 \hypertarget{main_8c_aff8ddc85a3c98758afa5317fdafb8fc6}{}\index{main.\+c@{main.\+c}!forkn@{forkn}}
 \index{forkn@{forkn}!main.\+c@{main.\+c}}
 \subsubsection[{forkn}]{\setlength{\rightskip}{0pt plus 5cm}void forkn (
@@ -82,12 +118,34 @@ Si voies est N\+U\+L\+L, cree nb\+Fils voitures avec une voie aleatoire. Si voie
 \begin{DoxyParams}{Parameters}
 {\em nb\+Fils} & Le nombre de voitures a creer. \\
 \hline
-{\em voies} & Le tableau des voies a affecter aux voitures. \\
+{\em voies} & Le tableau des voies a affecter aux voitures le cas echeant. \\
 \hline
 {\em fonction} & La fonction qui sera exectuee par les voitures. \\
 \hline
 \end{DoxyParams}
-\hypertarget{main_8c_a7b4ac8163fd0cdad039da3015910ae86}{}\index{main.\+c@{main.\+c}!premiere\+\_\+ligne@{premiere\+\_\+ligne}}
+\hypertarget{main_8c_accbe80052af59caeb740dee9973e9d07}{}\index{main.\+c@{main.\+c}!initialise\+\_\+carrefours@{initialise\+\_\+carrefours}}
+\index{initialise\+\_\+carrefours@{initialise\+\_\+carrefours}!main.\+c@{main.\+c}}
+\subsubsection[{initialise\+\_\+carrefours}]{\setlength{\rightskip}{0pt plus 5cm}void initialise\+\_\+carrefours (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{main_8c_accbe80052af59caeb740dee9973e9d07}
+
+
+Cree un segment de memoire partagee pour chaque carrefour. 
+
+Permet d\textquotesingle{}acceder aux informations des carrefours et de les modifier depuis les autres processus. Initialise les carrefours avec certaines informations de base. \hypertarget{main_8c_a134b35acf6f6ce44c47187daa36510ef}{}\index{main.\+c@{main.\+c}!initialise\+\_\+compteur@{initialise\+\_\+compteur}}
+\index{initialise\+\_\+compteur@{initialise\+\_\+compteur}!main.\+c@{main.\+c}}
+\subsubsection[{initialise\+\_\+compteur}]{\setlength{\rightskip}{0pt plus 5cm}void initialise\+\_\+compteur (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{main_8c_a134b35acf6f6ce44c47187daa36510ef}
+
+
+Cree un segment de memoire partagee pour le compteur de voitures sorties. 
+
+Permet a chaque voiture d\textquotesingle{}incrementer un compteur lorsqu\textquotesingle{}elle quitte la carte ($<$=$>$ un processus voiture se termine), pour verifier si aucune voiture n\textquotesingle{}est bloquee sur un carrefour. \hypertarget{main_8c_a7b4ac8163fd0cdad039da3015910ae86}{}\index{main.\+c@{main.\+c}!premiere\+\_\+ligne@{premiere\+\_\+ligne}}
 \index{premiere\+\_\+ligne@{premiere\+\_\+ligne}!main.\+c@{main.\+c}}
 \subsubsection[{premiere\+\_\+ligne}]{\setlength{\rightskip}{0pt plus 5cm}void premiere\+\_\+ligne (
 \begin{DoxyParamCaption}
@@ -96,11 +154,13 @@ Si voies est N\+U\+L\+L, cree nb\+Fils voitures avec une voie aleatoire. Si voie
 )}\label{main_8c_a7b4ac8163fd0cdad039da3015910ae86}
 
 
-Affiche la premiere ligne d\textquotesingle{}informations. Affiche sous forme de colonnes les differentes voitures creees. 
+Affiche la premiere ligne d\textquotesingle{}informations. 
+
+Affiche sous forme de colonnes les differentes voitures creees (forme \char`\"{}\+Voiture i    Voiture j...\char`\"{}).
 
 
 \begin{DoxyParams}{Parameters}
-{\em num} & Le nombre de voitures creees ($<$=$>$ le nombre de colonnes) \\
+{\em num} & Le nombre de voitures creees ($<$=$>$ le nombre de colonnes). \\
 \hline
 \end{DoxyParams}
 \hypertarget{main_8c_a0d1f47591ec999b15091537f2425173e}{}\index{main.\+c@{main.\+c}!traitant\+S\+I\+G\+I\+N\+T@{traitant\+S\+I\+G\+I\+N\+T}}
@@ -112,23 +172,34 @@ Affiche la premiere ligne d\textquotesingle{}informations. Affiche sous forme de
 )}\label{main_8c_a0d1f47591ec999b15091537f2425173e}
 
 
-Redefini le signal S\+I\+G\+I\+N\+T. Supprime les objets I\+P\+C lors de l\textquotesingle{}interception d\textquotesingle{}un signal S\+I\+G\+I\+N\+T. 
+Redefini le traitant du signal S\+I\+G\+I\+N\+T. 
+
+Supprime les objets I\+P\+C lors de l\textquotesingle{}interception d\textquotesingle{}un signal S\+I\+G\+I\+N\+T.
 
 
 \begin{DoxyParams}{Parameters}
-{\em s} & Le numero du signal intercepte. \\
+{\em s} & Le numero du signal intercepte (S\+I\+G\+I\+N\+T). \\
 \hline
 \end{DoxyParams}
 
 
 \subsection{Variable Documentation}
-\hypertarget{main_8c_a6174c42da8c55c86e7255be2848dc4ac}{}\index{main.\+c@{main.\+c}!msgid@{msgid}}
-\index{msgid@{msgid}!main.\+c@{main.\+c}}
-\subsubsection[{msgid}]{\setlength{\rightskip}{0pt plus 5cm}int msgid}\label{main_8c_a6174c42da8c55c86e7255be2848dc4ac}
-La file de message utilisee pour communiquer entre les voitures et le carrefour \hypertarget{main_8c_a9825b926ad2a4aa0e6688dc15b2d9a23}{}\index{main.\+c@{main.\+c}!sem\+\_\+id@{sem\+\_\+id}}
+\hypertarget{main_8c_ade857a99d48bcb8cfaa57c4cd8d7d2e8}{}\index{main.\+c@{main.\+c}!compteur@{compteur}}
+\index{compteur@{compteur}!main.\+c@{main.\+c}}
+\subsubsection[{compteur}]{\setlength{\rightskip}{0pt plus 5cm}int compteur}\label{main_8c_ade857a99d48bcb8cfaa57c4cd8d7d2e8}
+Le compteur de voitures sorties, accessible par les autres processus en tant que segment de memoire partagee. \hypertarget{main_8c_a6c6e2e7b164d1ffb856e4391a4fd05b3}{}\index{main.\+c@{main.\+c}!msgid\+\_\+carrefour@{msgid\+\_\+carrefour}}
+\index{msgid\+\_\+carrefour@{msgid\+\_\+carrefour}!main.\+c@{main.\+c}}
+\subsubsection[{msgid\+\_\+carrefour}]{\setlength{\rightskip}{0pt plus 5cm}int msgid\+\_\+carrefour\mbox{[}4\mbox{]}}\label{main_8c_a6c6e2e7b164d1ffb856e4391a4fd05b3}
+Les files de message utilisees pour communiquer entre les voitures et les carrefour (4 files). \hypertarget{main_8c_ac35b1416f799d547427e175255d4dc74}{}\index{main.\+c@{main.\+c}!msgid\+\_\+serveur@{msgid\+\_\+serveur}}
+\index{msgid\+\_\+serveur@{msgid\+\_\+serveur}!main.\+c@{main.\+c}}
+\subsubsection[{msgid\+\_\+serveur}]{\setlength{\rightskip}{0pt plus 5cm}int msgid\+\_\+serveur}\label{main_8c_ac35b1416f799d547427e175255d4dc74}
+La file de message utilisee pour communiquer entre le serveur et les carrefour. \hypertarget{main_8c_a9825b926ad2a4aa0e6688dc15b2d9a23}{}\index{main.\+c@{main.\+c}!sem\+\_\+id@{sem\+\_\+id}}
 \index{sem\+\_\+id@{sem\+\_\+id}!main.\+c@{main.\+c}}
 \subsubsection[{sem\+\_\+id}]{\setlength{\rightskip}{0pt plus 5cm}int sem\+\_\+id}\label{main_8c_a9825b926ad2a4aa0e6688dc15b2d9a23}
-L\textquotesingle{}identifiant de l\textquotesingle{}ensemble de semaphores \hypertarget{main_8c_a3fe87526483f6339598948503bc72f4a}{}\index{main.\+c@{main.\+c}!taille\+Rep@{taille\+Rep}}
+L\textquotesingle{}identifiant de l\textquotesingle{}ensemble de semaphores (1 semaphore). \hypertarget{main_8c_ab0f845d7f9358fabe3daebab24cf858a}{}\index{main.\+c@{main.\+c}!shm\+\_\+id@{shm\+\_\+id}}
+\index{shm\+\_\+id@{shm\+\_\+id}!main.\+c@{main.\+c}}
+\subsubsection[{shm\+\_\+id}]{\setlength{\rightskip}{0pt plus 5cm}int shm\+\_\+id\mbox{[}4\mbox{]}}\label{main_8c_ab0f845d7f9358fabe3daebab24cf858a}
+Les 4 carrefours, accessibles par les autres processus en tant que segments de memoire partagee. \hypertarget{main_8c_a3fe87526483f6339598948503bc72f4a}{}\index{main.\+c@{main.\+c}!taille\+Rep@{taille\+Rep}}
 \index{taille\+Rep@{taille\+Rep}!main.\+c@{main.\+c}}
 \subsubsection[{taille\+Rep}]{\setlength{\rightskip}{0pt plus 5cm}int taille\+Rep = sizeof({\bf Reponse})}\label{main_8c_a3fe87526483f6339598948503bc72f4a}
 La taille d\textquotesingle{}une reponse. \hypertarget{main_8c_a12872499b11c7292c4135f74e7a4fdcc}{}\index{main.\+c@{main.\+c}!taille\+Req@{taille\+Req}}

@@ -9,32 +9,54 @@ Contient les fonctions utiles au fonctionnement et a la representation des voitu
 {\ttfamily \#include $<$stdlib.\+h$>$}\\*
 {\ttfamily \#include \char`\"{}project.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}voiture.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}interface.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$sys/time.\+h$>$}\\*
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{voiture_8c_affc667f54d3aad05a212a708a1967851}{}void \hyperlink{voiture_8c_affc667f54d3aad05a212a708a1967851}{init\+Rand} ()\label{voiture_8c_affc667f54d3aad05a212a708a1967851}
-
-\begin{DoxyCompactList}\small\item\em Permet de generer de nouveaux nombres aleatoires. Necessaire pour que les differents processus (les voitures) ne generent pas les memes nombres aleatoires (les memes voies). \end{DoxyCompactList}\item 
+void \hyperlink{voiture_8c_affc667f54d3aad05a212a708a1967851}{init\+Rand} ()
+\begin{DoxyCompactList}\small\item\em Permet de generer de nouveaux nombres aleatoires. \end{DoxyCompactList}\item 
 void \hyperlink{voiture_8c_aefdfaf590d5f158bba54b7bb0c081d9a}{affiche\+\_\+voiture} (\hyperlink{struct_voiture}{Voiture} $\ast$v)
 \begin{DoxyCompactList}\small\item\em Affiche les informations d\textquotesingle{}une voiture. \end{DoxyCompactList}\item 
-void \hyperlink{voiture_8c_a60a6644d2debba1f7e821e4d1977e0dd}{voiture} (int numero, int voie)
-\begin{DoxyCompactList}\small\item\em Fonction realisee par chaque processus (chaque voiture). Comprend 2 phases \+: \end{DoxyCompactList}\item 
-void \hyperlink{voiture_8c_a64d9e45e6fd28b23c6479afbc03c64f1}{maj\+\_\+position} (\hyperlink{struct_voiture}{Voiture} $\ast$v, int position, int traverse)
-\begin{DoxyCompactList}\small\item\em Met a jour la position de la voiture dans sa structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+void \hyperlink{voiture_8c_a5d10ad75a89b2936ce3601a702def307}{affiche\+\_\+carrefours} ()
+\begin{DoxyCompactList}\small\item\em Affiche les informations generales des carrefours. \end{DoxyCompactList}\item 
+void \hyperlink{voiture_8c_aedfbdc9be292191e867f1d6de85f7708}{voiture} (int numero, int voie, int \hyperlink{carrefour_8c_a9444302434bb1140df71a3848edecee9}{carrefour})
+\begin{DoxyCompactList}\small\item\em Fonction realisee par chaque voiture. \end{DoxyCompactList}\item 
+void \hyperlink{voiture_8c_ab645261dc7b5e99edbe3283804fcdacc}{create\+\_\+question} (\hyperlink{struct_requete}{Requete} $\ast$req, \hyperlink{struct_voiture}{Voiture} $\ast$v, int \hyperlink{carrefour_8c_a9444302434bb1140df71a3848edecee9}{carrefour}, int croisement\+\_\+precedent, int croisement\+\_\+precedent\+\_\+orientation, int croisement, int croisement\+\_\+orientation, int voie, int traverse, int type)
+\begin{DoxyCompactList}\small\item\em Effectue les operations permettant la construction d\textquotesingle{}une requete vers le carrefour, affiche la requete, et l\textquotesingle{}envoie au carrefour. \end{DoxyCompactList}\item 
+void \hyperlink{voiture_8c_a1337c11dfce7a46d9002b48ef1074419}{receive\+\_\+answer} (\hyperlink{struct_requete}{Requete} $\ast$req, int \hyperlink{carrefour_8c_a9444302434bb1140df71a3848edecee9}{carrefour})
+\begin{DoxyCompactList}\small\item\em Effectue les operations permettant la reception d\textquotesingle{}une reponse du serveur (depuis le carrefour), et affiche la reponse. \end{DoxyCompactList}\item 
+int \hyperlink{voiture_8c_ab6756eba029b24d748ae8f952ef7bfac}{random\+\_\+voie} (int v)
+\begin{DoxyCompactList}\small\item\em Retourne un numero de voie aleatoire mais coherent selon la voie d\textquotesingle{}ou arrive la voiture. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{struct_voie}{Voie} \hyperlink{voiture_8c_aa9246ae4d5b520f1e61ed589dd0bf1bf}{voies} \mbox{[}12\mbox{]}
+\item 
+int \hyperlink{voiture_8c_af08111e35d8cfbdf7d1fa16fa39df0e1}{assoc\+\_\+voies} \mbox{[}$\,$\mbox{]} = \{4,2,12,7,5,3,10,8,6,1,11,9\}
+\item 
+int \hyperlink{voiture_8c_a93be13f9bf50258a179c57da90b76573}{assoc\+\_\+carrefours} \mbox{[}$\,$\mbox{]}\mbox{[}12\mbox{]}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 Contient les fonctions utiles au fonctionnement et a la representation des voitures. 
 
-
+Ici, les voitures sont des clients pour les carrefours, selon le modele client-\/serveur. Elles envoient des requetes aux carrefours et en recoivent des reponses. 
 
 \subsection{Function Documentation}
-\hypertarget{voiture_8c_aefdfaf590d5f158bba54b7bb0c081d9a}{}\index{voiture.\+c@{voiture.\+c}!affiche\+\_\+voiture@{affiche\+\_\+voiture}}
+\hypertarget{voiture_8c_a5d10ad75a89b2936ce3601a702def307}{}\index{voiture.\+c@{voiture.\+c}!affiche\+\_\+carrefours@{affiche\+\_\+carrefours}}
+\index{affiche\+\_\+carrefours@{affiche\+\_\+carrefours}!voiture.\+c@{voiture.\+c}}
+\subsubsection[{affiche\+\_\+carrefours}]{\setlength{\rightskip}{0pt plus 5cm}void affiche\+\_\+carrefours (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{voiture_8c_a5d10ad75a89b2936ce3601a702def307}
+
+
+Affiche les informations generales des carrefours. 
+
+Indique pour chaque voie de chaque carrefour, la voie et le carrefour sur lequel elle debouche. \hypertarget{voiture_8c_aefdfaf590d5f158bba54b7bb0c081d9a}{}\index{voiture.\+c@{voiture.\+c}!affiche\+\_\+voiture@{affiche\+\_\+voiture}}
 \index{affiche\+\_\+voiture@{affiche\+\_\+voiture}!voiture.\+c@{voiture.\+c}}
 \subsubsection[{affiche\+\_\+voiture}]{\setlength{\rightskip}{0pt plus 5cm}void affiche\+\_\+voiture (
 \begin{DoxyParamCaption}
@@ -50,51 +72,166 @@ Affiche les informations d\textquotesingle{}une voiture.
 {\em v} & Pointeur sur la voiture a afficher. \\
 \hline
 \end{DoxyParams}
-\hypertarget{voiture_8c_a64d9e45e6fd28b23c6479afbc03c64f1}{}\index{voiture.\+c@{voiture.\+c}!maj\+\_\+position@{maj\+\_\+position}}
-\index{maj\+\_\+position@{maj\+\_\+position}!voiture.\+c@{voiture.\+c}}
-\subsubsection[{maj\+\_\+position}]{\setlength{\rightskip}{0pt plus 5cm}void maj\+\_\+position (
+\hypertarget{voiture_8c_ab645261dc7b5e99edbe3283804fcdacc}{}\index{voiture.\+c@{voiture.\+c}!create\+\_\+question@{create\+\_\+question}}
+\index{create\+\_\+question@{create\+\_\+question}!voiture.\+c@{voiture.\+c}}
+\subsubsection[{create\+\_\+question}]{\setlength{\rightskip}{0pt plus 5cm}void create\+\_\+question (
 \begin{DoxyParamCaption}
+\item[{{\bf Requete} $\ast$}]{req, }
 \item[{{\bf Voiture} $\ast$}]{v, }
-\item[{int}]{position, }
-\item[{int}]{traverse}
+\item[{int}]{carrefour, }
+\item[{int}]{croisement\+\_\+precedent, }
+\item[{int}]{croisement\+\_\+precedent\+\_\+orientation, }
+\item[{int}]{croisement, }
+\item[{int}]{croisement\+\_\+orientation, }
+\item[{int}]{voie, }
+\item[{int}]{traverse, }
+\item[{int}]{type}
 \end{DoxyParamCaption}
-)}\label{voiture_8c_a64d9e45e6fd28b23c6479afbc03c64f1}
+)}\label{voiture_8c_ab645261dc7b5e99edbe3283804fcdacc}
 
 
-Met a jour la position de la voiture dans sa structure. 
+Effectue les operations permettant la construction d\textquotesingle{}une requete vers le carrefour, affiche la requete, et l\textquotesingle{}envoie au carrefour. 
+
+void \hyperlink{voiture_8c_ab645261dc7b5e99edbe3283804fcdacc}{create\+\_\+question(\+Requete $\ast$req, Voiture $\ast$v, int carrefour, int croisement\+\_\+precedent, int croisement\+\_\+precedent\+\_\+orientation, int croisement, int croisement\+\_\+orientation, int voie, int traverse, int type)} La requete peut prendre 4 formes \+:
+\begin{DoxyItemize}
+\item M\+E\+S\+S\+A\+R\+R\+I\+V\+E \+: message d\textquotesingle{}information d\textquotesingle{}arrivee sur un carrefour. N\textquotesingle{}implique aucun traitement, affiche juste l\textquotesingle{}information.
+\item M\+E\+S\+S\+D\+E\+M\+A\+N\+D\+E \+: demande d\textquotesingle{}arrivee en zone avant, pendant, ou apres un croisement. Implique une demande au serveur (depuis le carrefour) qui va analyser le carrefour pour prendre une decision.
+\item M\+E\+S\+S\+I\+N\+F\+O \+: message d\textquotesingle{}information d\textquotesingle{}arrivee avant, pendant, ou apres un croisement. N\textquotesingle{}implique aucun traitement, affiche juste l\textquotesingle{}information.
+\item M\+E\+S\+S\+S\+O\+R\+T \+: message d\textquotesingle{}information de sortie d\textquotesingle{}un carrefour. Implique de mettre a jour la file d\textquotesingle{}attente \char`\"{}apres\char`\"{} le croisement precedent.
+\end{DoxyItemize}
 
 
 \begin{DoxyParams}{Parameters}
-{\em v} & Pointeur sur la voiture a mettre a jour. \\
+{\em req} & Pointeur vers la requete qui va etre renseignee. \\
 \hline
-{\em position} & L\textquotesingle{}indice du croisement ou se trouve la voiture. \\
+{\em v} & Pointeur vers la voiture effectuant la requete. \\
+\hline
+{\em croisement\+\_\+precedent} & L\textquotesingle{}indice de la zone critique ($<$=$>$ le croisement) precedemment visitee le cas echeant (utile lorsque la voiture quitte un croisement pour modifier le precedent). \\
+\hline
+{\em croisement\+\_\+precedent\+\_\+orientation} & L\textquotesingle{}orientation (horizontal / vertical) du croisement precedent (utile pour mettre a jour les files d\textquotesingle{}attente du croisement precedent quand une voiture arrive a un nouveau croisement). Peut valoir \+:
+\begin{DoxyItemize}
+\item H\+O \+: horizontal.
+\item V\+E \+: vertical. 
+\end{DoxyItemize}\\
+\hline
+{\em croisement} & L\textquotesingle{}indice de la zone critique ($<$=$>$ le croisement) le cas echeant. \\
+\hline
+{\em croisement\+\_\+orientation} & L\textquotesingle{}orientation (horizontal / vertical) du croisement (utile pour mettre a jour les files d\textquotesingle{}attente du croisement). Peut valoir \+:
+\begin{DoxyItemize}
+\item H\+O \+: horizontal.
+\item V\+E \+: vertical. 
+\end{DoxyItemize}\\
+\hline
+{\em voie} & L\textquotesingle{}indice de la voie d\textquotesingle{}arrivee, de depart, ou de croisement ($<$=$>$ la voie qui croise avec celle de la voiture a l\textquotesingle{}endroit critique). \\
 \hline
 {\em traverse} & L\textquotesingle{}etat de traversement (directement lie aux informations de traversement). Peut valoir \+:
 \begin{DoxyItemize}
-\item P\+A\+S\+T\+R\+A\+V\+E\+R\+S\+E
-\item T\+R\+A\+V\+E\+R\+S\+E
-\item A\+T\+R\+A\+V\+E\+R\+S\+E 
+\item A\+V\+A\+N\+T \+: avant la zone critique (file de voitures avant le croisement).
+\item P\+E\+N\+D\+A\+N\+T \+: pendant la zone critique (le croisement en lui meme).
+\item A\+P\+R\+E\+S \+: apres la zone critique (file de voitures apres le croisement). 
+\end{DoxyItemize}\\
+\hline
+{\em type} & Le type de requete. Peut valoir \+:
+\begin{DoxyItemize}
+\item M\+E\+S\+S\+A\+R\+R\+I\+V\+E.
+\item M\+E\+S\+S\+D\+E\+M\+A\+N\+D\+E.
+\item M\+E\+S\+S\+I\+N\+F\+O.
+\item M\+E\+S\+S\+S\+O\+R\+T. 
 \end{DoxyItemize}\\
 \hline
 \end{DoxyParams}
-\hypertarget{voiture_8c_a60a6644d2debba1f7e821e4d1977e0dd}{}\index{voiture.\+c@{voiture.\+c}!voiture@{voiture}}
+\hypertarget{voiture_8c_affc667f54d3aad05a212a708a1967851}{}\index{voiture.\+c@{voiture.\+c}!init\+Rand@{init\+Rand}}
+\index{init\+Rand@{init\+Rand}!voiture.\+c@{voiture.\+c}}
+\subsubsection[{init\+Rand}]{\setlength{\rightskip}{0pt plus 5cm}void init\+Rand (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{voiture_8c_affc667f54d3aad05a212a708a1967851}
+
+
+Permet de generer de nouveaux nombres aleatoires. 
+
+Necessaire pour que les differents processus (les voitures) ne generent pas les memes nombres aleatoires (les memes voies, carrefours, temps de pause, etc...). Genere un seed base sur 3 variables pour assurer l\textquotesingle{}aspect aleatoire. \hypertarget{voiture_8c_ab6756eba029b24d748ae8f952ef7bfac}{}\index{voiture.\+c@{voiture.\+c}!random\+\_\+voie@{random\+\_\+voie}}
+\index{random\+\_\+voie@{random\+\_\+voie}!voiture.\+c@{voiture.\+c}}
+\subsubsection[{random\+\_\+voie}]{\setlength{\rightskip}{0pt plus 5cm}int random\+\_\+voie (
+\begin{DoxyParamCaption}
+\item[{int}]{v}
+\end{DoxyParamCaption}
+)}\label{voiture_8c_ab6756eba029b24d748ae8f952ef7bfac}
+
+
+Retourne un numero de voie aleatoire mais coherent selon la voie d\textquotesingle{}ou arrive la voiture. 
+
+Deduit, selon la voie ou se trouvait la voiture sur le carrefour precedent, un numero de voie aleatoire en accord avec son arrivee sur le nouveau carrefour ($<$=$>$ simule un changement de voie par le conducteur).
+
+Trois cas de figure \+:
+\begin{DoxyItemize}
+\item voie d\textquotesingle{}arrivee \+: 1, 2 ou 3 =$>$ voie generee \+: 1, 2, ou 3.
+\item voie d\textquotesingle{}arrivee \+: 4, 5 ou 6 =$>$ voie generee \+: 4, 5 ou 6.
+\item voie d\textquotesingle{}arrivee \+: 7, 8 ou 9 =$>$ voie generee \+: 7, 8, ou 9.
+\item voie d\textquotesingle{}arrivee \+: 10, 11 ou 12 =$>$ voie generee \+: 10, 11 ou 12.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & Numero de la voie d\textquotesingle{}arrivee.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Le numero de voie aleatoire parmis les voies possibles. 
+\end{DoxyReturn}
+\hypertarget{voiture_8c_a1337c11dfce7a46d9002b48ef1074419}{}\index{voiture.\+c@{voiture.\+c}!receive\+\_\+answer@{receive\+\_\+answer}}
+\index{receive\+\_\+answer@{receive\+\_\+answer}!voiture.\+c@{voiture.\+c}}
+\subsubsection[{receive\+\_\+answer}]{\setlength{\rightskip}{0pt plus 5cm}void receive\+\_\+answer (
+\begin{DoxyParamCaption}
+\item[{{\bf Requete} $\ast$}]{req, }
+\item[{int}]{carrefour}
+\end{DoxyParamCaption}
+)}\label{voiture_8c_a1337c11dfce7a46d9002b48ef1074419}
+
+
+Effectue les operations permettant la reception d\textquotesingle{}une reponse du serveur (depuis le carrefour), et affiche la reponse. 
+
+Ne retourne que lorsque la reponse du serveur aura ete positive. Permet de bloquer la voiture tant qu\textquotesingle{}elle n\textquotesingle{}a pas eu la permission d\textquotesingle{}avancer. Tant qu\textquotesingle{}elle est bloquee, la voiture renvoie des demandes au serveur (via le carrefour) a intervalles reguliers.
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & Pointeur vers la requete qui a ete envoyee. \\
+\hline
+{\em carrefour} & Le numero du carrefour ou se trouve la voiture. Utile pour n\textquotesingle{}ecouter que la file de message du carrefour concerne. \\
+\hline
+\end{DoxyParams}
+\hypertarget{voiture_8c_aedfbdc9be292191e867f1d6de85f7708}{}\index{voiture.\+c@{voiture.\+c}!voiture@{voiture}}
 \index{voiture@{voiture}!voiture.\+c@{voiture.\+c}}
 \subsubsection[{voiture}]{\setlength{\rightskip}{0pt plus 5cm}void voiture (
 \begin{DoxyParamCaption}
 \item[{int}]{numero, }
-\item[{int}]{voie}
+\item[{int}]{voie, }
+\item[{int}]{carrefour}
 \end{DoxyParamCaption}
-)}\label{voiture_8c_a60a6644d2debba1f7e821e4d1977e0dd}
+)}\label{voiture_8c_aedfbdc9be292191e867f1d6de85f7708}
 
 
-Fonction realisee par chaque processus (chaque voiture). Comprend 2 phases \+: 
+Fonction realisee par chaque voiture. 
 
-
+Comprend 2 phases \+:
 \begin{DoxyItemize}
-\item Initialisation de la voiture, de deux facons \+:
+\item Initialisation de la voiture, deux cas de figure \+:
 \begin{DoxyItemize}
-\item Avec une voie aleatoire
-\item Avec une voie choisie par l\textquotesingle{}utilisateur
+\item Lancement du programme \+:
+\begin{DoxyItemize}
+\item Le carrefour ou elle arrive sera aleatoire parmis les 4 (amelioration possible \+: permettre a l\textquotesingle{}utilisateur de choisir le carrefour).
+\item La voie, deux cas de figure \+:
+\begin{DoxyItemize}
+\item Avec une voie aleatoire.
+\item Avec une voie choisie par l\textquotesingle{}utilisateur.
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item Programme deja lance, la voiture change de carrefour, elle rappelle cette fonction. Alors \+:
+\begin{DoxyItemize}
+\item Le carrefour ou elle arrive sera celui qui \char`\"{}correspond dans la realite\char`\"{}.
+\item La voie ou elle arrive sera aleatoire parmis les 3 \char`\"{}possibles dans la realite\char`\"{} selon la direction d\textquotesingle{}arrivee sur le carrefour (Nord, Ouest, Est, Sud) ($<$=$>$ simule un changement de voie par le conducteur).
+\end{DoxyItemize}
 \end{DoxyItemize}
 \item Parcours de la voie par la voiture.
 \end{DoxyItemize}
@@ -105,30 +242,47 @@ Fonction realisee par chaque processus (chaque voiture). Comprend 2 phases \+:
 \hline
 {\em voie} & Le numero de la voie. Peut valoir \+:
 \begin{DoxyItemize}
-\item -\/1 \+: la voiture prendra une voie dont le numero est genere aleatoirement (1$<$=voie$<$=12)
-\item $>$0 \+: la voiture prendra la voie correspondant a ce numero 
+\item -\/1 \+: la voiture prendra une voie dont le numero est genere aleatoirement \+:
+\begin{DoxyItemize}
+\item 1$<$=voie$<$=12 si c\textquotesingle{}est le lancement du programme (la voiture arrive n\textquotesingle{}importe ou).
+\item 1$<$=voie$<$=3 ; 4$<$=voie$<$=6 ; 7$<$=voie$<$=9 ; 10$<$=voie$<$=12 si la voiture venait respectivement des carrefours Ouest ; Sud ; Est ; Nord.
+\end{DoxyItemize}
+\item $>$0 \+: la voiture prendra la voie correspondant a ce numero. 
 \end{DoxyItemize}\\
 \hline
 \end{DoxyParams}
 
 
 \subsection{Variable Documentation}
-\hypertarget{voiture_8c_aa9246ae4d5b520f1e61ed589dd0bf1bf}{}\index{voiture.\+c@{voiture.\+c}!voies@{voies}}
+\hypertarget{voiture_8c_a93be13f9bf50258a179c57da90b76573}{}\index{voiture.\+c@{voiture.\+c}!assoc\+\_\+carrefours@{assoc\+\_\+carrefours}}
+\index{assoc\+\_\+carrefours@{assoc\+\_\+carrefours}!voiture.\+c@{voiture.\+c}}
+\subsubsection[{assoc\+\_\+carrefours}]{\setlength{\rightskip}{0pt plus 5cm}int assoc\+\_\+carrefours\mbox{[}$\,$\mbox{]}\mbox{[}12\mbox{]}}\label{voiture_8c_a93be13f9bf50258a179c57da90b76573}
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+= \{ \{-1,2,3,-1,-1,2,3,-1,-1,2,3,-1\},
+                                        \{-1,-1,4,1,-1,-1,4,1,-1,-1,4,1\},
+                                        \{1,4,-1,-1,1,4,-1,-1,1,4,-1,-1\},
+                                        \{2,-1,-1,3,2,-1,-1,3,2,-1,-1,3\} \}
+\end{DoxyCode}
+Represente les carrefours associes aux voies \char`\"{}de sorties\char`\"{} respectives. \hypertarget{voiture_8c_af08111e35d8cfbdf7d1fa16fa39df0e1}{}\index{voiture.\+c@{voiture.\+c}!assoc\+\_\+voies@{assoc\+\_\+voies}}
+\index{assoc\+\_\+voies@{assoc\+\_\+voies}!voiture.\+c@{voiture.\+c}}
+\subsubsection[{assoc\+\_\+voies}]{\setlength{\rightskip}{0pt plus 5cm}int assoc\+\_\+voies\mbox{[}$\,$\mbox{]} = \{4,2,12,7,5,3,10,8,6,1,11,9\}}\label{voiture_8c_af08111e35d8cfbdf7d1fa16fa39df0e1}
+Represente les voies \char`\"{}d\textquotesingle{}entree\char`\"{} associees aux voies \char`\"{}de sortie\char`\"{} respectives. \hypertarget{voiture_8c_aa9246ae4d5b520f1e61ed589dd0bf1bf}{}\index{voiture.\+c@{voiture.\+c}!voies@{voies}}
 \index{voies@{voies}!voiture.\+c@{voiture.\+c}}
 \subsubsection[{voies}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Voie} voies\mbox{[}12\mbox{]}}\label{voiture_8c_aa9246ae4d5b520f1e61ed589dd0bf1bf}
 {\bfseries Initial value\+:}
 \begin{DoxyCode}
-= \{ \{1,\{15,16,17,13,8,3\},\{11,7,10,4,7,8\}\},
-                    \{2,\{20,21,23,24,-1\},\{11,7,4,5,-1\}\},
+= \{ \{1,\{15,16,17,13,8,3\},\{11,7,10,4,7,8\},\{HO,HO,VE,VE,VE,VE\}\},
+                    \{2,\{20,21,23,24,-1\},\{11,7,4,5,-1\},\{HO,HO,HO,HO\}\},
                     \{3,\{-1\},\{-1\}\},
-                    \{4,\{23,18,13,7,6,5\},\{2,10,1,7,10,11\}\},
-                    \{5,\{24,19,9,4,-1\},\{2,10,7,8,-1\}\},
+                    \{4,\{23,18,13,7,6,5\},\{2,10,1,7,10,11\},\{VE,VE,HO,HO,HO,HO\}\},
+                    \{5,\{24,19,9,4,-1\},\{2,10,7,8,-1\},\{VE,VE,VE,VE\}\},
                     \{6,\{-1\},\{-1\}\},
-                    \{7,\{9,8,7,11,16,21\},\{5,1,4,10,1,2\}\},
-                    \{8,\{4,3,1,0,-1\},\{5,1,10,11,-1\}\},
+                    \{7,\{9,8,7,11,16,21\},\{5,1,4,10,1,2\},\{HO,HO,VE,VE,VE,VE\}\},
+                    \{8,\{4,3,1,0,-1\},\{5,1,10,11,-1\},\{HO,HO,HO,HO\}\},
                     \{9,\{-1\},\{-1\}\},
-                    \{10,\{1,6,11,17,18,19\},\{8,4,7,1,4,5\}\},
-                    \{11,\{0,5,15,20,-1\},\{8,4,1,2,-1\}\},
+                    \{10,\{1,6,11,17,18,19\},\{8,4,7,1,4,5\},\{VE,VE,HO,HO,HO,HO\}\},
+                    \{11,\{0,5,15,20,-1\},\{8,4,1,2,-1\},\{VE,VE,VE,VE\}\},
                     \{12,\{-1\},\{-1\}\}  \}
 \end{DoxyCode}
 Represente les 12 voies du carrefour. 

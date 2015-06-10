@@ -113,15 +113,15 @@ $(document).ready(function(){initNavTree('client_8c.html','');});
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
-<code>#include &quot;project.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="project_8h_source.html">project.h</a>&quot;</code><br />
 <code>#include &quot;interface.h&quot;</code><br />
 <code>#include &quot;client.h&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ab658716d7a1ce54bb23369f3e2fa7bf6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#ab658716d7a1ce54bb23369f3e2fa7bf6">constructionRequete</a> (<a class="el" href="struct_requete.html">Requete</a> *req, <a class="el" href="struct_voiture.html">Voiture</a> *v, int croisement, int voie, int traverse, int type)</td></tr>
-<tr class="memdesc:ab658716d7a1ce54bb23369f3e2fa7bf6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construit une requete pour le serveur. La requete peut prendre 5 formes :  <a href="#ab658716d7a1ce54bb23369f3e2fa7bf6">More...</a><br /></td></tr>
-<tr class="separator:ab658716d7a1ce54bb23369f3e2fa7bf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad25990e98ffa31cb04d0d6fb338f7e8e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#ad25990e98ffa31cb04d0d6fb338f7e8e">constructionRequete</a> (<a class="el" href="struct_requete.html">Requete</a> *req, <a class="el" href="struct_voiture.html">Voiture</a> *v, int <a class="el" href="carrefour_8c.html#a9444302434bb1140df71a3848edecee9">carrefour</a>, int croisement_precedent, int croisement_precedent_orientation, int croisement, int croisement_orientation, int voie, int traverse, int type)</td></tr>
+<tr class="memdesc:ad25990e98ffa31cb04d0d6fb338f7e8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construit une requete pour le carrefour, qui sera eventuellement retransmise au serveur si necessaire.  <a href="#ad25990e98ffa31cb04d0d6fb338f7e8e">More...</a><br /></td></tr>
+<tr class="separator:ad25990e98ffa31cb04d0d6fb338f7e8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a02ef3d4ed41a50563faa594adc3f8c3f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#a02ef3d4ed41a50563faa594adc3f8c3f">affichageRequete</a> (<a class="el" href="struct_requete.html">Requete</a> *req)</td></tr>
 <tr class="memdesc:a02ef3d4ed41a50563faa594adc3f8c3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Affiche la nature et les informations de la requete.  <a href="#a02ef3d4ed41a50563faa594adc3f8c3f">More...</a><br /></td></tr>
 <tr class="separator:a02ef3d4ed41a50563faa594adc3f8c3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -146,14 +146,14 @@ Functions</h2></td></tr>
 <p>Affiche la nature et les informations de la requete. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">req</td><td>La requete a afficher </td></tr>
+    <tr><td class="paramname">req</td><td>Pointeur sur la requete a afficher. </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a class="anchor" id="ab658716d7a1ce54bb23369f3e2fa7bf6"></a>
+<a class="anchor" id="ad25990e98ffa31cb04d0d6fb338f7e8e"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -173,7 +173,31 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>carrefour</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>croisement_precedent</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>croisement_precedent_orientation</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>croisement</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>croisement_orientation</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -201,32 +225,41 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Construit une requete pour le serveur. La requete peut prendre 5 formes : </p>
-<ul>
-<li>Information d'arrivee : une voiture arrive par la voie mentionnee</li>
-<li>Demande de traverser : une voiture demande a traverser une zone critique (&lt;=&gt; un croisement avec une autre voie)</li>
-<li>Information de debut de traversement : une voiture est en train de traverser une zone critique</li>
-<li>Information de fin de traversement : une voiture a fini de traverser une zone critique</li>
-<li>Information de depart : une voiture sort par la voie mentionnee</li>
+<p>Construit une requete pour le carrefour, qui sera eventuellement retransmise au serveur si necessaire. </p>
+<p>La requete peut prendre 4 formes :</p><ul>
+<li>MESSARRIVE : message d'information d'arrivee sur un carrefour. N'implique aucun traitement, affiche juste l'information.</li>
+<li>MESSDEMANDE : demande d'arrivee en zone avant, pendant, ou apres un croisement. Implique une demande au serveur (depuis le carrefour) qui va analyser le carrefour pour prendre une decision.</li>
+<li>MESSINFO : message d'information d'arrivee avant, pendant, ou apres un croisement. N'implique aucun traitement, affiche juste l'information.</li>
+<li>MESSSORT : message d'information de sortie d'un carrefour. Implique de mettre a jour la file d'attente "apres" le croisement precedent.</li>
 </ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">req</td><td>Pointeur vers la requete qui va etre renseignee. </td></tr>
     <tr><td class="paramname">v</td><td>Pointeur vers la voiture effectuant la requete. </td></tr>
+    <tr><td class="paramname">croisement_precedent</td><td>L'indice de la zone critique (&lt;=&gt; le croisement) precedemment visitee le cas echeant (utile lorsque la voiture quitte un croisement pour modifier le precedent). </td></tr>
+    <tr><td class="paramname">croisement_precedent_orientation</td><td>L'orientation (horizontal / vertical) du croisement precedent (utile pour mettre a jour les files d'attente du croisement precedent quand une voiture arrive a un nouveau croisement). Peut valoir :<ul>
+<li>HO : horizontal.</li>
+<li>VE : vertical. </li>
+</ul>
+</td></tr>
     <tr><td class="paramname">croisement</td><td>L'indice de la zone critique (&lt;=&gt; le croisement) le cas echeant. </td></tr>
+    <tr><td class="paramname">croisement_orientation</td><td>L'orientation (horizontal / vertical) du croisement (utile pour mettre a jour les files d'attente du croisement). Peut valoir :<ul>
+<li>HO : horizontal.</li>
+<li>VE : vertical. </li>
+</ul>
+</td></tr>
     <tr><td class="paramname">voie</td><td>L'indice de la voie d'arrivee, de depart, ou de croisement (&lt;=&gt; la voie qui croise avec celle de la voiture a l'endroit critique). </td></tr>
     <tr><td class="paramname">traverse</td><td>L'etat de traversement (directement lie aux informations de traversement). Peut valoir :<ul>
-<li>PASTRAVERSE</li>
-<li>TRAVERSE</li>
-<li>ATRAVERSE </li>
+<li>AVANT : avant la zone critique (file de voitures avant le croisement).</li>
+<li>PENDANT : pendant la zone critique (le croisement en lui meme).</li>
+<li>APRES : apres la zone critique (file de voitures apres le croisement). </li>
 </ul>
 </td></tr>
     <tr><td class="paramname">type</td><td>Le type de requete. Peut valoir :<ul>
-<li>MESSARRIVE</li>
-<li>MESSDEMANDE</li>
-<li>MESSTRAVERSE</li>
-<li>MESSATRAVERSE</li>
-<li>MESSSORT </li>
+<li>MESSARRIVE.</li>
+<li>MESSDEMANDE.</li>
+<li>MESSINFO.</li>
+<li>MESSSORT. </li>
 </ul>
 </td></tr>
   </table>
@@ -241,7 +274,7 @@ Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="client_8c.html">client.c</a></li>
-    <li class="footer">Generated on Tue Jun 2 2015 21:16:37 for Carrefour by
+    <li class="footer">Generated on Thu Jun 11 2015 00:28:40 for Carrefour by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

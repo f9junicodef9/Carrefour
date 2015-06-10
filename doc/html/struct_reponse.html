@@ -110,7 +110,7 @@ $(document).ready(function(){initNavTree('struct_reponse.html','');});
 </div><!--header-->
 <div class="contents">
 
-<p>Represente une reponse du serveur pour le client (d'un carrefour pour une voiture).  
+<p>Represente une reponse du serveur pour le client (du serveur pour une voiture).  
  <a href="struct_reponse.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="project_8h_source.html">project.h</a>&gt;</code></p>
@@ -121,17 +121,16 @@ Data Fields</h2></td></tr>
 <tr class="separator:a6a83a8677f7c78fd146859325e08209a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ae59baa7d0f7ac15cc2090faf0b5b43"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_reponse.html#a9ae59baa7d0f7ac15cc2090faf0b5b43">autorisation</a></td></tr>
 <tr class="separator:a9ae59baa7d0f7ac15cc2090faf0b5b43"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a76a64000aab59dcc4195c1b6e1605eb3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a76a64000aab59dcc4195c1b6e1605eb3"></a>
-<a class="el" href="struct_voiture.html">Voiture</a>&#160;</td><td class="memItemRight" valign="bottom"><b>v</b></td></tr>
+<tr class="memitem:a76a64000aab59dcc4195c1b6e1605eb3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_voiture.html">Voiture</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_reponse.html#a76a64000aab59dcc4195c1b6e1605eb3">v</a></td></tr>
 <tr class="separator:a76a64000aab59dcc4195c1b6e1605eb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Represente une reponse du serveur pour le client (d'un carrefour pour une voiture). </p>
+<div class="textblock"><p>Represente une reponse du serveur pour le client (du serveur pour une voiture). </p>
 <p>Une requete est caracterisee par :</p><ul>
-<li>Son type. Vaut le pid du client ayant emis la requete.</li>
+<li>Son type. Vaut le pid du client ayant emis la requete (le carrefour quand la reponse part du serveur ; la voiture quand la reponse repart du carrefour).</li>
 <li>La reponse a la requete. Peut valoir :<ul>
-<li>1 : autorise la voiture a traverser le croisement demande</li>
-<li>2 : interdit la voiture de traverser le croisement demande </li>
+<li>1 : autorise la voiture a avancer / traverser dans la zone / le croisement demande.</li>
+<li>0 : interdit la voiture de avancer / traverser dans la zone / le croisement demande. </li>
 </ul>
 </li>
 </ul>
@@ -162,6 +161,19 @@ Data Fields</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a76a64000aab59dcc4195c1b6e1605eb3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_voiture.html">Voiture</a> v</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Variable necessaire pour eviter un plantage (explication a trouver). </p>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>src/<a class="el" href="project_8h_source.html">project.h</a></li>
 </ul>
@@ -171,7 +183,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="struct_reponse.html">Reponse</a></li>
-    <li class="footer">Generated on Tue Jun 2 2015 21:16:37 for Carrefour by
+    <li class="footer">Generated on Thu Jun 11 2015 00:28:40 for Carrefour by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

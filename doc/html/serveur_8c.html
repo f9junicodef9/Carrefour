@@ -103,6 +103,7 @@ $(document).ready(function(){initNavTree('serveur_8c.html','');});
 
 <div class="header">
   <div class="summary">
+<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">serveur.c File Reference</div>  </div>
@@ -113,13 +114,23 @@ $(document).ready(function(){initNavTree('serveur_8c.html','');});
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
-<code>#include &quot;project.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="project_8h_source.html">project.h</a>&quot;</code><br />
 <code>#include &quot;serveur.h&quot;</code><br />
+<code>#include &quot;interface.h&quot;</code><br />
 </div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a714b2485a6dd312e37226e1f833728a9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a714b2485a6dd312e37226e1f833728a9"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MAXFILE</b>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:a714b2485a6dd312e37226e1f833728a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:adb723d4c0b7a57a31a2de35be952a566"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serveur_8c.html#adb723d4c0b7a57a31a2de35be952a566">serveur</a> ()</td></tr>
+<tr class="memdesc:adb723d4c0b7a57a31a2de35be952a566"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction realisee par le serveur.  <a href="#adb723d4c0b7a57a31a2de35be952a566">More...</a><br /></td></tr>
+<tr class="separator:adb723d4c0b7a57a31a2de35be952a566"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abfc917730b130b41ae69504895664b93"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serveur_8c.html#abfc917730b130b41ae69504895664b93">constructionReponse</a> (<a class="el" href="struct_requete.html">Requete</a> *req, <a class="el" href="struct_reponse.html">Reponse</a> *rep)</td></tr>
-<tr class="memdesc:abfc917730b130b41ae69504895664b93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construit une reponse pour le client. La reponse peut prendre 2 formes :  <a href="#abfc917730b130b41ae69504895664b93">More...</a><br /></td></tr>
+<tr class="memdesc:abfc917730b130b41ae69504895664b93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construit une reponse pour la voiture, qui sera retransmise par l'intermediaire du carrefour.  <a href="#abfc917730b130b41ae69504895664b93">More...</a><br /></td></tr>
 <tr class="separator:abfc917730b130b41ae69504895664b93"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad4ed2a03e4b3f3dea1e3493e749a5155"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serveur_8c.html#ad4ed2a03e4b3f3dea1e3493e749a5155">affichageReponse</a> (<a class="el" href="struct_requete.html">Requete</a> *req, <a class="el" href="struct_reponse.html">Reponse</a> *rep)</td></tr>
 <tr class="memdesc:ad4ed2a03e4b3f3dea1e3493e749a5155"><td class="mdescLeft">&#160;</td><td class="mdescRight">Affiche la nature et les informations de la reponse a la requete.  <a href="#ad4ed2a03e4b3f3dea1e3493e749a5155">More...</a><br /></td></tr>
@@ -127,6 +138,7 @@ Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Contient le code du serveur dans le modele client-serveur (le serveur). </p>
+<p>Ici, le serveur est un serveur pour les carrefours, selon le modele client-serveur. Il recoit des requetes des carrefours et leur renvoie des reponses. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="ad4ed2a03e4b3f3dea1e3493e749a5155"></a>
 <div class="memitem">
@@ -155,8 +167,8 @@ Functions</h2></td></tr>
 <p>Affiche la nature et les informations de la reponse a la requete. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">req</td><td>Pointeur vers la requete qui a ete recue. </td></tr>
-    <tr><td class="paramname">rep</td><td>Pointeur vers la reponse a afficher. </td></tr>
+    <tr><td class="paramname">req</td><td>Pointeur sur la requete qui a ete recue. </td></tr>
+    <tr><td class="paramname">rep</td><td>Pointeur sur la reponse a afficher. </td></tr>
   </table>
   </dd>
 </dl>
@@ -187,18 +199,36 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Construit une reponse pour le client. La reponse peut prendre 2 formes : </p>
-<ul>
-<li>Autorisation : autorise la voiture a traverser le croisement demande</li>
-<li>Interdiction : interdit la voiture de traverser le croisement demande</li>
+<p>Construit une reponse pour la voiture, qui sera retransmise par l'intermediaire du carrefour. </p>
+<p>La reponse peut prendre 2 formes :</p><ul>
+<li>Autorisation : autorise la voiture a avancer / traverser dans la zone / le croisement demande.</li>
+<li>Interdiction : interdit la voiture de avancer / traverser dans la zone / le croisement demande.</li>
 </ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">req</td><td>Pointeur vers la requete qui a ete recue. </td></tr>
-    <tr><td class="paramname">rep</td><td>Pointeur vers la reponse qui va etre renseignee. </td></tr>
+    <tr><td class="paramname">req</td><td>Pointeur sur la requete qui a ete recue. </td></tr>
+    <tr><td class="paramname">rep</td><td>Pointeur sur la reponse qui va etre renseignee. </td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a class="anchor" id="adb723d4c0b7a57a31a2de35be952a566"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void serveur </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction realisee par le serveur. </p>
+<p>Receptionne sans arret les requetes des carrefours dans sa file de message (1 pour tous les carrefours), les traite et retourne les reponses dans sa file. </p>
 
 </div>
 </div>
@@ -208,7 +238,7 @@ Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="serveur_8c.html">serveur.c</a></li>
-    <li class="footer">Generated on Tue Jun 2 2015 21:16:37 for Carrefour by
+    <li class="footer">Generated on Thu Jun 11 2015 00:28:40 for Carrefour by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

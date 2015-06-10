@@ -112,48 +112,85 @@ $(document).ready(function(){initNavTree('project_8h.html','');});
 </div><!--header-->
 <div class="contents">
 
+<p>Contient les structures et variables globales liees au projet.  
+<a href="#details">More...</a></p>
+
 <p><a href="project_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_voie.html">Voie</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represente une voie d'un carrefour.  <a href="struct_voie.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_croisement.html">Croisement</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represente un croisement d'un carrefour.  <a href="struct_croisement.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_voiture.html">Voiture</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represente une voiture.  <a href="struct_voiture.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_requete.html">Requete</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represente une requete du client pour le serveur (d'une voiture pour un carrefour / le serveur).  <a href="struct_requete.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_reponse.html">Reponse</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represente une reponse du serveur pour le client (du serveur pour une voiture).  <a href="struct_reponse.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_carrefour.html">Carrefour</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represente un carrefour.  <a href="struct_carrefour.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a2cf3c22d8cacfe663a4eec13d0fb26ef"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="project_8h.html#a2cf3c22d8cacfe663a4eec13d0fb26ef">MUTEX</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memitem:a2cf3c22d8cacfe663a4eec13d0fb26ef"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2cf3c22d8cacfe663a4eec13d0fb26ef"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MUTEX</b>&#160;&#160;&#160;1</td></tr>
 <tr class="separator:a2cf3c22d8cacfe663a4eec13d0fb26ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3a9975c167fca0a8736717e0113271d5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="project_8h.html#a3a9975c167fca0a8736717e0113271d5">MAXPAUSE</a>&#160;&#160;&#160;2</td></tr>
+<tr class="memitem:a3a9975c167fca0a8736717e0113271d5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3a9975c167fca0a8736717e0113271d5"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MAXPAUSE</b>&#160;&#160;&#160;500000</td></tr>
 <tr class="separator:a3a9975c167fca0a8736717e0113271d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a06a244bf66104710af27cd2c4a77ace2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="project_8h.html#a06a244bf66104710af27cd2c4a77ace2">MESSARRIVE</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memitem:a608cea0f14ac3df511244477edeb35d3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a608cea0f14ac3df511244477edeb35d3"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MINPAUSE</b>&#160;&#160;&#160;100</td></tr>
+<tr class="separator:a608cea0f14ac3df511244477edeb35d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06a244bf66104710af27cd2c4a77ace2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a06a244bf66104710af27cd2c4a77ace2"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MESSARRIVE</b>&#160;&#160;&#160;1</td></tr>
 <tr class="separator:a06a244bf66104710af27cd2c4a77ace2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab97746c40f93ca377c0056c455239663"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="project_8h.html#ab97746c40f93ca377c0056c455239663">MESSDEMANDE</a>&#160;&#160;&#160;2</td></tr>
+<tr class="memitem:ab97746c40f93ca377c0056c455239663"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab97746c40f93ca377c0056c455239663"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MESSDEMANDE</b>&#160;&#160;&#160;2</td></tr>
 <tr class="separator:ab97746c40f93ca377c0056c455239663"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab6e652478d4baf9a5c877acbf5237c1d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="project_8h.html#ab6e652478d4baf9a5c877acbf5237c1d">MESSTRAVERSE</a>&#160;&#160;&#160;3</td></tr>
-<tr class="separator:ab6e652478d4baf9a5c877acbf5237c1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4bb902da8daf1250d70687930584cfba"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="project_8h.html#a4bb902da8daf1250d70687930584cfba">MESSATRAVERSE</a>&#160;&#160;&#160;4</td></tr>
-<tr class="separator:a4bb902da8daf1250d70687930584cfba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a16a20617ea0743eb861e84fd7ad1bf31"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="project_8h.html#a16a20617ea0743eb861e84fd7ad1bf31">MESSSORT</a>&#160;&#160;&#160;5</td></tr>
+<tr class="memitem:ac629905399d6d8e15e404b5c173ee727"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac629905399d6d8e15e404b5c173ee727"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MESSINFO</b>&#160;&#160;&#160;3</td></tr>
+<tr class="separator:ac629905399d6d8e15e404b5c173ee727"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16a20617ea0743eb861e84fd7ad1bf31"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a16a20617ea0743eb861e84fd7ad1bf31"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MESSSORT</b>&#160;&#160;&#160;4</td></tr>
 <tr class="separator:a16a20617ea0743eb861e84fd7ad1bf31"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a038a3bb8624ccb2b273406b1168807c6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="project_8h.html#a038a3bb8624ccb2b273406b1168807c6">PASTRAVERSE</a>&#160;&#160;&#160;0</td></tr>
-<tr class="separator:a038a3bb8624ccb2b273406b1168807c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae0a8d7aaf6f3470c7aaab116e2d64ff2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="project_8h.html#ae0a8d7aaf6f3470c7aaab116e2d64ff2">TRAVERSE</a>&#160;&#160;&#160;1</td></tr>
-<tr class="separator:ae0a8d7aaf6f3470c7aaab116e2d64ff2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac64e5d3e17c86820c37f0d704fac731c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="project_8h.html#ac64e5d3e17c86820c37f0d704fac731c">ATRAVERSE</a>&#160;&#160;&#160;0</td></tr>
-<tr class="separator:ac64e5d3e17c86820c37f0d704fac731c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78f947653932b2dc4862bbd54ad6996b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a78f947653932b2dc4862bbd54ad6996b"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>AVANT</b>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:a78f947653932b2dc4862bbd54ad6996b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f5200d0b789378994e1cbf4f4f0aabf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7f5200d0b789378994e1cbf4f4f0aabf"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>PENDANT</b>&#160;&#160;&#160;2</td></tr>
+<tr class="separator:a7f5200d0b789378994e1cbf4f4f0aabf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f927f87f0b44b4d959b50071963cc53"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0f927f87f0b44b4d959b50071963cc53"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>APRES</b>&#160;&#160;&#160;3</td></tr>
+<tr class="separator:a0f927f87f0b44b4d959b50071963cc53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a913ebaa509864a0b9d4f993aa352842c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a913ebaa509864a0b9d4f993aa352842c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HO</b>&#160;&#160;&#160;0</td></tr>
+<tr class="separator:a913ebaa509864a0b9d4f993aa352842c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3dcf4acb9f7d9c57f43802a9a1ac4ee6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3dcf4acb9f7d9c57f43802a9a1ac4ee6"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>VE</b>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:a3dcf4acb9f7d9c57f43802a9a1ac4ee6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:ab0d46ef2afb4370e3bab5c024f6bf47e"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="struct_voie.html">Voie</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="project_8h.html#ab0d46ef2afb4370e3bab5c024f6bf47e">Voie</a></td></tr>
+<tr class="memitem:ab0d46ef2afb4370e3bab5c024f6bf47e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab0d46ef2afb4370e3bab5c024f6bf47e"></a>
+typedef struct <a class="el" href="struct_voie.html">Voie</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Voie</b></td></tr>
 <tr class="separator:ab0d46ef2afb4370e3bab5c024f6bf47e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc2c6810d3b05b849a3ad15e295e4d2a"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="struct_voiture.html">Voiture</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="project_8h.html#adc2c6810d3b05b849a3ad15e295e4d2a">Voiture</a></td></tr>
+<tr class="memitem:afbcdcd366ab2ba25a00ca2223558802a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afbcdcd366ab2ba25a00ca2223558802a"></a>
+typedef struct <a class="el" href="struct_croisement.html">Croisement</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Croisement</b></td></tr>
+<tr class="separator:afbcdcd366ab2ba25a00ca2223558802a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc2c6810d3b05b849a3ad15e295e4d2a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adc2c6810d3b05b849a3ad15e295e4d2a"></a>
+typedef struct <a class="el" href="struct_voiture.html">Voiture</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Voiture</b></td></tr>
 <tr class="separator:adc2c6810d3b05b849a3ad15e295e4d2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17b4b528945f05c3b9001c61631910c9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a17b4b528945f05c3b9001c61631910c9"></a>
+typedef struct <a class="el" href="struct_carrefour.html">Carrefour</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Carrefour</b></td></tr>
+<tr class="separator:a17b4b528945f05c3b9001c61631910c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -161,167 +198,56 @@ Variables</h2></td></tr>
 <tr class="separator:a12872499b11c7292c4135f74e7a4fdcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3fe87526483f6339598948503bc72f4a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="project_8h.html#a3fe87526483f6339598948503bc72f4a">tailleRep</a></td></tr>
 <tr class="separator:a3fe87526483f6339598948503bc72f4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6174c42da8c55c86e7255be2848dc4ac"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="project_8h.html#a6174c42da8c55c86e7255be2848dc4ac">msgid</a></td></tr>
-<tr class="separator:a6174c42da8c55c86e7255be2848dc4ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac35b1416f799d547427e175255d4dc74"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="project_8h.html#ac35b1416f799d547427e175255d4dc74">msgid_serveur</a></td></tr>
+<tr class="separator:ac35b1416f799d547427e175255d4dc74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37c268ecdecb7124e5243269e8cd6d26"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="project_8h.html#a37c268ecdecb7124e5243269e8cd6d26">msgid_carrefour</a> []</td></tr>
+<tr class="separator:a37c268ecdecb7124e5243269e8cd6d26"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9825b926ad2a4aa0e6688dc15b2d9a23"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="project_8h.html#a9825b926ad2a4aa0e6688dc15b2d9a23">sem_id</a></td></tr>
 <tr class="separator:a9825b926ad2a4aa0e6688dc15b2d9a23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0f845d7f9358fabe3daebab24cf858a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="project_8h.html#ab0f845d7f9358fabe3daebab24cf858a">shm_id</a> [4]</td></tr>
+<tr class="separator:ab0f845d7f9358fabe3daebab24cf858a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade857a99d48bcb8cfaa57c4cd8d7d2e8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="project_8h.html#ade857a99d48bcb8cfaa57c4cd8d7d2e8">compteur</a></td></tr>
+<tr class="separator:ade857a99d48bcb8cfaa57c4cd8d7d2e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Macro Definition Documentation</h2>
-<a class="anchor" id="ac64e5d3e17c86820c37f0d704fac731c"></a>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Contient les structures et variables globales liees au projet. </p>
+</div><h2 class="groupheader">Variable Documentation</h2>
+<a class="anchor" id="ade857a99d48bcb8cfaa57c4cd8d7d2e8"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define ATRAVERSE&#160;&#160;&#160;0</td>
+          <td class="memname">int compteur</td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Le compteur de voitures sorties, accessible par les autres processus en tant que segment de memoire partagee. </p>
 
 </div>
 </div>
-<a class="anchor" id="a3a9975c167fca0a8736717e0113271d5"></a>
+<a class="anchor" id="a37c268ecdecb7124e5243269e8cd6d26"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define MAXPAUSE&#160;&#160;&#160;2</td>
+          <td class="memname">int msgid_carrefour[]</td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Les files de message utilisees pour communiquer entre les voitures et les carrefour (4 files). </p>
 
 </div>
 </div>
-<a class="anchor" id="a06a244bf66104710af27cd2c4a77ace2"></a>
+<a class="anchor" id="ac35b1416f799d547427e175255d4dc74"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define MESSARRIVE&#160;&#160;&#160;1</td>
+          <td class="memname">int msgid_serveur</td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a4bb902da8daf1250d70687930584cfba"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define MESSATRAVERSE&#160;&#160;&#160;4</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="ab97746c40f93ca377c0056c455239663"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define MESSDEMANDE&#160;&#160;&#160;2</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a16a20617ea0743eb861e84fd7ad1bf31"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define MESSSORT&#160;&#160;&#160;5</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="ab6e652478d4baf9a5c877acbf5237c1d"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define MESSTRAVERSE&#160;&#160;&#160;3</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a2cf3c22d8cacfe663a4eec13d0fb26ef"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define MUTEX&#160;&#160;&#160;1</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a038a3bb8624ccb2b273406b1168807c6"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define PASTRAVERSE&#160;&#160;&#160;0</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="ae0a8d7aaf6f3470c7aaab116e2d64ff2"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define TRAVERSE&#160;&#160;&#160;1</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<h2 class="groupheader">Typedef Documentation</h2>
-<a class="anchor" id="ab0d46ef2afb4370e3bab5c024f6bf47e"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef struct <a class="el" href="struct_voie.html">Voie</a>  <a class="el" href="struct_voie.html">Voie</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="adc2c6810d3b05b849a3ad15e295e4d2a"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef struct <a class="el" href="struct_voiture.html">Voiture</a>  <a class="el" href="struct_voiture.html">Voiture</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<h2 class="groupheader">Variable Documentation</h2>
-<a class="anchor" id="a6174c42da8c55c86e7255be2848dc4ac"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int msgid</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+<p>La file de message utilisee pour communiquer entre le serveur et les carrefour. </p>
 
 </div>
 </div>
@@ -334,6 +260,20 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>L'identifiant de l'ensemble de semaphores (1 semaphore). </p>
+
+</div>
+</div>
+<a class="anchor" id="ab0f845d7f9358fabe3daebab24cf858a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int shm_id[4]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Les 4 carrefours, accessibles par les autres processus en tant que segments de memoire partagee. </p>
 
 </div>
 </div>
@@ -346,6 +286,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>La taille d'une reponse. </p>
 
 </div>
 </div>
@@ -358,6 +299,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>La taille d'une requete. </p>
 
 </div>
 </div>
@@ -367,7 +309,7 @@ Variables</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="project_8h.html">project.h</a></li>
-    <li class="footer">Generated on Mon Jun 1 2015 23:24:42 for Carrefour by
+    <li class="footer">Generated on Thu Jun 11 2015 00:28:40 for Carrefour by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

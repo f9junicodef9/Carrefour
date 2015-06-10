@@ -1,45 +1,78 @@
 \hypertarget{project_8h}{}\section{src/project.h File Reference}
 \label{project_8h}\index{src/project.\+h@{src/project.\+h}}
+
+
+Contient les structures et variables globales liees au projet.  
+
+
 \subsection*{Data Structures}
 \begin{DoxyCompactItemize}
 \item 
 struct \hyperlink{struct_voie}{Voie}
-\item 
+\begin{DoxyCompactList}\small\item\em Represente une voie d\textquotesingle{}un carrefour. \end{DoxyCompactList}\item 
+struct \hyperlink{struct_croisement}{Croisement}
+\begin{DoxyCompactList}\small\item\em Represente un croisement d\textquotesingle{}un carrefour. \end{DoxyCompactList}\item 
 struct \hyperlink{struct_voiture}{Voiture}
-\item 
+\begin{DoxyCompactList}\small\item\em Represente une voiture. \end{DoxyCompactList}\item 
 struct \hyperlink{struct_requete}{Requete}
-\item 
+\begin{DoxyCompactList}\small\item\em Represente une requete du client pour le serveur (d\textquotesingle{}une voiture pour un carrefour / le serveur). \end{DoxyCompactList}\item 
 struct \hyperlink{struct_reponse}{Reponse}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Represente une reponse du serveur pour le client (du serveur pour une voiture). \end{DoxyCompactList}\item 
+struct \hyperlink{struct_carrefour}{Carrefour}
+\begin{DoxyCompactList}\small\item\em Represente un carrefour. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\#define \hyperlink{project_8h_a2cf3c22d8cacfe663a4eec13d0fb26ef}{M\+U\+T\+E\+X}~1
+\hypertarget{project_8h_a2cf3c22d8cacfe663a4eec13d0fb26ef}{}\#define {\bfseries M\+U\+T\+E\+X}~1\label{project_8h_a2cf3c22d8cacfe663a4eec13d0fb26ef}
+
 \item 
-\#define \hyperlink{project_8h_a3a9975c167fca0a8736717e0113271d5}{M\+A\+X\+P\+A\+U\+S\+E}~2
+\hypertarget{project_8h_a3a9975c167fca0a8736717e0113271d5}{}\#define {\bfseries M\+A\+X\+P\+A\+U\+S\+E}~500000\label{project_8h_a3a9975c167fca0a8736717e0113271d5}
+
 \item 
-\#define \hyperlink{project_8h_a06a244bf66104710af27cd2c4a77ace2}{M\+E\+S\+S\+A\+R\+R\+I\+V\+E}~1
+\hypertarget{project_8h_a608cea0f14ac3df511244477edeb35d3}{}\#define {\bfseries M\+I\+N\+P\+A\+U\+S\+E}~100\label{project_8h_a608cea0f14ac3df511244477edeb35d3}
+
 \item 
-\#define \hyperlink{project_8h_ab97746c40f93ca377c0056c455239663}{M\+E\+S\+S\+D\+E\+M\+A\+N\+D\+E}~2
+\hypertarget{project_8h_a06a244bf66104710af27cd2c4a77ace2}{}\#define {\bfseries M\+E\+S\+S\+A\+R\+R\+I\+V\+E}~1\label{project_8h_a06a244bf66104710af27cd2c4a77ace2}
+
 \item 
-\#define \hyperlink{project_8h_ab6e652478d4baf9a5c877acbf5237c1d}{M\+E\+S\+S\+T\+R\+A\+V\+E\+R\+S\+E}~3
+\hypertarget{project_8h_ab97746c40f93ca377c0056c455239663}{}\#define {\bfseries M\+E\+S\+S\+D\+E\+M\+A\+N\+D\+E}~2\label{project_8h_ab97746c40f93ca377c0056c455239663}
+
 \item 
-\#define \hyperlink{project_8h_a4bb902da8daf1250d70687930584cfba}{M\+E\+S\+S\+A\+T\+R\+A\+V\+E\+R\+S\+E}~4
+\hypertarget{project_8h_ac629905399d6d8e15e404b5c173ee727}{}\#define {\bfseries M\+E\+S\+S\+I\+N\+F\+O}~3\label{project_8h_ac629905399d6d8e15e404b5c173ee727}
+
 \item 
-\#define \hyperlink{project_8h_a16a20617ea0743eb861e84fd7ad1bf31}{M\+E\+S\+S\+S\+O\+R\+T}~5
+\hypertarget{project_8h_a16a20617ea0743eb861e84fd7ad1bf31}{}\#define {\bfseries M\+E\+S\+S\+S\+O\+R\+T}~4\label{project_8h_a16a20617ea0743eb861e84fd7ad1bf31}
+
 \item 
-\#define \hyperlink{project_8h_a038a3bb8624ccb2b273406b1168807c6}{P\+A\+S\+T\+R\+A\+V\+E\+R\+S\+E}~0
+\hypertarget{project_8h_a78f947653932b2dc4862bbd54ad6996b}{}\#define {\bfseries A\+V\+A\+N\+T}~1\label{project_8h_a78f947653932b2dc4862bbd54ad6996b}
+
 \item 
-\#define \hyperlink{project_8h_ae0a8d7aaf6f3470c7aaab116e2d64ff2}{T\+R\+A\+V\+E\+R\+S\+E}~1
+\hypertarget{project_8h_a7f5200d0b789378994e1cbf4f4f0aabf}{}\#define {\bfseries P\+E\+N\+D\+A\+N\+T}~2\label{project_8h_a7f5200d0b789378994e1cbf4f4f0aabf}
+
 \item 
-\#define \hyperlink{project_8h_ac64e5d3e17c86820c37f0d704fac731c}{A\+T\+R\+A\+V\+E\+R\+S\+E}~0
+\hypertarget{project_8h_a0f927f87f0b44b4d959b50071963cc53}{}\#define {\bfseries A\+P\+R\+E\+S}~3\label{project_8h_a0f927f87f0b44b4d959b50071963cc53}
+
+\item 
+\hypertarget{project_8h_a913ebaa509864a0b9d4f993aa352842c}{}\#define {\bfseries H\+O}~0\label{project_8h_a913ebaa509864a0b9d4f993aa352842c}
+
+\item 
+\hypertarget{project_8h_a3dcf4acb9f7d9c57f43802a9a1ac4ee6}{}\#define {\bfseries V\+E}~1\label{project_8h_a3dcf4acb9f7d9c57f43802a9a1ac4ee6}
+
 \end{DoxyCompactItemize}
 \subsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
-typedef struct \hyperlink{struct_voie}{Voie} \hyperlink{project_8h_ab0d46ef2afb4370e3bab5c024f6bf47e}{Voie}
+\hypertarget{project_8h_ab0d46ef2afb4370e3bab5c024f6bf47e}{}typedef struct \hyperlink{struct_voie}{Voie} {\bfseries Voie}\label{project_8h_ab0d46ef2afb4370e3bab5c024f6bf47e}
+
 \item 
-typedef struct \hyperlink{struct_voiture}{Voiture} \hyperlink{project_8h_adc2c6810d3b05b849a3ad15e295e4d2a}{Voiture}
+\hypertarget{project_8h_afbcdcd366ab2ba25a00ca2223558802a}{}typedef struct \hyperlink{struct_croisement}{Croisement} {\bfseries Croisement}\label{project_8h_afbcdcd366ab2ba25a00ca2223558802a}
+
+\item 
+\hypertarget{project_8h_adc2c6810d3b05b849a3ad15e295e4d2a}{}typedef struct \hyperlink{struct_voiture}{Voiture} {\bfseries Voiture}\label{project_8h_adc2c6810d3b05b849a3ad15e295e4d2a}
+
+\item 
+\hypertarget{project_8h_a17b4b528945f05c3b9001c61631910c9}{}typedef struct \hyperlink{struct_carrefour}{Carrefour} {\bfseries Carrefour}\label{project_8h_a17b4b528945f05c3b9001c61631910c9}
+
 \end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -48,64 +81,43 @@ int \hyperlink{project_8h_a12872499b11c7292c4135f74e7a4fdcc}{taille\+Req}
 \item 
 int \hyperlink{project_8h_a3fe87526483f6339598948503bc72f4a}{taille\+Rep}
 \item 
-int \hyperlink{project_8h_a6174c42da8c55c86e7255be2848dc4ac}{msgid}
+int \hyperlink{project_8h_ac35b1416f799d547427e175255d4dc74}{msgid\+\_\+serveur}
+\item 
+int \hyperlink{project_8h_a37c268ecdecb7124e5243269e8cd6d26}{msgid\+\_\+carrefour} \mbox{[}$\,$\mbox{]}
 \item 
 int \hyperlink{project_8h_a9825b926ad2a4aa0e6688dc15b2d9a23}{sem\+\_\+id}
+\item 
+int \hyperlink{project_8h_ab0f845d7f9358fabe3daebab24cf858a}{shm\+\_\+id} \mbox{[}4\mbox{]}
+\item 
+int \hyperlink{project_8h_ade857a99d48bcb8cfaa57c4cd8d7d2e8}{compteur}
 \end{DoxyCompactItemize}
 
 
-\subsection{Macro Definition Documentation}
-\hypertarget{project_8h_ac64e5d3e17c86820c37f0d704fac731c}{}\index{project.\+h@{project.\+h}!A\+T\+R\+A\+V\+E\+R\+S\+E@{A\+T\+R\+A\+V\+E\+R\+S\+E}}
-\index{A\+T\+R\+A\+V\+E\+R\+S\+E@{A\+T\+R\+A\+V\+E\+R\+S\+E}!project.\+h@{project.\+h}}
-\subsubsection[{A\+T\+R\+A\+V\+E\+R\+S\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+T\+R\+A\+V\+E\+R\+S\+E~0}\label{project_8h_ac64e5d3e17c86820c37f0d704fac731c}
-\hypertarget{project_8h_a3a9975c167fca0a8736717e0113271d5}{}\index{project.\+h@{project.\+h}!M\+A\+X\+P\+A\+U\+S\+E@{M\+A\+X\+P\+A\+U\+S\+E}}
-\index{M\+A\+X\+P\+A\+U\+S\+E@{M\+A\+X\+P\+A\+U\+S\+E}!project.\+h@{project.\+h}}
-\subsubsection[{M\+A\+X\+P\+A\+U\+S\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+A\+X\+P\+A\+U\+S\+E~2}\label{project_8h_a3a9975c167fca0a8736717e0113271d5}
-\hypertarget{project_8h_a06a244bf66104710af27cd2c4a77ace2}{}\index{project.\+h@{project.\+h}!M\+E\+S\+S\+A\+R\+R\+I\+V\+E@{M\+E\+S\+S\+A\+R\+R\+I\+V\+E}}
-\index{M\+E\+S\+S\+A\+R\+R\+I\+V\+E@{M\+E\+S\+S\+A\+R\+R\+I\+V\+E}!project.\+h@{project.\+h}}
-\subsubsection[{M\+E\+S\+S\+A\+R\+R\+I\+V\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+E\+S\+S\+A\+R\+R\+I\+V\+E~1}\label{project_8h_a06a244bf66104710af27cd2c4a77ace2}
-\hypertarget{project_8h_a4bb902da8daf1250d70687930584cfba}{}\index{project.\+h@{project.\+h}!M\+E\+S\+S\+A\+T\+R\+A\+V\+E\+R\+S\+E@{M\+E\+S\+S\+A\+T\+R\+A\+V\+E\+R\+S\+E}}
-\index{M\+E\+S\+S\+A\+T\+R\+A\+V\+E\+R\+S\+E@{M\+E\+S\+S\+A\+T\+R\+A\+V\+E\+R\+S\+E}!project.\+h@{project.\+h}}
-\subsubsection[{M\+E\+S\+S\+A\+T\+R\+A\+V\+E\+R\+S\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+E\+S\+S\+A\+T\+R\+A\+V\+E\+R\+S\+E~4}\label{project_8h_a4bb902da8daf1250d70687930584cfba}
-\hypertarget{project_8h_ab97746c40f93ca377c0056c455239663}{}\index{project.\+h@{project.\+h}!M\+E\+S\+S\+D\+E\+M\+A\+N\+D\+E@{M\+E\+S\+S\+D\+E\+M\+A\+N\+D\+E}}
-\index{M\+E\+S\+S\+D\+E\+M\+A\+N\+D\+E@{M\+E\+S\+S\+D\+E\+M\+A\+N\+D\+E}!project.\+h@{project.\+h}}
-\subsubsection[{M\+E\+S\+S\+D\+E\+M\+A\+N\+D\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+E\+S\+S\+D\+E\+M\+A\+N\+D\+E~2}\label{project_8h_ab97746c40f93ca377c0056c455239663}
-\hypertarget{project_8h_a16a20617ea0743eb861e84fd7ad1bf31}{}\index{project.\+h@{project.\+h}!M\+E\+S\+S\+S\+O\+R\+T@{M\+E\+S\+S\+S\+O\+R\+T}}
-\index{M\+E\+S\+S\+S\+O\+R\+T@{M\+E\+S\+S\+S\+O\+R\+T}!project.\+h@{project.\+h}}
-\subsubsection[{M\+E\+S\+S\+S\+O\+R\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+E\+S\+S\+S\+O\+R\+T~5}\label{project_8h_a16a20617ea0743eb861e84fd7ad1bf31}
-\hypertarget{project_8h_ab6e652478d4baf9a5c877acbf5237c1d}{}\index{project.\+h@{project.\+h}!M\+E\+S\+S\+T\+R\+A\+V\+E\+R\+S\+E@{M\+E\+S\+S\+T\+R\+A\+V\+E\+R\+S\+E}}
-\index{M\+E\+S\+S\+T\+R\+A\+V\+E\+R\+S\+E@{M\+E\+S\+S\+T\+R\+A\+V\+E\+R\+S\+E}!project.\+h@{project.\+h}}
-\subsubsection[{M\+E\+S\+S\+T\+R\+A\+V\+E\+R\+S\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+E\+S\+S\+T\+R\+A\+V\+E\+R\+S\+E~3}\label{project_8h_ab6e652478d4baf9a5c877acbf5237c1d}
-\hypertarget{project_8h_a2cf3c22d8cacfe663a4eec13d0fb26ef}{}\index{project.\+h@{project.\+h}!M\+U\+T\+E\+X@{M\+U\+T\+E\+X}}
-\index{M\+U\+T\+E\+X@{M\+U\+T\+E\+X}!project.\+h@{project.\+h}}
-\subsubsection[{M\+U\+T\+E\+X}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+U\+T\+E\+X~1}\label{project_8h_a2cf3c22d8cacfe663a4eec13d0fb26ef}
-\hypertarget{project_8h_a038a3bb8624ccb2b273406b1168807c6}{}\index{project.\+h@{project.\+h}!P\+A\+S\+T\+R\+A\+V\+E\+R\+S\+E@{P\+A\+S\+T\+R\+A\+V\+E\+R\+S\+E}}
-\index{P\+A\+S\+T\+R\+A\+V\+E\+R\+S\+E@{P\+A\+S\+T\+R\+A\+V\+E\+R\+S\+E}!project.\+h@{project.\+h}}
-\subsubsection[{P\+A\+S\+T\+R\+A\+V\+E\+R\+S\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+A\+S\+T\+R\+A\+V\+E\+R\+S\+E~0}\label{project_8h_a038a3bb8624ccb2b273406b1168807c6}
-\hypertarget{project_8h_ae0a8d7aaf6f3470c7aaab116e2d64ff2}{}\index{project.\+h@{project.\+h}!T\+R\+A\+V\+E\+R\+S\+E@{T\+R\+A\+V\+E\+R\+S\+E}}
-\index{T\+R\+A\+V\+E\+R\+S\+E@{T\+R\+A\+V\+E\+R\+S\+E}!project.\+h@{project.\+h}}
-\subsubsection[{T\+R\+A\+V\+E\+R\+S\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+R\+A\+V\+E\+R\+S\+E~1}\label{project_8h_ae0a8d7aaf6f3470c7aaab116e2d64ff2}
+\subsection{Detailed Description}
+Contient les structures et variables globales liees au projet. 
 
-
-\subsection{Typedef Documentation}
-\hypertarget{project_8h_ab0d46ef2afb4370e3bab5c024f6bf47e}{}\index{project.\+h@{project.\+h}!Voie@{Voie}}
-\index{Voie@{Voie}!project.\+h@{project.\+h}}
-\subsubsection[{Voie}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf Voie}  {\bf Voie}}\label{project_8h_ab0d46ef2afb4370e3bab5c024f6bf47e}
-\hypertarget{project_8h_adc2c6810d3b05b849a3ad15e295e4d2a}{}\index{project.\+h@{project.\+h}!Voiture@{Voiture}}
-\index{Voiture@{Voiture}!project.\+h@{project.\+h}}
-\subsubsection[{Voiture}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf Voiture}  {\bf Voiture}}\label{project_8h_adc2c6810d3b05b849a3ad15e295e4d2a}
 
 
 \subsection{Variable Documentation}
-\hypertarget{project_8h_a6174c42da8c55c86e7255be2848dc4ac}{}\index{project.\+h@{project.\+h}!msgid@{msgid}}
-\index{msgid@{msgid}!project.\+h@{project.\+h}}
-\subsubsection[{msgid}]{\setlength{\rightskip}{0pt plus 5cm}int msgid}\label{project_8h_a6174c42da8c55c86e7255be2848dc4ac}
-\hypertarget{project_8h_a9825b926ad2a4aa0e6688dc15b2d9a23}{}\index{project.\+h@{project.\+h}!sem\+\_\+id@{sem\+\_\+id}}
+\hypertarget{project_8h_ade857a99d48bcb8cfaa57c4cd8d7d2e8}{}\index{project.\+h@{project.\+h}!compteur@{compteur}}
+\index{compteur@{compteur}!project.\+h@{project.\+h}}
+\subsubsection[{compteur}]{\setlength{\rightskip}{0pt plus 5cm}int compteur}\label{project_8h_ade857a99d48bcb8cfaa57c4cd8d7d2e8}
+Le compteur de voitures sorties, accessible par les autres processus en tant que segment de memoire partagee. \hypertarget{project_8h_a37c268ecdecb7124e5243269e8cd6d26}{}\index{project.\+h@{project.\+h}!msgid\+\_\+carrefour@{msgid\+\_\+carrefour}}
+\index{msgid\+\_\+carrefour@{msgid\+\_\+carrefour}!project.\+h@{project.\+h}}
+\subsubsection[{msgid\+\_\+carrefour}]{\setlength{\rightskip}{0pt plus 5cm}int msgid\+\_\+carrefour\mbox{[}$\,$\mbox{]}}\label{project_8h_a37c268ecdecb7124e5243269e8cd6d26}
+Les files de message utilisees pour communiquer entre les voitures et les carrefour (4 files). \hypertarget{project_8h_ac35b1416f799d547427e175255d4dc74}{}\index{project.\+h@{project.\+h}!msgid\+\_\+serveur@{msgid\+\_\+serveur}}
+\index{msgid\+\_\+serveur@{msgid\+\_\+serveur}!project.\+h@{project.\+h}}
+\subsubsection[{msgid\+\_\+serveur}]{\setlength{\rightskip}{0pt plus 5cm}int msgid\+\_\+serveur}\label{project_8h_ac35b1416f799d547427e175255d4dc74}
+La file de message utilisee pour communiquer entre le serveur et les carrefour. \hypertarget{project_8h_a9825b926ad2a4aa0e6688dc15b2d9a23}{}\index{project.\+h@{project.\+h}!sem\+\_\+id@{sem\+\_\+id}}
 \index{sem\+\_\+id@{sem\+\_\+id}!project.\+h@{project.\+h}}
 \subsubsection[{sem\+\_\+id}]{\setlength{\rightskip}{0pt plus 5cm}int sem\+\_\+id}\label{project_8h_a9825b926ad2a4aa0e6688dc15b2d9a23}
-\hypertarget{project_8h_a3fe87526483f6339598948503bc72f4a}{}\index{project.\+h@{project.\+h}!taille\+Rep@{taille\+Rep}}
+L\textquotesingle{}identifiant de l\textquotesingle{}ensemble de semaphores (1 semaphore). \hypertarget{project_8h_ab0f845d7f9358fabe3daebab24cf858a}{}\index{project.\+h@{project.\+h}!shm\+\_\+id@{shm\+\_\+id}}
+\index{shm\+\_\+id@{shm\+\_\+id}!project.\+h@{project.\+h}}
+\subsubsection[{shm\+\_\+id}]{\setlength{\rightskip}{0pt plus 5cm}int shm\+\_\+id\mbox{[}4\mbox{]}}\label{project_8h_ab0f845d7f9358fabe3daebab24cf858a}
+Les 4 carrefours, accessibles par les autres processus en tant que segments de memoire partagee. \hypertarget{project_8h_a3fe87526483f6339598948503bc72f4a}{}\index{project.\+h@{project.\+h}!taille\+Rep@{taille\+Rep}}
 \index{taille\+Rep@{taille\+Rep}!project.\+h@{project.\+h}}
 \subsubsection[{taille\+Rep}]{\setlength{\rightskip}{0pt plus 5cm}int taille\+Rep}\label{project_8h_a3fe87526483f6339598948503bc72f4a}
-\hypertarget{project_8h_a12872499b11c7292c4135f74e7a4fdcc}{}\index{project.\+h@{project.\+h}!taille\+Req@{taille\+Req}}
+La taille d\textquotesingle{}une reponse. \hypertarget{project_8h_a12872499b11c7292c4135f74e7a4fdcc}{}\index{project.\+h@{project.\+h}!taille\+Req@{taille\+Req}}
 \index{taille\+Req@{taille\+Req}!project.\+h@{project.\+h}}
 \subsubsection[{taille\+Req}]{\setlength{\rightskip}{0pt plus 5cm}int taille\+Req}\label{project_8h_a12872499b11c7292c4135f74e7a4fdcc}
+La taille d\textquotesingle{}une requete. 

@@ -1,0 +1,67 @@
+\hypertarget{struct_croisement}{}\section{Croisement Struct Reference}
+\label{struct_croisement}\index{Croisement@{Croisement}}
+
+
+Represente un croisement d\textquotesingle{}un carrefour.  
+
+
+
+
+{\ttfamily \#include $<$project.\+h$>$}
+
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{struct_croisement_a593430af208bfef9b3ce7325558b667b}{etat}
+\item 
+int \hyperlink{struct_croisement_aec0a573c81b0f7b93447e88cb693c578}{avant\+H}
+\item 
+int \hyperlink{struct_croisement_a92825e65e3dc482ea0749873b2669f85}{apres\+H}
+\item 
+int \hyperlink{struct_croisement_ab78c7081771d7a1ee85e5adb38c62d3d}{avant\+V}
+\item 
+int \hyperlink{struct_croisement_aedd3f8edd387efe89a1c6f63a25f066a}{apres\+V}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Represente un croisement d\textquotesingle{}un carrefour. 
+
+5 croisements sont \char`\"{}inutiles\char`\"{} car ne croisent aucune autre voie (N°2, 10, 12, 14 et 22), mais gardes par soucis de simplicite d\textquotesingle{}affichage. Chaque croisement possede \+:
+\begin{DoxyItemize}
+\item 4 compteurs indiquant \+:
+\begin{DoxyItemize}
+\item Le nombre de vehicules en attente avant le croisement horizontal.
+\item Le nombre de vehicules en attente apres le croisement horizontal.
+\item Le nombre de vehicules en attente avant le croisement vertical.
+\item Le nombre de vehicules en attente apres le croisement vertical.
+\end{DoxyItemize}
+\item Une variable indiquant l\textquotesingle{}etat du croisement. Peut valoir \+:
+\begin{DoxyItemize}
+\item -\/1 \+: Le croisement est inutile car ne croise aucune autre voie (utilise uniquement a des fins d\textquotesingle{}affichage).
+\item 0 \+: Personne n\textquotesingle{}est en train de traverser le croisement.
+\item 1 \+: Quelqu\textquotesingle{}un est en train de traverser le croisement. 
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsection{Field Documentation}
+\hypertarget{struct_croisement_a92825e65e3dc482ea0749873b2669f85}{}\index{Croisement@{Croisement}!apres\+H@{apres\+H}}
+\index{apres\+H@{apres\+H}!Croisement@{Croisement}}
+\subsubsection[{apres\+H}]{\setlength{\rightskip}{0pt plus 5cm}int apres\+H}\label{struct_croisement_a92825e65e3dc482ea0749873b2669f85}
+Le nombre de vehicules en attente apres le croisement horizontal. \hypertarget{struct_croisement_aedd3f8edd387efe89a1c6f63a25f066a}{}\index{Croisement@{Croisement}!apres\+V@{apres\+V}}
+\index{apres\+V@{apres\+V}!Croisement@{Croisement}}
+\subsubsection[{apres\+V}]{\setlength{\rightskip}{0pt plus 5cm}int apres\+V}\label{struct_croisement_aedd3f8edd387efe89a1c6f63a25f066a}
+Le nombre de vehicules en attente apres le croisement vertical. \hypertarget{struct_croisement_aec0a573c81b0f7b93447e88cb693c578}{}\index{Croisement@{Croisement}!avant\+H@{avant\+H}}
+\index{avant\+H@{avant\+H}!Croisement@{Croisement}}
+\subsubsection[{avant\+H}]{\setlength{\rightskip}{0pt plus 5cm}int avant\+H}\label{struct_croisement_aec0a573c81b0f7b93447e88cb693c578}
+Le nombre de vehicules en attente avant le croisement horizontal. \hypertarget{struct_croisement_ab78c7081771d7a1ee85e5adb38c62d3d}{}\index{Croisement@{Croisement}!avant\+V@{avant\+V}}
+\index{avant\+V@{avant\+V}!Croisement@{Croisement}}
+\subsubsection[{avant\+V}]{\setlength{\rightskip}{0pt plus 5cm}int avant\+V}\label{struct_croisement_ab78c7081771d7a1ee85e5adb38c62d3d}
+Le nombre de vehicules en attente avant le croisement vertical. \hypertarget{struct_croisement_a593430af208bfef9b3ce7325558b667b}{}\index{Croisement@{Croisement}!etat@{etat}}
+\index{etat@{etat}!Croisement@{Croisement}}
+\subsubsection[{etat}]{\setlength{\rightskip}{0pt plus 5cm}int etat}\label{struct_croisement_a593430af208bfef9b3ce7325558b667b}
+L\textquotesingle{}etat du croisement. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\hyperlink{project_8h}{project.\+h}\end{DoxyCompactItemize}

@@ -13,8 +13,8 @@ Contient le code du client dans le modele client-\/serveur (les voitures).
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{client_8c_ab658716d7a1ce54bb23369f3e2fa7bf6}{construction\+Requete} (\hyperlink{struct_requete}{Requete} $\ast$req, \hyperlink{struct_voiture}{Voiture} $\ast$v, int croisement, int voie, int traverse, int type)
-\begin{DoxyCompactList}\small\item\em Construit une requete pour le serveur. La requete peut prendre 5 formes \+: \end{DoxyCompactList}\item 
+void \hyperlink{client_8c_ad25990e98ffa31cb04d0d6fb338f7e8e}{construction\+Requete} (\hyperlink{struct_requete}{Requete} $\ast$req, \hyperlink{struct_voiture}{Voiture} $\ast$v, int \hyperlink{carrefour_8c_a9444302434bb1140df71a3848edecee9}{carrefour}, int croisement\+\_\+precedent, int croisement\+\_\+precedent\+\_\+orientation, int croisement, int croisement\+\_\+orientation, int voie, int traverse, int type)
+\begin{DoxyCompactList}\small\item\em Construit une requete pour le carrefour, qui sera eventuellement retransmise au serveur si necessaire. \end{DoxyCompactList}\item 
 void \hyperlink{client_8c_a02ef3d4ed41a50563faa594adc3f8c3f}{affichage\+Requete} (\hyperlink{struct_requete}{Requete} $\ast$req)
 \begin{DoxyCompactList}\small\item\em Affiche la nature et les informations de la requete. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -38,32 +38,35 @@ Affiche la nature et les informations de la requete.
 
 
 \begin{DoxyParams}{Parameters}
-{\em req} & La requete a afficher \\
+{\em req} & Pointeur sur la requete a afficher. \\
 \hline
 \end{DoxyParams}
-\hypertarget{client_8c_ab658716d7a1ce54bb23369f3e2fa7bf6}{}\index{client.\+c@{client.\+c}!construction\+Requete@{construction\+Requete}}
+\hypertarget{client_8c_ad25990e98ffa31cb04d0d6fb338f7e8e}{}\index{client.\+c@{client.\+c}!construction\+Requete@{construction\+Requete}}
 \index{construction\+Requete@{construction\+Requete}!client.\+c@{client.\+c}}
 \subsubsection[{construction\+Requete}]{\setlength{\rightskip}{0pt plus 5cm}void construction\+Requete (
 \begin{DoxyParamCaption}
 \item[{{\bf Requete} $\ast$}]{req, }
 \item[{{\bf Voiture} $\ast$}]{v, }
+\item[{int}]{carrefour, }
+\item[{int}]{croisement\+\_\+precedent, }
+\item[{int}]{croisement\+\_\+precedent\+\_\+orientation, }
 \item[{int}]{croisement, }
+\item[{int}]{croisement\+\_\+orientation, }
 \item[{int}]{voie, }
 \item[{int}]{traverse, }
 \item[{int}]{type}
 \end{DoxyParamCaption}
-)}\label{client_8c_ab658716d7a1ce54bb23369f3e2fa7bf6}
+)}\label{client_8c_ad25990e98ffa31cb04d0d6fb338f7e8e}
 
 
-Construit une requete pour le serveur. La requete peut prendre 5 formes \+: 
+Construit une requete pour le carrefour, qui sera eventuellement retransmise au serveur si necessaire. 
 
-
+La requete peut prendre 4 formes \+:
 \begin{DoxyItemize}
-\item Information d\textquotesingle{}arrivee \+: une voiture arrive par la voie mentionnee
-\item Demande de traverser \+: une voiture demande a traverser une zone critique ($<$=$>$ un croisement avec une autre voie)
-\item Information de debut de traversement \+: une voiture est en train de traverser une zone critique
-\item Information de fin de traversement \+: une voiture a fini de traverser une zone critique
-\item Information de depart \+: une voiture sort par la voie mentionnee
+\item M\+E\+S\+S\+A\+R\+R\+I\+V\+E \+: message d\textquotesingle{}information d\textquotesingle{}arrivee sur un carrefour. N\textquotesingle{}implique aucun traitement, affiche juste l\textquotesingle{}information.
+\item M\+E\+S\+S\+D\+E\+M\+A\+N\+D\+E \+: demande d\textquotesingle{}arrivee en zone avant, pendant, ou apres un croisement. Implique une demande au serveur (depuis le carrefour) qui va analyser le carrefour pour prendre une decision.
+\item M\+E\+S\+S\+I\+N\+F\+O \+: message d\textquotesingle{}information d\textquotesingle{}arrivee avant, pendant, ou apres un croisement. N\textquotesingle{}implique aucun traitement, affiche juste l\textquotesingle{}information.
+\item M\+E\+S\+S\+S\+O\+R\+T \+: message d\textquotesingle{}information de sortie d\textquotesingle{}un carrefour. Implique de mettre a jour la file d\textquotesingle{}attente \char`\"{}apres\char`\"{} le croisement precedent.
 \end{DoxyItemize}
 
 
@@ -72,24 +75,37 @@ Construit une requete pour le serveur. La requete peut prendre 5 formes \+:
 \hline
 {\em v} & Pointeur vers la voiture effectuant la requete. \\
 \hline
+{\em croisement\+\_\+precedent} & L\textquotesingle{}indice de la zone critique ($<$=$>$ le croisement) precedemment visitee le cas echeant (utile lorsque la voiture quitte un croisement pour modifier le precedent). \\
+\hline
+{\em croisement\+\_\+precedent\+\_\+orientation} & L\textquotesingle{}orientation (horizontal / vertical) du croisement precedent (utile pour mettre a jour les files d\textquotesingle{}attente du croisement precedent quand une voiture arrive a un nouveau croisement). Peut valoir \+:
+\begin{DoxyItemize}
+\item H\+O \+: horizontal.
+\item V\+E \+: vertical. 
+\end{DoxyItemize}\\
+\hline
 {\em croisement} & L\textquotesingle{}indice de la zone critique ($<$=$>$ le croisement) le cas echeant. \\
+\hline
+{\em croisement\+\_\+orientation} & L\textquotesingle{}orientation (horizontal / vertical) du croisement (utile pour mettre a jour les files d\textquotesingle{}attente du croisement). Peut valoir \+:
+\begin{DoxyItemize}
+\item H\+O \+: horizontal.
+\item V\+E \+: vertical. 
+\end{DoxyItemize}\\
 \hline
 {\em voie} & L\textquotesingle{}indice de la voie d\textquotesingle{}arrivee, de depart, ou de croisement ($<$=$>$ la voie qui croise avec celle de la voiture a l\textquotesingle{}endroit critique). \\
 \hline
 {\em traverse} & L\textquotesingle{}etat de traversement (directement lie aux informations de traversement). Peut valoir \+:
 \begin{DoxyItemize}
-\item P\+A\+S\+T\+R\+A\+V\+E\+R\+S\+E
-\item T\+R\+A\+V\+E\+R\+S\+E
-\item A\+T\+R\+A\+V\+E\+R\+S\+E 
+\item A\+V\+A\+N\+T \+: avant la zone critique (file de voitures avant le croisement).
+\item P\+E\+N\+D\+A\+N\+T \+: pendant la zone critique (le croisement en lui meme).
+\item A\+P\+R\+E\+S \+: apres la zone critique (file de voitures apres le croisement). 
 \end{DoxyItemize}\\
 \hline
 {\em type} & Le type de requete. Peut valoir \+:
 \begin{DoxyItemize}
-\item M\+E\+S\+S\+A\+R\+R\+I\+V\+E
-\item M\+E\+S\+S\+D\+E\+M\+A\+N\+D\+E
-\item M\+E\+S\+S\+T\+R\+A\+V\+E\+R\+S\+E
-\item M\+E\+S\+S\+A\+T\+R\+A\+V\+E\+R\+S\+E
-\item M\+E\+S\+S\+S\+O\+R\+T 
+\item M\+E\+S\+S\+A\+R\+R\+I\+V\+E.
+\item M\+E\+S\+S\+D\+E\+M\+A\+N\+D\+E.
+\item M\+E\+S\+S\+I\+N\+F\+O.
+\item M\+E\+S\+S\+S\+O\+R\+T. 
 \end{DoxyItemize}\\
 \hline
 \end{DoxyParams}
