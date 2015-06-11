@@ -87,11 +87,11 @@ void forkVoitures(int nbVoitures, char *argv[], void (*fonction)())
 	int i;
 
 	if (argv == NULL) {
-		for (i=0;i<nb;i++)
+		for (i=0;i<nbVoitures;i++)
 			if (fork()==0)
 				(*fonction) (i, -1, -1, 1);
 	} else {
-		for (i=0;i<nb;i++)
+		for (i=0;i<nbVoitures;i++)
 			if (fork()==0)
 				(*fonction) (i, atoi(argv[1+(i*2)]), atoi(argv[2+(i*2)]), 1);
 	}
