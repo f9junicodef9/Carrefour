@@ -138,7 +138,7 @@ void forkServeur()
  * \fn void traitantSIGINT(int s)
  * \brief Redefini le traitant du signal SIGINT.
  *
- * Supprime les objets IPC lors de l'interception d'un signal SIGINT.
+ * Supprime les objets IPC et termine le programme lors de l'interception d'un signal SIGINT.
  *
  * \param s Le numero du signal intercepte (SIGINT).
  */ 
@@ -151,7 +151,11 @@ void traitantSIGINT(int s)
 			((msgctl(msg_carrefour[2], IPC_RMID, NULL)) == -1) ||
 			((msgctl(msg_carrefour[3], IPC_RMID, NULL)) == -1) ||
 			((semctl(sem, 0, IPC_RMID, NULL)) == -1) ||
-			((shmctl(compteur, IPC_RMID, NULL)) == -1)
+			((shmctl(compteur, IPC_RMID, NULL)) == -1) ||
+			((shmctl(carrefours[0], IPC_RMID, NULL)) == -1) ||
+			((shmctl(carrefours[1], IPC_RMID, NULL)) == -1) ||
+			((shmctl(carrefours[2], IPC_RMID, NULL)) == -1) ||
+			((shmctl(carrefours[3], IPC_RMID, NULL)) == -1)												
 		)
 		erreurFin("Pb ipc_rmid");
 		

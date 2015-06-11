@@ -143,7 +143,7 @@ extern int tailleRep;	/*!< La taille d'une reponse. */
 
 extern int msg_serveur;	/*!< La file de message utilisee pour communiquer entre le serveur et les carrefour. */
 extern int msg_carrefour[];	/*!< Les files de message utilisees pour communiquer entre les voitures et les carrefour (4 files). */
-extern int carrefours[];
+extern int carrefours[];	/*!< Les 4 carrefours accessibles par les autres processus en tant que segments de memoire partagee. */
 extern int sem;	/*!< L'identifiant de l'ensemble de semaphores (1 semaphore). */
 extern int compteur;	/*!< Le compteur de voitures sorties, accessible par les autres processus en tant que segment de memoire partagee. */
 
