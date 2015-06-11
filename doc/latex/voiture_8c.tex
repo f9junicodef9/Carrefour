@@ -20,8 +20,9 @@ void \hyperlink{voiture_8c_aefdfaf590d5f158bba54b7bb0c081d9a}{affiche\+\_\+voitu
 \begin{DoxyCompactList}\small\item\em Affiche les informations d\textquotesingle{}une voiture. \end{DoxyCompactList}\item 
 void \hyperlink{voiture_8c_a5d10ad75a89b2936ce3601a702def307}{affiche\+\_\+carrefours} ()
 \begin{DoxyCompactList}\small\item\em Affiche les informations generales des carrefours. \end{DoxyCompactList}\item 
-void \hyperlink{voiture_8c_aedfbdc9be292191e867f1d6de85f7708}{voiture} (int numero, int voie, int \hyperlink{carrefour_8c_a9444302434bb1140df71a3848edecee9}{carrefour})
-\begin{DoxyCompactList}\small\item\em Fonction realisee par chaque voiture. \end{DoxyCompactList}\item 
+\hypertarget{voiture_8c_a53612cdc4a21e39c42dffac32c308416}{}void {\bfseries voiture} (int numero, int voie, int \hyperlink{carrefour_8c_a9444302434bb1140df71a3848edecee9}{carrefour}, int premier\+\_\+lancement)\label{voiture_8c_a53612cdc4a21e39c42dffac32c308416}
+
+\item 
 void \hyperlink{voiture_8c_ab645261dc7b5e99edbe3283804fcdacc}{create\+\_\+question} (\hyperlink{struct_requete}{Requete} $\ast$req, \hyperlink{struct_voiture}{Voiture} $\ast$v, int \hyperlink{carrefour_8c_a9444302434bb1140df71a3848edecee9}{carrefour}, int croisement\+\_\+precedent, int croisement\+\_\+precedent\+\_\+orientation, int croisement, int croisement\+\_\+orientation, int voie, int traverse, int type)
 \begin{DoxyCompactList}\small\item\em Effectue les operations permettant la construction d\textquotesingle{}une requete vers le carrefour, affiche la requete, et l\textquotesingle{}envoie au carrefour. \end{DoxyCompactList}\item 
 void \hyperlink{voiture_8c_a1337c11dfce7a46d9002b48ef1074419}{receive\+\_\+answer} (\hyperlink{struct_requete}{Requete} $\ast$req, int \hyperlink{carrefour_8c_a9444302434bb1140df71a3848edecee9}{carrefour})
@@ -199,56 +200,6 @@ Ne retourne que lorsque la reponse du serveur aura ete positive. Permet de bloqu
 {\em req} & Pointeur vers la requete qui a ete envoyee. \\
 \hline
 {\em carrefour} & Le numero du carrefour ou se trouve la voiture. Utile pour n\textquotesingle{}ecouter que la file de message du carrefour concerne. \\
-\hline
-\end{DoxyParams}
-\hypertarget{voiture_8c_aedfbdc9be292191e867f1d6de85f7708}{}\index{voiture.\+c@{voiture.\+c}!voiture@{voiture}}
-\index{voiture@{voiture}!voiture.\+c@{voiture.\+c}}
-\subsubsection[{voiture}]{\setlength{\rightskip}{0pt plus 5cm}void voiture (
-\begin{DoxyParamCaption}
-\item[{int}]{numero, }
-\item[{int}]{voie, }
-\item[{int}]{carrefour}
-\end{DoxyParamCaption}
-)}\label{voiture_8c_aedfbdc9be292191e867f1d6de85f7708}
-
-
-Fonction realisee par chaque voiture. 
-
-Comprend 2 phases \+:
-\begin{DoxyItemize}
-\item Initialisation de la voiture, deux cas de figure \+:
-\begin{DoxyItemize}
-\item Lancement du programme \+:
-\begin{DoxyItemize}
-\item Le carrefour ou elle arrive sera aleatoire parmis les 4 (amelioration possible \+: permettre a l\textquotesingle{}utilisateur de choisir le carrefour).
-\item La voie, deux cas de figure \+:
-\begin{DoxyItemize}
-\item Avec une voie aleatoire.
-\item Avec une voie choisie par l\textquotesingle{}utilisateur.
-\end{DoxyItemize}
-\end{DoxyItemize}
-\item Programme deja lance, la voiture change de carrefour, elle rappelle cette fonction. Alors \+:
-\begin{DoxyItemize}
-\item Le carrefour ou elle arrive sera celui qui \char`\"{}correspond dans la realite\char`\"{}.
-\item La voie ou elle arrive sera aleatoire parmis les 3 \char`\"{}possibles dans la realite\char`\"{} selon la direction d\textquotesingle{}arrivee sur le carrefour (Nord, Ouest, Est, Sud) ($<$=$>$ simule un changement de voie par le conducteur).
-\end{DoxyItemize}
-\end{DoxyItemize}
-\item Parcours de la voie par la voiture.
-\end{DoxyItemize}
-
-
-\begin{DoxyParams}{Parameters}
-{\em numero} & Le numero de la voiture. \\
-\hline
-{\em voie} & Le numero de la voie. Peut valoir \+:
-\begin{DoxyItemize}
-\item -\/1 \+: la voiture prendra une voie dont le numero est genere aleatoirement \+:
-\begin{DoxyItemize}
-\item 1$<$=voie$<$=12 si c\textquotesingle{}est le lancement du programme (la voiture arrive n\textquotesingle{}importe ou).
-\item 1$<$=voie$<$=3 ; 4$<$=voie$<$=6 ; 7$<$=voie$<$=9 ; 10$<$=voie$<$=12 si la voiture venait respectivement des carrefours Ouest ; Sud ; Est ; Nord.
-\end{DoxyItemize}
-\item $>$0 \+: la voiture prendra la voie correspondant a ce numero. 
-\end{DoxyItemize}\\
 \hline
 \end{DoxyParams}
 

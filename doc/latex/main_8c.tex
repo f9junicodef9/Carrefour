@@ -24,8 +24,10 @@ Effectue les premieres operation du programme.
 \begin{DoxyCompactList}\small\item\em Cree les processus fils (voitures, carrefours, serveur), les objets I\+P\+C, affiche les premieres informations. \end{DoxyCompactList}\item 
 void \hyperlink{main_8c_a4899d2672ed5be6bbf5d5bd39858a431}{erreur\+Fin} (const char $\ast$msg)
 \begin{DoxyCompactList}\small\item\em Affiche un message d\textquotesingle{}erreur systeme. \end{DoxyCompactList}\item 
-void \hyperlink{main_8c_ac7de5193da9f5f0432f372eea094db34}{fork\+Voitures} (int nb\+Fils, char $\ast$\hyperlink{voiture_8c_aa9246ae4d5b520f1e61ed589dd0bf1bf}{voies}\mbox{[}$\,$\mbox{]}, void($\ast$fonction)())
+void \hyperlink{main_8c_a2495ebc784eae44a2633dc841c9b4332}{fork\+Voitures} (int nb\+Voitures, char $\ast$argv\mbox{[}$\,$\mbox{]}, void($\ast$fonction)())
 \begin{DoxyCompactList}\small\item\em Cree nb\+Fils processus fils (voitures) qui executent la meme fonction. \end{DoxyCompactList}\item 
+void \hyperlink{main_8c_a0fae1b92a1d4eb7007dc0e4924be4d68}{verif\+\_\+arguments} (int arguments, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Verifie la saisie de l\textquotesingle{}utilisateur lors du lancement du programme. \end{DoxyCompactList}\item 
 void \hyperlink{main_8c_a30bda96c52db042f252aae699730cb8c}{fork\+Carrefours} (void($\ast$fonction)())
 \begin{DoxyCompactList}\small\item\em Cree 4 processus fils (carrefours) qui executent la meme fonction. \end{DoxyCompactList}\item 
 void \hyperlink{main_8c_a1b792f965f17f81cb3b47720db11583a}{fork\+Serveur} (void($\ast$fonction)())
@@ -119,15 +121,15 @@ Cree 1 processus fils (serveur) qui executent une fonction.
 {\em fonction} & Pointeur sur la fonction qui sera exectuee par le serveur. \\
 \hline
 \end{DoxyParams}
-\hypertarget{main_8c_ac7de5193da9f5f0432f372eea094db34}{}\index{main.\+c@{main.\+c}!fork\+Voitures@{fork\+Voitures}}
+\hypertarget{main_8c_a2495ebc784eae44a2633dc841c9b4332}{}\index{main.\+c@{main.\+c}!fork\+Voitures@{fork\+Voitures}}
 \index{fork\+Voitures@{fork\+Voitures}!main.\+c@{main.\+c}}
 \subsubsection[{fork\+Voitures}]{\setlength{\rightskip}{0pt plus 5cm}void fork\+Voitures (
 \begin{DoxyParamCaption}
-\item[{int}]{nb\+Fils, }
-\item[{char $\ast$}]{voies\mbox{[}$\,$\mbox{]}, }
+\item[{int}]{nb, }
+\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}, }
 \item[{void($\ast$)()}]{fonction}
 \end{DoxyParamCaption}
-)}\label{main_8c_ac7de5193da9f5f0432f372eea094db34}
+)}\label{main_8c_a2495ebc784eae44a2633dc841c9b4332}
 
 
 Cree nb\+Fils processus fils (voitures) qui executent la meme fonction. 
@@ -136,9 +138,9 @@ Si voies est N\+U\+L\+L, cree nb\+Fils voitures avec une voie aleatoire. Si voie
 
 
 \begin{DoxyParams}{Parameters}
-{\em nb\+Fils} & Le nombre de voitures a creer. \\
+{\em nb\+Voitures} & Le nombre de voitures a creer. \\
 \hline
-{\em voies} & Le tableau des voies a affecter aux voitures le cas echeant. \\
+{\em argv} & Le tableau des voies et carrefours a affecter aux voitures le cas echeant. \\
 \hline
 {\em fonction} & Pointeur sur la fonction qui sera exectuee par les voitures. \\
 \hline
@@ -214,6 +216,27 @@ Supprime les objets I\+P\+C et termine le programme lors de l\textquotesingle{}i
 
 \begin{DoxyParams}{Parameters}
 {\em s} & Le numero du signal intercepte (S\+I\+G\+I\+N\+T). \\
+\hline
+\end{DoxyParams}
+\hypertarget{main_8c_a0fae1b92a1d4eb7007dc0e4924be4d68}{}\index{main.\+c@{main.\+c}!verif\+\_\+arguments@{verif\+\_\+arguments}}
+\index{verif\+\_\+arguments@{verif\+\_\+arguments}!main.\+c@{main.\+c}}
+\subsubsection[{verif\+\_\+arguments}]{\setlength{\rightskip}{0pt plus 5cm}void verif\+\_\+arguments (
+\begin{DoxyParamCaption}
+\item[{int}]{arguments, }
+\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}\label{main_8c_a0fae1b92a1d4eb7007dc0e4924be4d68}
+
+
+Verifie la saisie de l\textquotesingle{}utilisateur lors du lancement du programme. 
+
+Retourne si la saisie est correcte. Quitte le programme sinon.
+
+
+\begin{DoxyParams}{Parameters}
+{\em arguments} & Le nombre d\textquotesingle{}arguments passes au programme (moins le nom du programme). \\
+\hline
+{\em argv} & Les arguments passes au programme. \\
 \hline
 \end{DoxyParams}
 

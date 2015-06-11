@@ -133,9 +133,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a4899d2672ed5be6bbf5d5bd39858a431"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a4899d2672ed5be6bbf5d5bd39858a431">erreurFin</a> (const char *msg)</td></tr>
 <tr class="memdesc:a4899d2672ed5be6bbf5d5bd39858a431"><td class="mdescLeft">&#160;</td><td class="mdescRight">Affiche un message d'erreur systeme.  <a href="#a4899d2672ed5be6bbf5d5bd39858a431">More...</a><br /></td></tr>
 <tr class="separator:a4899d2672ed5be6bbf5d5bd39858a431"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac7de5193da9f5f0432f372eea094db34"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#ac7de5193da9f5f0432f372eea094db34">forkVoitures</a> (int nbFils, char *<a class="el" href="voiture_8c.html#aa9246ae4d5b520f1e61ed589dd0bf1bf">voies</a>[], void(*fonction)())</td></tr>
-<tr class="memdesc:ac7de5193da9f5f0432f372eea094db34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cree nbFils processus fils (voitures) qui executent la meme fonction.  <a href="#ac7de5193da9f5f0432f372eea094db34">More...</a><br /></td></tr>
-<tr class="separator:ac7de5193da9f5f0432f372eea094db34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2495ebc784eae44a2633dc841c9b4332"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a2495ebc784eae44a2633dc841c9b4332">forkVoitures</a> (int nbVoitures, char *argv[], void(*fonction)())</td></tr>
+<tr class="memdesc:a2495ebc784eae44a2633dc841c9b4332"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cree nbFils processus fils (voitures) qui executent la meme fonction.  <a href="#a2495ebc784eae44a2633dc841c9b4332">More...</a><br /></td></tr>
+<tr class="separator:a2495ebc784eae44a2633dc841c9b4332"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0fae1b92a1d4eb7007dc0e4924be4d68"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a0fae1b92a1d4eb7007dc0e4924be4d68">verif_arguments</a> (int arguments, char *argv[])</td></tr>
+<tr class="memdesc:a0fae1b92a1d4eb7007dc0e4924be4d68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifie la saisie de l'utilisateur lors du lancement du programme.  <a href="#a0fae1b92a1d4eb7007dc0e4924be4d68">More...</a><br /></td></tr>
+<tr class="separator:a0fae1b92a1d4eb7007dc0e4924be4d68"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a30bda96c52db042f252aae699730cb8c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a30bda96c52db042f252aae699730cb8c">forkCarrefours</a> (void(*fonction)())</td></tr>
 <tr class="memdesc:a30bda96c52db042f252aae699730cb8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cree 4 processus fils (carrefours) qui executent la meme fonction.  <a href="#a30bda96c52db042f252aae699730cb8c">More...</a><br /></td></tr>
 <tr class="separator:a30bda96c52db042f252aae699730cb8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -256,7 +259,7 @@ pid_t&#160;</td><td class="memItemRight" valign="bottom"><b>pid_Carrefour</b> [4
 
 </div>
 </div>
-<a class="anchor" id="ac7de5193da9f5f0432f372eea094db34"></a>
+<a class="anchor" id="a2495ebc784eae44a2633dc841c9b4332"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -264,13 +267,13 @@ pid_t&#160;</td><td class="memItemRight" valign="bottom"><b>pid_Carrefour</b> [4
           <td class="memname">void forkVoitures </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>nbFils</em>, </td>
+          <td class="paramname"><em>nb</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>voies</em>[], </td>
+          <td class="paramname"><em>argv</em>[], </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -290,8 +293,8 @@ pid_t&#160;</td><td class="memItemRight" valign="bottom"><b>pid_Carrefour</b> [4
 <p>Si voies est NULL, cree nbFils voitures avec une voie aleatoire. Si voies est non NULL, cree nbFils voitures avec une la voie correspondant aux differents membres de voies.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">nbFils</td><td>Le nombre de voitures a creer. </td></tr>
-    <tr><td class="paramname">voies</td><td>Le tableau des voies a affecter aux voitures le cas echeant. </td></tr>
+    <tr><td class="paramname">nbVoitures</td><td>Le nombre de voitures a creer. </td></tr>
+    <tr><td class="paramname">argv</td><td>Le tableau des voies et carrefours a affecter aux voitures le cas echeant. </td></tr>
     <tr><td class="paramname">fonction</td><td>Pointeur sur la fonction qui sera exectuee par les voitures. </td></tr>
   </table>
   </dd>
@@ -406,6 +409,42 @@ pid_t&#160;</td><td class="memItemRight" valign="bottom"><b>pid_Carrefour</b> [4
 
 </div>
 </div>
+<a class="anchor" id="a0fae1b92a1d4eb7007dc0e4924be4d68"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void verif_arguments </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>arguments</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>argv</em>[]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Verifie la saisie de l'utilisateur lors du lancement du programme. </p>
+<p>Retourne si la saisie est correcte. Quitte le programme sinon.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">arguments</td><td>Le nombre d'arguments passes au programme (moins le nom du programme). </td></tr>
+    <tr><td class="paramname">argv</td><td>Les arguments passes au programme. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <h2 class="groupheader">Variable Documentation</h2>
 <a class="anchor" id="ac51d0bc6bf626b568d97ec4fa5d9aa43"></a>
 <div class="memitem">
@@ -504,7 +543,7 @@ pid_t&#160;</td><td class="memItemRight" valign="bottom"><b>pid_Carrefour</b> [4
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="main_8c.html">main.c</a></li>
-    <li class="footer">Generated on Thu Jun 11 2015 22:00:55 for Carrefour by
+    <li class="footer">Generated on Fri Jun 12 2015 01:16:03 for Carrefour by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>
