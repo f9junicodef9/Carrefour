@@ -137,7 +137,7 @@ typedef struct {
  * 5 croisements sont "inutiles" car ne croisent aucune autre voie (N°2, 10, 12, 14 et 22), mais gardes par soucis de simplicite d'affichage.
  */
 typedef struct Carrefour {
-	Croisement croisements[25];
+	Croisement croisements[25];	/*!< Les 25 croisements du carrefour. */
 } Carrefour;
 
 extern int tailleReq;	/*!< La taille d'une requete. */
