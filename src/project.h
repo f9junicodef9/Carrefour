@@ -5,23 +5,36 @@
 #ifndef __PROJECT__ 
 #define __PROJECT__
 
+/*! Le numero du semaphore utilise pour les operations de synchronisation. */
 #define MUTEX 1
 
+/*! La duree maximale des differentes operations des voitures (traversement des croisements, arrivees dans les files, etc) en microseconde. */
 #define MAXPAUSE 500000
+/*! La duree minimale des differentes operations des voitures (traversement des croisements, arrivees dans les files, etc) en microseconde. */
 #define MINPAUSE 100
 
+/*! Le nombre maximum de voitures dans les files avant / apres les croisements. Dimensionne le carrefour. */
 #define MAXFILE 1
 
+/*! Represente un message d'information d'arrivee sur un carrefour. */
 #define MESSARRIVE 1
+/*! Represente un message de demande d'arrivee en zone avant, pendant, ou apres un croisement. */
 #define MESSDEMANDE 2
+/*! Represente un message d'information d'arrivee avant, pendant, ou apres un croisement. */
 #define MESSINFO 3
+/*! Represente un message d'information de sortie d'un carrefour. */
 #define MESSSORT 4
 
+/*! Represente la position avant un croisement (la file de voitures avant). */
 #define AVANT 1
+/*! Represente la position pendant un croisement (le croisement en lui meme). */
 #define PENDANT 2
+/*! Represente la position avant un croisement (la file de voitures apres). */
 #define APRES 3
 
+/*! Represente l'orientation horizontale d'un croisement (les files avant et apres selon l'axe horizontal). */
 #define HO 0
+/*! Represente l'orientation verticale d'un croisement (les files avant et apres selon l'axe vertical). */
 #define VE 1
 
 /**
