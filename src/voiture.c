@@ -259,7 +259,6 @@ void receive_answer(Requete *req, int carrefour)
 	Reponse rep;
 	msgrcv(msgid_carrefour[carrefour-1],&rep,tailleRep,getpid(),0);
 	P(MUTEX);
-	affichageRequete(req);		
 	affichageReponse(req,&rep);
 	V(MUTEX);
 	if (rep.autorisation == 0) {
