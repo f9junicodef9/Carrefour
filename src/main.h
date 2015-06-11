@@ -3,7 +3,7 @@
 
 void erreurFin(const char* msg);
 
-void forkVoitures(int nbFils, char *voies[], void (*fonction)());
+void forkVoitures(int nb, char *argv[], void (*fonction)());
 
 void traitantSIGINT(int s);
 

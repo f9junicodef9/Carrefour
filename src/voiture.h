@@ -9,7 +9,7 @@ void affiche_carrefours();
 
 void initRand();
 
-void voiture(int numero, int voie, int carrefour);
+void voiture(int numero, int voie, int carrefour, int premier_lancement);
 
 void maj_position(Voiture *v, int position, int traverse);
 

@@ -55,8 +55,8 @@ main(int argc,char* argv[])
 		premiere_ligne(atoi(argv[1]));
 		forkVoitures(atoi(argv[1]), NULL, voiture);
 	} else {
-		premiere_ligne(argc-1);
-		forkVoitures(argc-1, argv, voiture);
+		premiere_ligne((argc-1)/2);
+		forkVoitures((argc-1)/2, argv, voiture);
 	}
 
 	signal(SIGINT,traitantSIGINT);
@@ -77,32 +77,28 @@ main(int argc,char* argv[])
 void erreurFin(const char* msg){ perror(msg); exit(1); }
 
 /**
- * \fn void forkVoitures(int nbFils, char *voies[], void (*fonction)())
+ * \fn void forkVoitures(int nb, char *argv[], void (*fonction)())
  * \brief Cree nbFils processus fils (voitures) qui executent la meme fonction.
  *
  * Si voies est NULL, cree nbFils voitures avec une voie aleatoire.
  * Si voies est non NULL, cree nbFils voitures avec une la voie correspondant aux differents membres de voies.
  *
- * \param nbFils Le nombre de voitures a creer.
- * \param voies Le tableau des voies a affecter aux voitures le cas echeant.
+ * \param nbVoitures Le nombre de voitures a creer.
+ * \param argv Le tableau des voies et carrefours a affecter aux voitures le cas echeant.
  * \param fonction Pointeur sur la fonction qui sera exectuee par les voitures.
  */
-void forkVoitures(int nbFils, char *voies[], void (*fonction)())
+void forkVoitures(int nbVoitures, char *argv[], void (*fonction)())
 {
 	int i;
-	
-	if (voies == NULL) {
-		for (i=0;i<nbFils;i++)
-			if (fork()==0) {
-				(*fonction) (i, -1, -1);
-				exit(0);
-			}
+
+	if (argv == NULL) {
+		for (i=0;i<nb;i++)
+			if (fork()==0)
+				(*fonction) (i, -1, -1, 1);
 	} else {
-		for (i=0;i<nbFils;i++)
-			if (fork()==0) {
-				(*fonction) (i, atoi(voies[i+1]), -1);
-				exit(0);
-			}
+		for (i=0;i<nb;i++)
+			if (fork()==0)
+				(*fonction) (i, atoi(argv[1+(i*2)]), atoi(argv[2+(i*2)]), 1);
 	}
 }
 

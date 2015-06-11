@@ -112,8 +112,9 @@ void affiche_carrefours()
  *  - 1<=voie<=12 si c'est le lancement du programme (la voiture arrive n'importe ou).
  *  - 1<=voie<=3 ; 4<=voie<=6 ; 7<=voie<=9 ; 10<=voie<=12 si la voiture venait respectivement des carrefours Ouest ; Sud ; Est ; Nord.
  * - >0 : la voiture prendra la voie correspondant a ce numero.
+ * \param premier_lancement Indique si c'est le lancement du programme (si la voiture vient d'etre creee) ou non (utile pour permettre a l'utilisateur de parametrer ses voitures au lancement du programme).
  */
-void voiture(int numero, int voie, int carrefour)
+void voiture(int numero, int voie, int carrefour, int premier_lancement)
 {
 	Voiture v;
 	Requete req;
@@ -136,8 +137,16 @@ void voiture(int numero, int voie, int carrefour)
 	} else {
 		v.carrefour = carrefour;
 		
-		int voie_random = random_voie(voie);
-		v.voie = &voies[voie_random-1];
+		if (premier_lancement == 1) {
+			if (voie == -1) {
+				int voie_random = rand()%12+1;
+				v.voie = &voies[voie_random-1];
+			} else
+				v.voie = &voies[voie-1];
+		} else {
+			int voie_random = random_voie(voie);
+			v.voie = &voies[voie_random-1];
+		}
 	}
 
 	create_question(&req, &v, v.carrefour, -1, -1, -1, -1, v.voie->numero, -1, MESSARRIVE);		
@@ -200,7 +209,7 @@ void voiture(int numero, int voie, int carrefour)
 	
 	usleep(rand()%MAXPAUSE+MINPAUSE);
 			
-	voiture(v.numero, assoc_voies[v.voie->numero-1], assoc_carrefours[v.carrefour-1][v.voie->numero-1]);
+	voiture(v.numero, assoc_voies[v.voie->numero-1], assoc_carrefours[v.carrefour-1][v.voie->numero-1], 0);
 }
 
 /**
