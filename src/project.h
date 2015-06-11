@@ -10,6 +10,8 @@
 #define MAXPAUSE 500000
 #define MINPAUSE 100
 
+#define MAXFILE 1
+
 #define MESSARRIVE 1
 #define MESSDEMANDE 2
 #define MESSINFO 3

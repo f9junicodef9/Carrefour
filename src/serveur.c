@@ -10,8 +10,6 @@
 #include "serveur.h"
 #include "interface.h"
 
-#define MAXFILE 1
-
 /**
  * \fn void serveur()
  * \brief Fonction realisee par le serveur.
