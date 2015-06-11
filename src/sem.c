@@ -19,7 +19,7 @@ void P(int semnum)
 	sem_oper.sem_op = -1 ;	// Opération (P(s))
 	sem_oper.sem_flg = 0 ;	// NULL
 
-	semop(sem_id,&sem_oper,1);
+	semop(sem,&sem_oper,1);
 }
 
 /**
@@ -34,7 +34,7 @@ void V(int semnum)
 	sem_oper.sem_op = 1 ;	// Opération (V(s))
 	sem_oper.sem_flg = 0 ;	// NULL
 
-	semop(sem_id,&sem_oper,1);
+	semop(sem,&sem_oper,1);
 }
 
 /**
@@ -43,9 +43,9 @@ void V(int semnum)
  */
 int initialise_semaphore()
 {
-	sem_id = semget(IPC_PRIVATE, 1, IPC_CREAT | IPC_EXCL | 0666);
+	sem = semget(IPC_PRIVATE, 1, IPC_CREAT | IPC_EXCL | 0666);
 
-	semctl(sem_id, 0, SETVAL, 1);
+	semctl(sem, 0, SETVAL, 1);
 
-	return (sem_id);
+	return (sem);
 }

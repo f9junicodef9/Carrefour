@@ -17,7 +17,7 @@ int tailleRep = sizeof(Reponse);
 
 int msg_serveur;
 int msg_carrefour[4];
-int sem_id;
+int sem;
 int compteur;
 
 /**
@@ -150,7 +150,7 @@ void traitantSIGINT(int s)
 			((msgctl(msg_carrefour[1], IPC_RMID, NULL)) == -1) ||
 			((msgctl(msg_carrefour[2], IPC_RMID, NULL)) == -1) ||
 			((msgctl(msg_carrefour[3], IPC_RMID, NULL)) == -1) ||
-			((semctl(sem_id, 0, IPC_RMID, NULL)) == -1) ||
+			((semctl(sem, 0, IPC_RMID, NULL)) == -1) ||
 			((shmctl(compteur, IPC_RMID, NULL)) == -1)
 		)
 		erreurFin("Pb ipc_rmid");
