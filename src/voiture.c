@@ -239,7 +239,7 @@ void create_question(Requete *req, Voiture *v, int carrefour, int croisement_pre
 	P(MUTEX);
 	constructionRequete(req, v, carrefour, croisement_precedent, croisement_precedent_orientation, croisement, croisement_orientation, voie, traverse, type);
 	affichageRequete(req);
-	msgsnd(msgid_carrefour[carrefour-1],req,tailleReq,0);
+	msgsnd(msg_carrefour[carrefour-1],req,tailleReq,0);
 	V(MUTEX);
 }
 
@@ -257,14 +257,14 @@ void create_question(Requete *req, Voiture *v, int carrefour, int croisement_pre
 void receive_answer(Requete *req, int carrefour)
 {
 	Reponse rep;
-	msgrcv(msgid_carrefour[carrefour-1],&rep,tailleRep,getpid(),0);
+	msgrcv(msg_carrefour[carrefour-1],&rep,tailleRep,getpid(),0);
 	P(MUTEX);
 	affichageReponse(req,&rep);
 	V(MUTEX);
 	if (rep.autorisation == 0) {
 		do {
-			msgsnd(msgid_carrefour[carrefour-1],req,tailleReq,0);
-			msgrcv(msgid_carrefour[carrefour-1],&rep,tailleRep,getpid(),0);
+			msgsnd(msg_carrefour[carrefour-1],req,tailleReq,0);
+			msgrcv(msg_carrefour[carrefour-1],&rep,tailleRep,getpid(),0);
 			usleep(MINPAUSE);
 		} while (rep.autorisation == 0);
 		P(MUTEX);

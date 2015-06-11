@@ -33,10 +33,10 @@ void carrefour(int numero, pid_t pid_Serveur)
 
 	Carrefour *c;
 	
-	c = (Carrefour *) shmat(shm_id[numero-1], NULL, 0);
+	c = (Carrefour *) shmat(msg_carrefour[numero-1], NULL, 0);
 
 	while (1) {
-		msgrcv(msgid_carrefour[numero-1],&req,tailleReq,0,0);
+		msgrcv(msg_carrefour[numero-1],&req,tailleReq,0,0);
 		if (req.type == MESSSORT) {
 			maj_carrefour(&req, c);
 		}
@@ -45,14 +45,14 @@ void carrefour(int numero, pid_t pid_Serveur)
 			req_serveur = req;
 			req_serveur.type = pid_Serveur;
 			req_serveur.pidEmetteur = getpid();
-			msgsnd(msgid_serveur,&req_serveur,tailleReq,0);
-			msgrcv(msgid_serveur,&rep,tailleRep,getpid(),0);
+			msgsnd(msg_serveur,&req_serveur,tailleReq,0);
+			msgrcv(msg_serveur,&rep,tailleRep,getpid(),0);
 			if (rep.autorisation == 1) {
 				maj_carrefour(&req, c);
 			}
 			rep.type = req.pidEmetteur;
 			usleep(MINPAUSE);
-			msgsnd(msgid_carrefour[numero-1],&rep,tailleRep,0);
+			msgsnd(msg_carrefour[numero-1],&rep,tailleRep,0);
 		}
 	}
 }

@@ -15,10 +15,9 @@
 int tailleReq = sizeof(Requete) - sizeof(long);
 int tailleRep = sizeof(Reponse);
 
-int msgid_serveur;
-int msgid_carrefour[4];
+int msg_serveur;
+int msg_carrefour[4];
 int sem_id;
-int shm_id[4];
 int compteur;
 
 /**
@@ -27,7 +26,6 @@ int compteur;
  */
 main(int argc,char* argv[])
 {
-	key_t cle[5];
 	pid_t pid_Serveur;
 
 	if (argc-1 == 0) {
@@ -40,20 +38,10 @@ main(int argc,char* argv[])
 	file = fopen("./test.txt", "w");
 	fclose(file);
 
-	if (
-			((cle[0] = ftok(argv[0],'0')) == -1) ||
-			((cle[1] = ftok(argv[0],'1')) == -1) ||		
-			((cle[2] = ftok(argv[0],'2')) == -1) ||
-			((cle[3] = ftok(argv[0],'3')) == -1) ||
-			((cle[4] = ftok(argv[0],'4')) == -1)
-		)
-		erreurFin("Pb ftok");
-
 	initialise_files();
 	initialise_carrefours();
 	initialise_compteur();
 	
-	signal(SIGINT,traitantSIGINT);
 
 	pid_Serveur = forkServeur();
 	forkCarrefours(pid_Serveur);
@@ -66,19 +54,13 @@ main(int argc,char* argv[])
 		forkVoitures(argc-1, argv, voiture);
 	}
 
+	signal(SIGINT,traitantSIGINT);
+	
 	while (1) {
 		pid_t done = wait();
 		if (done == -1)
 		if (errno == ECHILD) break;
 	}
-
-	msgctl(msgid_serveur, IPC_RMID, NULL);
-	msgctl(msgid_carrefour[0], IPC_RMID, NULL);
-	msgctl(msgid_carrefour[1], IPC_RMID, NULL);
-	msgctl(msgid_carrefour[2], IPC_RMID, NULL);
-	msgctl(msgid_carrefour[3], IPC_RMID, NULL);
-	semctl(sem_id, 0, IPC_RMID, NULL);
-	shmctl(shm_id, IPC_RMID, NULL);
 }
 
 /**
@@ -162,13 +144,17 @@ pid_t forkServeur()
  */ 
 void traitantSIGINT(int s)
 {
-	msgctl(msgid_serveur, IPC_RMID, NULL);
-	msgctl(msgid_carrefour[0], IPC_RMID, NULL);
-	msgctl(msgid_carrefour[1], IPC_RMID, NULL);
-	msgctl(msgid_carrefour[2], IPC_RMID, NULL);
-	msgctl(msgid_carrefour[3], IPC_RMID, NULL);
-	semctl(sem_id, 0, IPC_RMID, NULL);
-	shmctl(shm_id, IPC_RMID, NULL);
+	if (
+			((msgctl(msg_serveur, IPC_RMID, NULL)) == -1) ||
+			((msgctl(msg_carrefour[0], IPC_RMID, NULL)) == -1) ||
+			((msgctl(msg_carrefour[1], IPC_RMID, NULL)) == -1) ||
+			((msgctl(msg_carrefour[2], IPC_RMID, NULL)) == -1) ||
+			((msgctl(msg_carrefour[3], IPC_RMID, NULL)) == -1) ||
+			((semctl(sem_id, 0, IPC_RMID, NULL)) == -1) ||
+			((shmctl(compteur, IPC_RMID, NULL)) == -1)
+		)
+		erreurFin("Pb ipc_rmid");
+		
 	exit(0);
 }
 
@@ -206,8 +192,8 @@ void initialise_carrefours()
 	Carrefour *c;
 
 	for (i=0;i<4;i++) {
-		shm_id[i] = shmget(IPC_PRIVATE, sizeof(Carrefour), IPC_CREAT | 0666);
-		c = (Carrefour *) shmat(shm_id[i], NULL, 0);
+		msg_carrefour[i] = shmget(IPC_PRIVATE, sizeof(Carrefour), IPC_CREAT | 0666);
+		c = (Carrefour *) shmat(msg_carrefour[i], NULL, 0);
 		
 		for (j=0;j<25;j++) {
 			c->croisements[j].etat = base.croisements[j].etat;
@@ -238,11 +224,11 @@ void initialise_compteur()
 void initialise_files()
 {
 	if (
-			((msgid_serveur = msgget(IPC_PRIVATE, IPC_CREAT | 0600)) == -1) ||
-			((msgid_carrefour[0] = msgget(IPC_PRIVATE, IPC_CREAT | 0600)) == -1) ||
-			((msgid_carrefour[1] = msgget(IPC_PRIVATE, IPC_CREAT | 0600)) == -1) ||
-			((msgid_carrefour[2] = msgget(IPC_PRIVATE, IPC_CREAT | 0600)) == -1) ||
-			((msgid_carrefour[3] = msgget(IPC_PRIVATE, IPC_CREAT | 0600)) == -1)
+			((msg_serveur = msgget(IPC_PRIVATE, IPC_CREAT | 0600)) == -1) ||
+			((msg_carrefour[0] = msgget(IPC_PRIVATE, IPC_CREAT | 0600)) == -1) ||
+			((msg_carrefour[1] = msgget(IPC_PRIVATE, IPC_CREAT | 0600)) == -1) ||
+			((msg_carrefour[2] = msgget(IPC_PRIVATE, IPC_CREAT | 0600)) == -1) ||
+			((msg_carrefour[3] = msgget(IPC_PRIVATE, IPC_CREAT | 0600)) == -1)
 		)
 		erreurFin("Pb msgget");
 }

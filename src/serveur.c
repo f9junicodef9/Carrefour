@@ -24,9 +24,9 @@ void serveur()
 	Reponse rep;
 
 	while (1) {
-		msgrcv(msgid_serveur,&req,tailleReq,getpid(),0);
+		msgrcv(msg_serveur,&req,tailleReq,getpid(),0);
 		constructionReponse(&req, &rep);
-		msgsnd(msgid_serveur,&rep,tailleRep,0);
+		msgsnd(msg_serveur,&rep,tailleRep,0);
 	}
 }
 
@@ -55,7 +55,7 @@ void constructionReponse(Requete *req,Reponse *rep)
 	
 	Carrefour *c;
 	
-	c = (Carrefour *) shmat(shm_id[numero-1], NULL, 0);
+	c = (Carrefour *) shmat(msg_carrefour[numero-1], NULL, 0);
 	
 	
 	if (traverse == AVANT) {

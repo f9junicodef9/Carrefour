@@ -141,10 +141,9 @@ typedef struct Carrefour {
 extern int tailleReq;	/*!< La taille d'une requete. */
 extern int tailleRep;	/*!< La taille d'une reponse. */
 
-extern int msgid_serveur;	/*!< La file de message utilisee pour communiquer entre le serveur et les carrefour. */
-extern int msgid_carrefour[];	/*!< Les files de message utilisees pour communiquer entre les voitures et les carrefour (4 files). */
+extern int msg_serveur;	/*!< La file de message utilisee pour communiquer entre le serveur et les carrefour. */
+extern int msg_carrefour[];	/*!< Les files de message utilisees pour communiquer entre les voitures et les carrefour (4 files). */
 extern int sem_id;	/*!< L'identifiant de l'ensemble de semaphores (1 semaphore). */
-extern int shm_id[4];	/*!< Les 4 carrefours, accessibles par les autres processus en tant que segments de memoire partagee. */
 extern int compteur;	/*!< Le compteur de voitures sorties, accessible par les autres processus en tant que segment de memoire partagee. */
 
 #endif
