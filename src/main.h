@@ -9,9 +9,9 @@ void traitantSIGINT(int s);
 
 void premiere_ligne(int num);
 
-void forkCarrefours();
+void forkCarrefours(void (*fonction)());
 
-void forkServeur();
+void forkServeur(void (*fonction)());
 
 void initialise_carrefours();
 

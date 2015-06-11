@@ -11,6 +11,8 @@
 #include "main.h"
 #include "interface.h"
 #include "voiture.h"
+#include "carrefour.h"
+#include "serveur.h"
 
 int tailleReq = sizeof(Requete) - sizeof(long);
 int tailleRep = sizeof(Reponse);
@@ -46,8 +48,8 @@ main(int argc,char* argv[])
 	initialise_carrefours();
 	initialise_compteur();
 
-	forkServeur();
-	forkCarrefours(pid_Serveur);
+	forkServeur(serveur);
+	forkCarrefours(carrefour);
 
 	if (argc-1 == 1) {
 		premiere_ligne(atoi(argv[1]));
@@ -83,7 +85,7 @@ void erreurFin(const char* msg){ perror(msg); exit(1); }
  *
  * \param nbFils Le nombre de voitures a creer.
  * \param voies Le tableau des voies a affecter aux voitures le cas echeant.
- * \param fonction La fonction qui sera exectuee par les voitures.
+ * \param fonction Pointeur sur la fonction qui sera exectuee par les voitures.
  */
 void forkVoitures(int nbFils, char *voies[], void (*fonction)())
 {
@@ -105,10 +107,12 @@ void forkVoitures(int nbFils, char *voies[], void (*fonction)())
 }
 
 /**
- * \fn void forkCarrefours()
+ * \fn void forkCarrefours(void (*fonction)())
  * \brief Cree 4 processus fils (carrefours) qui executent la meme fonction.
+ *
+ * \param fonction Pointeur sur la fonction qui sera exectuee par les carrefours.
  */
-void forkCarrefours()
+void forkCarrefours(void (*fonction)())
 {
 	int i;
 	
@@ -116,21 +120,23 @@ void forkCarrefours()
 		pid_Carrefour[i] = fork();
 
 		if (pid_Carrefour[i] == 0) {
-			carrefour(i+1, pid_Serveur);
+			(*fonction) (i+1, pid_Serveur);
 		}
 	}
 }
 
 /**
- * \fn void forkServeur()
+ * \fn void forkServeur(void (*fonction)())
  * \brief Cree 1 processus fils (serveur) qui executent une fonction.
+ *
+ * \param fonction Pointeur sur la fonction qui sera exectuee par le serveur.
  */
-void forkServeur()
+void forkServeur(void (*fonction)())
 {
 	pid_Serveur = fork();
 	
 	if (pid_Serveur == 0) {
-		serveur();
+		(*fonction) ();
 	}
 }
 
