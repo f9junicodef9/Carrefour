@@ -114,10 +114,10 @@ $(document).ready(function(){initNavTree('voiture_8c.html','');});
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;sys/time.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="project_8h_source.html">project.h</a>&quot;</code><br />
 <code>#include &quot;voiture.h&quot;</code><br />
 <code>#include &quot;interface.h&quot;</code><br />
-<code>#include &lt;sys/time.h&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -271,7 +271,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Effectue les operations permettant la construction d'une requete vers le carrefour, affiche la requete, et l'envoie au carrefour. </p>
-<p>void <a class="el" href="voiture_8c.html#ab645261dc7b5e99edbe3283804fcdacc" title="Effectue les operations permettant la construction d&#39;une requete vers le carrefour, affiche la requete, et l&#39;envoie au carrefour. ">create_question(Requete *req, Voiture *v, int carrefour, int croisement_precedent, int croisement_precedent_orientation, int croisement, int croisement_orientation, int voie, int traverse, int type)</a> La requete peut prendre 4 formes :</p><ul>
+<p>La requete peut prendre 4 formes :</p><ul>
 <li>MESSARRIVE : message d'information d'arrivee sur un carrefour. N'implique aucun traitement, affiche juste l'information.</li>
 <li>MESSDEMANDE : demande d'arrivee en zone avant, pendant, ou apres un croisement. Implique une demande au serveur (depuis le carrefour) qui va analyser le carrefour pour prendre une decision.</li>
 <li>MESSINFO : message d'information d'arrivee avant, pendant, ou apres un croisement. N'implique aucun traitement, affiche juste l'information.</li>
@@ -508,18 +508,20 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= { {1,{15,16,17,13,8,3},{11,7,10,4,7,8},{HO,HO,VE,VE,VE,VE}},</div>
-<div class="line">                    {2,{20,21,23,24,-1},{11,7,4,5,-1},{HO,HO,HO,HO}},</div>
+<b>Initial value:</b><div class="fragment"><div class="line">= { {1,{15,16,17,13,8,3},{11,7,10,4,7,8},{<a class="code" href="project_8h.html#a913ebaa509864a0b9d4f993aa352842c">HO</a>,<a class="code" href="project_8h.html#a913ebaa509864a0b9d4f993aa352842c">HO</a>,<a class="code" href="project_8h.html#a3dcf4acb9f7d9c57f43802a9a1ac4ee6">VE</a>,<a class="code" href="project_8h.html#a3dcf4acb9f7d9c57f43802a9a1ac4ee6">VE</a>,<a class="code" href="project_8h.html#a3dcf4acb9f7d9c57f43802a9a1ac4ee6">VE</a>,VE}},</div>
+<div class="line">                    {2,{20,21,23,24,-1},{11,7,4,5,-1},{<a class="code" href="project_8h.html#a913ebaa509864a0b9d4f993aa352842c">HO</a>,<a class="code" href="project_8h.html#a913ebaa509864a0b9d4f993aa352842c">HO</a>,<a class="code" href="project_8h.html#a913ebaa509864a0b9d4f993aa352842c">HO</a>,HO}},</div>
 <div class="line">                    {3,{-1},{-1}},</div>
-<div class="line">                    {4,{23,18,13,7,6,5},{2,10,1,7,10,11},{VE,VE,HO,HO,HO,HO}},</div>
-<div class="line">                    {5,{24,19,9,4,-1},{2,10,7,8,-1},{VE,VE,VE,VE}},</div>
+<div class="line">                    {4,{23,18,13,7,6,5},{2,10,1,7,10,11},{<a class="code" href="project_8h.html#a3dcf4acb9f7d9c57f43802a9a1ac4ee6">VE</a>,<a class="code" href="project_8h.html#a3dcf4acb9f7d9c57f43802a9a1ac4ee6">VE</a>,<a class="code" href="project_8h.html#a913ebaa509864a0b9d4f993aa352842c">HO</a>,<a class="code" href="project_8h.html#a913ebaa509864a0b9d4f993aa352842c">HO</a>,<a class="code" href="project_8h.html#a913ebaa509864a0b9d4f993aa352842c">HO</a>,HO}},</div>
+<div class="line">                    {5,{24,19,9,4,-1},{2,10,7,8,-1},{<a class="code" href="project_8h.html#a3dcf4acb9f7d9c57f43802a9a1ac4ee6">VE</a>,<a class="code" href="project_8h.html#a3dcf4acb9f7d9c57f43802a9a1ac4ee6">VE</a>,<a class="code" href="project_8h.html#a3dcf4acb9f7d9c57f43802a9a1ac4ee6">VE</a>,VE}},</div>
 <div class="line">                    {6,{-1},{-1}},</div>
-<div class="line">                    {7,{9,8,7,11,16,21},{5,1,4,10,1,2},{HO,HO,VE,VE,VE,VE}},</div>
-<div class="line">                    {8,{4,3,1,0,-1},{5,1,10,11,-1},{HO,HO,HO,HO}},</div>
+<div class="line">                    {7,{9,8,7,11,16,21},{5,1,4,10,1,2},{<a class="code" href="project_8h.html#a913ebaa509864a0b9d4f993aa352842c">HO</a>,<a class="code" href="project_8h.html#a913ebaa509864a0b9d4f993aa352842c">HO</a>,<a class="code" href="project_8h.html#a3dcf4acb9f7d9c57f43802a9a1ac4ee6">VE</a>,<a class="code" href="project_8h.html#a3dcf4acb9f7d9c57f43802a9a1ac4ee6">VE</a>,<a class="code" href="project_8h.html#a3dcf4acb9f7d9c57f43802a9a1ac4ee6">VE</a>,VE}},</div>
+<div class="line">                    {8,{4,3,1,0,-1},{5,1,10,11,-1},{<a class="code" href="project_8h.html#a913ebaa509864a0b9d4f993aa352842c">HO</a>,<a class="code" href="project_8h.html#a913ebaa509864a0b9d4f993aa352842c">HO</a>,<a class="code" href="project_8h.html#a913ebaa509864a0b9d4f993aa352842c">HO</a>,HO}},</div>
 <div class="line">                    {9,{-1},{-1}},</div>
-<div class="line">                    {10,{1,6,11,17,18,19},{8,4,7,1,4,5},{VE,VE,HO,HO,HO,HO}},</div>
-<div class="line">                    {11,{0,5,15,20,-1},{8,4,1,2,-1},{VE,VE,VE,VE}},</div>
+<div class="line">                    {10,{1,6,11,17,18,19},{8,4,7,1,4,5},{<a class="code" href="project_8h.html#a3dcf4acb9f7d9c57f43802a9a1ac4ee6">VE</a>,<a class="code" href="project_8h.html#a3dcf4acb9f7d9c57f43802a9a1ac4ee6">VE</a>,<a class="code" href="project_8h.html#a913ebaa509864a0b9d4f993aa352842c">HO</a>,<a class="code" href="project_8h.html#a913ebaa509864a0b9d4f993aa352842c">HO</a>,<a class="code" href="project_8h.html#a913ebaa509864a0b9d4f993aa352842c">HO</a>,HO}},</div>
+<div class="line">                    {11,{0,5,15,20,-1},{8,4,1,2,-1},{<a class="code" href="project_8h.html#a3dcf4acb9f7d9c57f43802a9a1ac4ee6">VE</a>,<a class="code" href="project_8h.html#a3dcf4acb9f7d9c57f43802a9a1ac4ee6">VE</a>,<a class="code" href="project_8h.html#a3dcf4acb9f7d9c57f43802a9a1ac4ee6">VE</a>,VE}},</div>
 <div class="line">                    {12,{-1},{-1}}  }</div>
+<div class="ttc" id="project_8h_html_a913ebaa509864a0b9d4f993aa352842c"><div class="ttname"><a href="project_8h.html#a913ebaa509864a0b9d4f993aa352842c">HO</a></div><div class="ttdeci">#define HO</div><div class="ttdef"><b>Definition:</b> project.h:36</div></div>
+<div class="ttc" id="project_8h_html_a3dcf4acb9f7d9c57f43802a9a1ac4ee6"><div class="ttname"><a href="project_8h.html#a3dcf4acb9f7d9c57f43802a9a1ac4ee6">VE</a></div><div class="ttdeci">#define VE</div><div class="ttdef"><b>Definition:</b> project.h:38</div></div>
 </div><!-- fragment --><p>Represente les 12 voies du carrefour. </p>
 
 </div>
@@ -530,7 +532,7 @@ Variables</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="voiture_8c.html">voiture.c</a></li>
-    <li class="footer">Generated on Thu Jun 11 2015 00:28:40 for Carrefour by
+    <li class="footer">Generated on Thu Jun 11 2015 22:00:55 for Carrefour by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

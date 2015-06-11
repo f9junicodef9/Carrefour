@@ -86,6 +86,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="#index_c"><span>c</span></a></li>
       <li><a href="#index_e"><span>e</span></a></li>
       <li><a href="#index_f"><span>f</span></a></li>
+      <li><a href="#index_h"><span>h</span></a></li>
       <li><a href="#index_i"><span>i</span></a></li>
       <li><a href="#index_m"><span>m</span></a></li>
       <li><a href="#index_p"><span>p</span></a></li>
@@ -143,11 +144,17 @@ $(document).ready(function(){initNavTree('globals.html','');});
 <li>affiche_voiture()
 : <a class="el" href="voiture_8c.html#aefdfaf590d5f158bba54b7bb0c081d9a">voiture.c</a>
 </li>
+<li>APRES
+: <a class="el" href="project_8h.html#a0f927f87f0b44b4d959b50071963cc53">project.h</a>
+</li>
 <li>assoc_carrefours
 : <a class="el" href="voiture_8c.html#a93be13f9bf50258a179c57da90b76573">voiture.c</a>
 </li>
 <li>assoc_voies
 : <a class="el" href="voiture_8c.html#af08111e35d8cfbdf7d1fa16fa39df0e1">voiture.c</a>
+</li>
+<li>AVANT
+: <a class="el" href="project_8h.html#a78f947653932b2dc4862bbd54ad6996b">project.h</a>
 </li>
 </ul>
 
@@ -155,6 +162,10 @@ $(document).ready(function(){initNavTree('globals.html','');});
 <h3><a class="anchor" id="index_c"></a>- c -</h3><ul>
 <li>carrefour()
 : <a class="el" href="carrefour_8c.html#a9444302434bb1140df71a3848edecee9">carrefour.c</a>
+</li>
+<li>carrefours
+: <a class="el" href="main_8c.html#ac51d0bc6bf626b568d97ec4fa5d9aa43">main.c</a>
+, <a class="el" href="project_8h.html#a9ec5bef2f0dc4c391d4c2ee4f5f3d2b1">project.h</a>
 </li>
 <li>compteur
 : <a class="el" href="main_8c.html#ade857a99d48bcb8cfaa57c4cd8d7d2e8">main.c</a>
@@ -181,10 +192,20 @@ $(document).ready(function(){initNavTree('globals.html','');});
 
 <h3><a class="anchor" id="index_f"></a>- f -</h3><ul>
 <li>forkCarrefours()
-: <a class="el" href="main_8c.html#afcdcf417b1307bdb6263d5c357dd527f">main.c</a>
+: <a class="el" href="main_8c.html#a30bda96c52db042f252aae699730cb8c">main.c</a>
 </li>
-<li>forkn()
-: <a class="el" href="main_8c.html#aff8ddc85a3c98758afa5317fdafb8fc6">main.c</a>
+<li>forkServeur()
+: <a class="el" href="main_8c.html#a1b792f965f17f81cb3b47720db11583a">main.c</a>
+</li>
+<li>forkVoitures()
+: <a class="el" href="main_8c.html#ac7de5193da9f5f0432f372eea094db34">main.c</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_h"></a>- h -</h3><ul>
+<li>HO
+: <a class="el" href="project_8h.html#a913ebaa509864a0b9d4f993aa352842c">project.h</a>
 </li>
 </ul>
 
@@ -196,11 +217,14 @@ $(document).ready(function(){initNavTree('globals.html','');});
 <li>initialise_compteur()
 : <a class="el" href="main_8c.html#a134b35acf6f6ce44c47187daa36510ef">main.c</a>
 </li>
+<li>initialise_files()
+: <a class="el" href="main_8c.html#ae3e3299ddb2d7190886ab99ffa1eb97d">main.c</a>
+</li>
+<li>initialise_semaphore()
+: <a class="el" href="sem_8c.html#a08997024e7f9538227f61cd7bb5d23e1">sem.c</a>
+</li>
 <li>initRand()
 : <a class="el" href="voiture_8c.html#affc667f54d3aad05a212a708a1967851">voiture.c</a>
-</li>
-<li>initsem()
-: <a class="el" href="sem_8c.html#a0d0a655f1d0da3bb34fa08cc474aa245">sem.c</a>
 </li>
 </ul>
 
@@ -212,16 +236,40 @@ $(document).ready(function(){initNavTree('globals.html','');});
 <li>maj_carrefour()
 : <a class="el" href="carrefour_8c.html#a0ab54ed99820713ac1021630189d34b9">carrefour.c</a>
 </li>
+<li>MAXFILE
+: <a class="el" href="project_8h.html#a714b2485a6dd312e37226e1f833728a9">project.h</a>
+</li>
+<li>MAXPAUSE
+: <a class="el" href="project_8h.html#a3a9975c167fca0a8736717e0113271d5">project.h</a>
+</li>
 <li>message()
 : <a class="el" href="interface_8c.html#ad58791b52a5ecbdb04ff0ccc63092753">interface.c</a>
 </li>
-<li>msgid_carrefour
-: <a class="el" href="project_8h.html#a37c268ecdecb7124e5243269e8cd6d26">project.h</a>
-, <a class="el" href="main_8c.html#a6c6e2e7b164d1ffb856e4391a4fd05b3">main.c</a>
+<li>MESSARRIVE
+: <a class="el" href="project_8h.html#a06a244bf66104710af27cd2c4a77ace2">project.h</a>
 </li>
-<li>msgid_serveur
-: <a class="el" href="main_8c.html#ac35b1416f799d547427e175255d4dc74">main.c</a>
-, <a class="el" href="project_8h.html#ac35b1416f799d547427e175255d4dc74">project.h</a>
+<li>MESSDEMANDE
+: <a class="el" href="project_8h.html#ab97746c40f93ca377c0056c455239663">project.h</a>
+</li>
+<li>MESSINFO
+: <a class="el" href="project_8h.html#ac629905399d6d8e15e404b5c173ee727">project.h</a>
+</li>
+<li>MESSSORT
+: <a class="el" href="project_8h.html#a16a20617ea0743eb861e84fd7ad1bf31">project.h</a>
+</li>
+<li>MINPAUSE
+: <a class="el" href="project_8h.html#a608cea0f14ac3df511244477edeb35d3">project.h</a>
+</li>
+<li>msg_carrefour
+: <a class="el" href="main_8c.html#ae921b522cc683ba0fdc39545bf939544">main.c</a>
+, <a class="el" href="project_8h.html#a56cbb170eb85477c7deaa638e5a61a34">project.h</a>
+</li>
+<li>msg_serveur
+: <a class="el" href="main_8c.html#ac7521a147a02c005d68e153bc666990f">main.c</a>
+, <a class="el" href="project_8h.html#ac7521a147a02c005d68e153bc666990f">project.h</a>
+</li>
+<li>MUTEX
+: <a class="el" href="project_8h.html#a2cf3c22d8cacfe663a4eec13d0fb26ef">project.h</a>
 </li>
 </ul>
 
@@ -229,6 +277,9 @@ $(document).ready(function(){initNavTree('globals.html','');});
 <h3><a class="anchor" id="index_p"></a>- p -</h3><ul>
 <li>P()
 : <a class="el" href="sem_8c.html#a3b2ef8ca29481c6cec4f82db9aeca8c6">sem.c</a>
+</li>
+<li>PENDANT
+: <a class="el" href="project_8h.html#a7f5200d0b789378994e1cbf4f4f0aabf">project.h</a>
 </li>
 <li>premiere_ligne()
 : <a class="el" href="main_8c.html#a7b4ac8163fd0cdad039da3015910ae86">main.c</a>
@@ -247,16 +298,12 @@ $(document).ready(function(){initNavTree('globals.html','');});
 
 
 <h3><a class="anchor" id="index_s"></a>- s -</h3><ul>
-<li>sem_id
-: <a class="el" href="main_8c.html#a9825b926ad2a4aa0e6688dc15b2d9a23">main.c</a>
-, <a class="el" href="project_8h.html#a9825b926ad2a4aa0e6688dc15b2d9a23">project.h</a>
+<li>sem
+: <a class="el" href="main_8c.html#af31902aedad689ccec19040684517889">main.c</a>
+, <a class="el" href="project_8h.html#af31902aedad689ccec19040684517889">project.h</a>
 </li>
 <li>serveur()
 : <a class="el" href="serveur_8c.html#adb723d4c0b7a57a31a2de35be952a566">serveur.c</a>
-</li>
-<li>shm_id
-: <a class="el" href="main_8c.html#ab0f845d7f9358fabe3daebab24cf858a">main.c</a>
-, <a class="el" href="project_8h.html#ab0f845d7f9358fabe3daebab24cf858a">project.h</a>
 </li>
 </ul>
 
@@ -283,6 +330,9 @@ $(document).ready(function(){initNavTree('globals.html','');});
 <li>V()
 : <a class="el" href="sem_8c.html#a7020a2a8a8d35f29c0f46e9d97e2eddd">sem.c</a>
 </li>
+<li>VE
+: <a class="el" href="project_8h.html#a3dcf4acb9f7d9c57f43802a9a1ac4ee6">project.h</a>
+</li>
 <li>voies
 : <a class="el" href="voiture_8c.html#aa9246ae4d5b520f1e61ed589dd0bf1bf">voiture.c</a>
 </li>
@@ -295,7 +345,7 @@ $(document).ready(function(){initNavTree('globals.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Thu Jun 11 2015 00:28:40 for Carrefour by
+    <li class="footer">Generated on Thu Jun 11 2015 22:00:55 for Carrefour by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

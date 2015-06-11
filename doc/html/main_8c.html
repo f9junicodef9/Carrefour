@@ -121,6 +121,8 @@ $(document).ready(function(){initNavTree('main_8c.html','');});
 <code>#include &quot;main.h&quot;</code><br />
 <code>#include &quot;interface.h&quot;</code><br />
 <code>#include &quot;voiture.h&quot;</code><br />
+<code>#include &quot;carrefour.h&quot;</code><br />
+<code>#include &quot;serveur.h&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -131,15 +133,15 @@ Functions</h2></td></tr>
 <tr class="memitem:a4899d2672ed5be6bbf5d5bd39858a431"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a4899d2672ed5be6bbf5d5bd39858a431">erreurFin</a> (const char *msg)</td></tr>
 <tr class="memdesc:a4899d2672ed5be6bbf5d5bd39858a431"><td class="mdescLeft">&#160;</td><td class="mdescRight">Affiche un message d'erreur systeme.  <a href="#a4899d2672ed5be6bbf5d5bd39858a431">More...</a><br /></td></tr>
 <tr class="separator:a4899d2672ed5be6bbf5d5bd39858a431"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aff8ddc85a3c98758afa5317fdafb8fc6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#aff8ddc85a3c98758afa5317fdafb8fc6">forkn</a> (int nbFils, char *<a class="el" href="voiture_8c.html#aa9246ae4d5b520f1e61ed589dd0bf1bf">voies</a>[], void(*fonction)())</td></tr>
-<tr class="memdesc:aff8ddc85a3c98758afa5317fdafb8fc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cree nbFils processus fils (voitures) qui executent la meme fonction.  <a href="#aff8ddc85a3c98758afa5317fdafb8fc6">More...</a><br /></td></tr>
-<tr class="separator:aff8ddc85a3c98758afa5317fdafb8fc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afcdcf417b1307bdb6263d5c357dd527f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#afcdcf417b1307bdb6263d5c357dd527f">forkCarrefours</a> (pid_t pid_Serveur)</td></tr>
-<tr class="memdesc:afcdcf417b1307bdb6263d5c357dd527f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cree 4 processus fils (carrefours) qui executent la meme fonction.  <a href="#afcdcf417b1307bdb6263d5c357dd527f">More...</a><br /></td></tr>
-<tr class="separator:afcdcf417b1307bdb6263d5c357dd527f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada53546ca48fbca1465cffbcb7d65657"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ada53546ca48fbca1465cffbcb7d65657"></a>
-pid_t&#160;</td><td class="memItemRight" valign="bottom"><b>forkServeur</b> ()</td></tr>
-<tr class="separator:ada53546ca48fbca1465cffbcb7d65657"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7de5193da9f5f0432f372eea094db34"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#ac7de5193da9f5f0432f372eea094db34">forkVoitures</a> (int nbFils, char *<a class="el" href="voiture_8c.html#aa9246ae4d5b520f1e61ed589dd0bf1bf">voies</a>[], void(*fonction)())</td></tr>
+<tr class="memdesc:ac7de5193da9f5f0432f372eea094db34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cree nbFils processus fils (voitures) qui executent la meme fonction.  <a href="#ac7de5193da9f5f0432f372eea094db34">More...</a><br /></td></tr>
+<tr class="separator:ac7de5193da9f5f0432f372eea094db34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30bda96c52db042f252aae699730cb8c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a30bda96c52db042f252aae699730cb8c">forkCarrefours</a> (void(*fonction)())</td></tr>
+<tr class="memdesc:a30bda96c52db042f252aae699730cb8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cree 4 processus fils (carrefours) qui executent la meme fonction.  <a href="#a30bda96c52db042f252aae699730cb8c">More...</a><br /></td></tr>
+<tr class="separator:a30bda96c52db042f252aae699730cb8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b792f965f17f81cb3b47720db11583a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a1b792f965f17f81cb3b47720db11583a">forkServeur</a> (void(*fonction)())</td></tr>
+<tr class="memdesc:a1b792f965f17f81cb3b47720db11583a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cree 1 processus fils (serveur) qui executent une fonction.  <a href="#a1b792f965f17f81cb3b47720db11583a">More...</a><br /></td></tr>
+<tr class="separator:a1b792f965f17f81cb3b47720db11583a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0d1f47591ec999b15091537f2425173e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a0d1f47591ec999b15091537f2425173e">traitantSIGINT</a> (int s)</td></tr>
 <tr class="memdesc:a0d1f47591ec999b15091537f2425173e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Redefini le traitant du signal SIGINT.  <a href="#a0d1f47591ec999b15091537f2425173e">More...</a><br /></td></tr>
 <tr class="separator:a0d1f47591ec999b15091537f2425173e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -152,6 +154,9 @@ pid_t&#160;</td><td class="memItemRight" valign="bottom"><b>forkServeur</b> ()</
 <tr class="memitem:a134b35acf6f6ce44c47187daa36510ef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a134b35acf6f6ce44c47187daa36510ef">initialise_compteur</a> ()</td></tr>
 <tr class="memdesc:a134b35acf6f6ce44c47187daa36510ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cree un segment de memoire partagee pour le compteur de voitures sorties.  <a href="#a134b35acf6f6ce44c47187daa36510ef">More...</a><br /></td></tr>
 <tr class="separator:a134b35acf6f6ce44c47187daa36510ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3e3299ddb2d7190886ab99ffa1eb97d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#ae3e3299ddb2d7190886ab99ffa1eb97d">initialise_files</a> ()</td></tr>
+<tr class="memdesc:ae3e3299ddb2d7190886ab99ffa1eb97d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cree les files de messages du projet.  <a href="#ae3e3299ddb2d7190886ab99ffa1eb97d">More...</a><br /></td></tr>
+<tr class="separator:ae3e3299ddb2d7190886ab99ffa1eb97d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -159,16 +164,22 @@ Variables</h2></td></tr>
 <tr class="separator:a12872499b11c7292c4135f74e7a4fdcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3fe87526483f6339598948503bc72f4a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a3fe87526483f6339598948503bc72f4a">tailleRep</a> = sizeof(<a class="el" href="struct_reponse.html">Reponse</a>)</td></tr>
 <tr class="separator:a3fe87526483f6339598948503bc72f4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac35b1416f799d547427e175255d4dc74"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#ac35b1416f799d547427e175255d4dc74">msgid_serveur</a></td></tr>
-<tr class="separator:ac35b1416f799d547427e175255d4dc74"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c6e2e7b164d1ffb856e4391a4fd05b3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a6c6e2e7b164d1ffb856e4391a4fd05b3">msgid_carrefour</a> [4]</td></tr>
-<tr class="separator:a6c6e2e7b164d1ffb856e4391a4fd05b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9825b926ad2a4aa0e6688dc15b2d9a23"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a9825b926ad2a4aa0e6688dc15b2d9a23">sem_id</a></td></tr>
-<tr class="separator:a9825b926ad2a4aa0e6688dc15b2d9a23"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab0f845d7f9358fabe3daebab24cf858a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#ab0f845d7f9358fabe3daebab24cf858a">shm_id</a> [4]</td></tr>
-<tr class="separator:ab0f845d7f9358fabe3daebab24cf858a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7521a147a02c005d68e153bc666990f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#ac7521a147a02c005d68e153bc666990f">msg_serveur</a></td></tr>
+<tr class="separator:ac7521a147a02c005d68e153bc666990f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae921b522cc683ba0fdc39545bf939544"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#ae921b522cc683ba0fdc39545bf939544">msg_carrefour</a> [4]</td></tr>
+<tr class="separator:ae921b522cc683ba0fdc39545bf939544"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af31902aedad689ccec19040684517889"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#af31902aedad689ccec19040684517889">sem</a></td></tr>
+<tr class="separator:af31902aedad689ccec19040684517889"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ade857a99d48bcb8cfaa57c4cd8d7d2e8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#ade857a99d48bcb8cfaa57c4cd8d7d2e8">compteur</a></td></tr>
 <tr class="separator:ade857a99d48bcb8cfaa57c4cd8d7d2e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac51d0bc6bf626b568d97ec4fa5d9aa43"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#ac51d0bc6bf626b568d97ec4fa5d9aa43">carrefours</a> [4]</td></tr>
+<tr class="separator:ac51d0bc6bf626b568d97ec4fa5d9aa43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4f072c03ce4738b06a242b468effbe8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab4f072c03ce4738b06a242b468effbe8"></a>
+pid_t&#160;</td><td class="memItemRight" valign="bottom"><b>pid_Serveur</b></td></tr>
+<tr class="separator:ab4f072c03ce4738b06a242b468effbe8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b007a90c07847f71dc158c96ca3d685"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3b007a90c07847f71dc158c96ca3d685"></a>
+pid_t&#160;</td><td class="memItemRight" valign="bottom"><b>pid_Carrefour</b> [4]</td></tr>
+<tr class="separator:a3b007a90c07847f71dc158c96ca3d685"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Effectue les premieres operation du programme. </p>
@@ -197,38 +208,60 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="afcdcf417b1307bdb6263d5c357dd527f"></a>
+<a class="anchor" id="a30bda96c52db042f252aae699730cb8c"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void forkCarrefours </td>
           <td>(</td>
-          <td class="paramtype">pid_t&#160;</td>
-          <td class="paramname"><em>pid_Serveur</em></td><td>)</td>
+          <td class="paramtype">void(*)()&#160;</td>
+          <td class="paramname"><em>fonction</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Cree 4 processus fils (carrefours) qui executent la meme fonction. </p>
-<p>Cree 1 processus fils (serveur) qui executent une fonction.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">pid_Serveur</td><td>Le pid du processus serveur. Utile pour adresser les requetes au serveur, dans la file de message du serveur.</td></tr>
+    <tr><td class="paramname">fonction</td><td>Pointeur sur la fonction qui sera exectuee par les carrefours. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Le pid du processus serveur. Utile pour adresser les requetes au serveur, dans la file de message du serveur. </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="aff8ddc85a3c98758afa5317fdafb8fc6"></a>
+<a class="anchor" id="a1b792f965f17f81cb3b47720db11583a"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void forkn </td>
+          <td class="memname">void forkServeur </td>
+          <td>(</td>
+          <td class="paramtype">void(*)()&#160;</td>
+          <td class="paramname"><em>fonction</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Cree 1 processus fils (serveur) qui executent une fonction. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fonction</td><td>Pointeur sur la fonction qui sera exectuee par le serveur. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ac7de5193da9f5f0432f372eea094db34"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void forkVoitures </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>nbFils</em>, </td>
@@ -259,7 +292,7 @@ Variables</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">nbFils</td><td>Le nombre de voitures a creer. </td></tr>
     <tr><td class="paramname">voies</td><td>Le tableau des voies a affecter aux voitures le cas echeant. </td></tr>
-    <tr><td class="paramname">fonction</td><td>La fonction qui sera exectuee par les voitures. </td></tr>
+    <tr><td class="paramname">fonction</td><td>Pointeur sur la fonction qui sera exectuee par les voitures. </td></tr>
   </table>
   </dd>
 </dl>
@@ -299,6 +332,27 @@ Variables</h2></td></tr>
 
 <p>Cree un segment de memoire partagee pour le compteur de voitures sorties. </p>
 <p>Permet a chaque voiture d'incrementer un compteur lorsqu'elle quitte la carte (&lt;=&gt; un processus voiture se termine), pour verifier si aucune voiture n'est bloquee sur un carrefour. </p>
+
+</div>
+</div>
+<a class="anchor" id="ae3e3299ddb2d7190886ab99ffa1eb97d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void initialise_files </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Cree les files de messages du projet. </p>
+<p>Les files creees sont :</p><ul>
+<li>4 files pour les communications entre les voitures et les carrefours (1 par carrefour).</li>
+<li>1 file pour les communications entre les carrefours et le serveur. </li>
+</ul>
 
 </div>
 </div>
@@ -342,7 +396,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Redefini le traitant du signal SIGINT. </p>
-<p>Supprime les objets IPC lors de l'interception d'un signal SIGINT.</p>
+<p>Supprime les objets IPC et termine le programme lors de l'interception d'un signal SIGINT.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">s</td><td>Le numero du signal intercepte (SIGINT). </td></tr>
@@ -353,6 +407,19 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
+<a class="anchor" id="ac51d0bc6bf626b568d97ec4fa5d9aa43"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int carrefours[4]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Les 4 carrefours accessibles par les autres processus en tant que segments de memoire partagee. </p>
+
+</div>
+</div>
 <a class="anchor" id="ade857a99d48bcb8cfaa57c4cd8d7d2e8"></a>
 <div class="memitem">
 <div class="memproto">
@@ -366,12 +433,12 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a6c6e2e7b164d1ffb856e4391a4fd05b3"></a>
+<a class="anchor" id="ae921b522cc683ba0fdc39545bf939544"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int msgid_carrefour[4]</td>
+          <td class="memname">int msg_carrefour[4]</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -379,12 +446,12 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ac35b1416f799d547427e175255d4dc74"></a>
+<a class="anchor" id="ac7521a147a02c005d68e153bc666990f"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int msgid_serveur</td>
+          <td class="memname">int msg_serveur</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -392,29 +459,16 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a9825b926ad2a4aa0e6688dc15b2d9a23"></a>
+<a class="anchor" id="af31902aedad689ccec19040684517889"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int sem_id</td>
+          <td class="memname">int sem</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <p>L'identifiant de l'ensemble de semaphores (1 semaphore). </p>
-
-</div>
-</div>
-<a class="anchor" id="ab0f845d7f9358fabe3daebab24cf858a"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int shm_id[4]</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Les 4 carrefours, accessibles par les autres processus en tant que segments de memoire partagee. </p>
 
 </div>
 </div>
@@ -450,7 +504,7 @@ Variables</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="main_8c.html">main.c</a></li>
-    <li class="footer">Generated on Thu Jun 11 2015 00:28:40 for Carrefour by
+    <li class="footer">Generated on Thu Jun 11 2015 22:00:55 for Carrefour by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

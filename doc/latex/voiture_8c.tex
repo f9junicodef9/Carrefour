@@ -7,10 +7,10 @@ Contient les fonctions utiles au fonctionnement et a la representation des voitu
 
 {\ttfamily \#include $<$stdio.\+h$>$}\\*
 {\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$sys/time.\+h$>$}\\*
 {\ttfamily \#include \char`\"{}project.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}voiture.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}interface.\+h\char`\"{}}\\*
-{\ttfamily \#include $<$sys/time.\+h$>$}\\*
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -92,7 +92,7 @@ Affiche les informations d\textquotesingle{}une voiture.
 
 Effectue les operations permettant la construction d\textquotesingle{}une requete vers le carrefour, affiche la requete, et l\textquotesingle{}envoie au carrefour. 
 
-void \hyperlink{voiture_8c_ab645261dc7b5e99edbe3283804fcdacc}{create\+\_\+question(\+Requete $\ast$req, Voiture $\ast$v, int carrefour, int croisement\+\_\+precedent, int croisement\+\_\+precedent\+\_\+orientation, int croisement, int croisement\+\_\+orientation, int voie, int traverse, int type)} La requete peut prendre 4 formes \+:
+La requete peut prendre 4 formes \+:
 \begin{DoxyItemize}
 \item M\+E\+S\+S\+A\+R\+R\+I\+V\+E \+: message d\textquotesingle{}information d\textquotesingle{}arrivee sur un carrefour. N\textquotesingle{}implique aucun traitement, affiche juste l\textquotesingle{}information.
 \item M\+E\+S\+S\+D\+E\+M\+A\+N\+D\+E \+: demande d\textquotesingle{}arrivee en zone avant, pendant, ou apres un croisement. Implique une demande au serveur (depuis le carrefour) qui va analyser le carrefour pour prendre une decision.
@@ -272,17 +272,17 @@ Represente les voies \char`\"{}d\textquotesingle{}entree\char`\"{} associees aux
 \subsubsection[{voies}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Voie} voies\mbox{[}12\mbox{]}}\label{voiture_8c_aa9246ae4d5b520f1e61ed589dd0bf1bf}
 {\bfseries Initial value\+:}
 \begin{DoxyCode}
-= \{ \{1,\{15,16,17,13,8,3\},\{11,7,10,4,7,8\},\{HO,HO,VE,VE,VE,VE\}\},
-                    \{2,\{20,21,23,24,-1\},\{11,7,4,5,-1\},\{HO,HO,HO,HO\}\},
+= \{ \{1,\{15,16,17,13,8,3\},\{11,7,10,4,7,8\},\{\hyperlink{project_8h_a913ebaa509864a0b9d4f993aa352842c}{HO},\hyperlink{project_8h_a913ebaa509864a0b9d4f993aa352842c}{HO},\hyperlink{project_8h_a3dcf4acb9f7d9c57f43802a9a1ac4ee6}{VE},\hyperlink{project_8h_a3dcf4acb9f7d9c57f43802a9a1ac4ee6}{VE},\hyperlink{project_8h_a3dcf4acb9f7d9c57f43802a9a1ac4ee6}{VE},VE\}\},
+                    \{2,\{20,21,23,24,-1\},\{11,7,4,5,-1\},\{\hyperlink{project_8h_a913ebaa509864a0b9d4f993aa352842c}{HO},\hyperlink{project_8h_a913ebaa509864a0b9d4f993aa352842c}{HO},\hyperlink{project_8h_a913ebaa509864a0b9d4f993aa352842c}{HO},HO\}\},
                     \{3,\{-1\},\{-1\}\},
-                    \{4,\{23,18,13,7,6,5\},\{2,10,1,7,10,11\},\{VE,VE,HO,HO,HO,HO\}\},
-                    \{5,\{24,19,9,4,-1\},\{2,10,7,8,-1\},\{VE,VE,VE,VE\}\},
+                    \{4,\{23,18,13,7,6,5\},\{2,10,1,7,10,11\},\{\hyperlink{project_8h_a3dcf4acb9f7d9c57f43802a9a1ac4ee6}{VE},\hyperlink{project_8h_a3dcf4acb9f7d9c57f43802a9a1ac4ee6}{VE},\hyperlink{project_8h_a913ebaa509864a0b9d4f993aa352842c}{HO},\hyperlink{project_8h_a913ebaa509864a0b9d4f993aa352842c}{HO},\hyperlink{project_8h_a913ebaa509864a0b9d4f993aa352842c}{HO},HO\}\},
+                    \{5,\{24,19,9,4,-1\},\{2,10,7,8,-1\},\{\hyperlink{project_8h_a3dcf4acb9f7d9c57f43802a9a1ac4ee6}{VE},\hyperlink{project_8h_a3dcf4acb9f7d9c57f43802a9a1ac4ee6}{VE},\hyperlink{project_8h_a3dcf4acb9f7d9c57f43802a9a1ac4ee6}{VE},VE\}\},
                     \{6,\{-1\},\{-1\}\},
-                    \{7,\{9,8,7,11,16,21\},\{5,1,4,10,1,2\},\{HO,HO,VE,VE,VE,VE\}\},
-                    \{8,\{4,3,1,0,-1\},\{5,1,10,11,-1\},\{HO,HO,HO,HO\}\},
+                    \{7,\{9,8,7,11,16,21\},\{5,1,4,10,1,2\},\{\hyperlink{project_8h_a913ebaa509864a0b9d4f993aa352842c}{HO},\hyperlink{project_8h_a913ebaa509864a0b9d4f993aa352842c}{HO},\hyperlink{project_8h_a3dcf4acb9f7d9c57f43802a9a1ac4ee6}{VE},\hyperlink{project_8h_a3dcf4acb9f7d9c57f43802a9a1ac4ee6}{VE},\hyperlink{project_8h_a3dcf4acb9f7d9c57f43802a9a1ac4ee6}{VE},VE\}\},
+                    \{8,\{4,3,1,0,-1\},\{5,1,10,11,-1\},\{\hyperlink{project_8h_a913ebaa509864a0b9d4f993aa352842c}{HO},\hyperlink{project_8h_a913ebaa509864a0b9d4f993aa352842c}{HO},\hyperlink{project_8h_a913ebaa509864a0b9d4f993aa352842c}{HO},HO\}\},
                     \{9,\{-1\},\{-1\}\},
-                    \{10,\{1,6,11,17,18,19\},\{8,4,7,1,4,5\},\{VE,VE,HO,HO,HO,HO\}\},
-                    \{11,\{0,5,15,20,-1\},\{8,4,1,2,-1\},\{VE,VE,VE,VE\}\},
+                    \{10,\{1,6,11,17,18,19\},\{8,4,7,1,4,5\},\{\hyperlink{project_8h_a3dcf4acb9f7d9c57f43802a9a1ac4ee6}{VE},\hyperlink{project_8h_a3dcf4acb9f7d9c57f43802a9a1ac4ee6}{VE},\hyperlink{project_8h_a913ebaa509864a0b9d4f993aa352842c}{HO},\hyperlink{project_8h_a913ebaa509864a0b9d4f993aa352842c}{HO},\hyperlink{project_8h_a913ebaa509864a0b9d4f993aa352842c}{HO},HO\}\},
+                    \{11,\{0,5,15,20,-1\},\{8,4,1,2,-1\},\{\hyperlink{project_8h_a3dcf4acb9f7d9c57f43802a9a1ac4ee6}{VE},\hyperlink{project_8h_a3dcf4acb9f7d9c57f43802a9a1ac4ee6}{VE},\hyperlink{project_8h_a3dcf4acb9f7d9c57f43802a9a1ac4ee6}{VE},VE\}\},
                     \{12,\{-1\},\{-1\}\}  \}
 \end{DoxyCode}
 Represente les 12 voies du carrefour. 
