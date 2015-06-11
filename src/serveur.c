@@ -55,7 +55,7 @@ void constructionReponse(Requete *req,Reponse *rep)
 	
 	Carrefour *c;
 	
-	c = (Carrefour *) shmat(msg_carrefour[numero-1], NULL, 0);
+	c = (Carrefour *) shmat(carrefours[numero-1], NULL, 0);
 	
 	
 	if (traverse == AVANT) {

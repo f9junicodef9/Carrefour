@@ -20,13 +20,17 @@ int msg_carrefour[4];
 int sem;
 int compteur;
 
+int carrefours[4];
+
+pid_t pid_Serveur;
+pid_t pid_Carrefour[4];
+
 /**
  * \fn main(int argc,char* argv[])
  * \brief Cree les processus fils (voitures, carrefours, serveur), les objets IPC, affiche les premieres informations.
  */
 main(int argc,char* argv[])
 {
-	pid_t pid_Serveur;
 
 	if (argc-1 == 0) {
 		printf("Syntaxe : ""./project Nb1 Nb2"" OR ""./project Nb1""\n");
@@ -41,9 +45,8 @@ main(int argc,char* argv[])
 	initialise_files();
 	initialise_carrefours();
 	initialise_compteur();
-	
 
-	pid_Serveur = forkServeur();
+	forkServeur();
 	forkCarrefours(pid_Serveur);
 
 	if (argc-1 == 1) {
@@ -102,36 +105,33 @@ void forkVoitures(int nbFils, char *voies[], void (*fonction)())
 }
 
 /**
- * \fn void forkCarrefours(pid_t pid_Serveur)
+ * \fn void forkCarrefours()
  * \brief Cree 4 processus fils (carrefours) qui executent la meme fonction.
- *
- * \param pid_Serveur Le pid du processus serveur. Utile pour adresser les requetes au serveur, dans la file de message du serveur.
  */
-void forkCarrefours(pid_t pid_Serveur)
+void forkCarrefours()
 {
 	int i;
 	
-	for (i=1;i<5;i++) {
-		if (fork() == 0) {
-			carrefour(i, pid_Serveur);
+	for (i=0;i<4;i++) {
+		pid_Carrefour[i] = fork();
+
+		if (pid_Carrefour[i] == 0) {
+			carrefour(i+1, pid_Serveur);
 		}
 	}
 }
 
 /**
- * \fn void forkCarrefours(pid_t pid_Serveur)
+ * \fn void forkServeur()
  * \brief Cree 1 processus fils (serveur) qui executent une fonction.
- *
- * \return Le pid du processus serveur. Utile pour adresser les requetes au serveur, dans la file de message du serveur.
  */
-pid_t forkServeur()
+void forkServeur()
 {
-	pid_t pid_Serveur;
 	pid_Serveur = fork();
 	
 	if (pid_Serveur == 0) {
 		serveur();
-	} else return pid_Serveur;
+	}
 }
 
 /**
@@ -192,8 +192,8 @@ void initialise_carrefours()
 	Carrefour *c;
 
 	for (i=0;i<4;i++) {
-		msg_carrefour[i] = shmget(IPC_PRIVATE, sizeof(Carrefour), IPC_CREAT | 0666);
-		c = (Carrefour *) shmat(msg_carrefour[i], NULL, 0);
+		carrefours[i] = shmget(IPC_PRIVATE, sizeof(Carrefour), IPC_CREAT | 0666);
+		c = (Carrefour *) shmat(carrefours[i], NULL, 0);
 		
 		for (j=0;j<25;j++) {
 			c->croisements[j].etat = base.croisements[j].etat;

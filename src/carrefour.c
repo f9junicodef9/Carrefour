@@ -33,8 +33,8 @@ void carrefour(int numero, pid_t pid_Serveur)
 
 	Carrefour *c;
 	
-	c = (Carrefour *) shmat(msg_carrefour[numero-1], NULL, 0);
-
+	c = (Carrefour *) shmat(carrefours[numero-1], NULL, 0);
+	
 	while (1) {
 		msgrcv(msg_carrefour[numero-1],&req,tailleReq,0,0);
 		if (req.type == MESSSORT) {
