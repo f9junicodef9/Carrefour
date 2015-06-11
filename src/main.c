@@ -33,11 +33,11 @@ main(int argc,char* argv[])
 		exit(-1);
 	}
 	
-	initsem();
 
 	file = fopen("./test.txt", "w");
 	fclose(file);
 
+	initialise_semaphore();
 	initialise_files();
 	initialise_carrefours();
 	initialise_compteur();

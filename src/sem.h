@@ -9,6 +9,6 @@ void P(int semnum);
 
 void V(int semnum);
 
-int initsem();
+int initialise_semaphore();
 
 #endif

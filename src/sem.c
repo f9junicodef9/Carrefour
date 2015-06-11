@@ -38,10 +38,10 @@ void V(int semnum)
 }
 
 /**
- * \fn int initsem()
+ * \fn int initialise_semaphore()
  * \brief Initialise les semaphores. Un seul semaphore est utilise ici.
  */
-int initsem()
+int initialise_semaphore()
 {
 	sem_id = semget(IPC_PRIVATE, 1, IPC_CREAT | IPC_EXCL | 0666);
 
