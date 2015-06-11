@@ -204,7 +204,7 @@ void voiture(int numero, int voie, int carrefour)
 }
 
 /**
- void create_question(Requete *req, Voiture *v, int carrefour, int croisement_precedent, int croisement_precedent_orientation, int croisement, int croisement_orientation, int voie, int traverse, int type)
+ * \fn void create_question(Requete *req, Voiture *v, int carrefour, int croisement_precedent, int croisement_precedent_orientation, int croisement, int croisement_orientation, int voie, int traverse, int type)
  * \brief Effectue les operations permettant la construction d'une requete vers le carrefour, affiche la requete, et l'envoie au carrefour.
  *
  * La requete peut prendre 4 formes :
