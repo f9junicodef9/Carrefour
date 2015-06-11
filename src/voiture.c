@@ -6,10 +6,10 @@
  */
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/time.h>
 #include "project.h"
 #include "voiture.h"
 #include "interface.h"
-#include <sys/time.h>
 
 /*! Represente les 12 voies du carrefour. */
 Voie voies[12] = {	{1,{15,16,17,13,8,3},{11,7,10,4,7,8},{HO,HO,VE,VE,VE,VE}},
