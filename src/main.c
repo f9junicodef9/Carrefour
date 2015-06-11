@@ -48,15 +48,8 @@ main(int argc,char* argv[])
 			((cle[4] = ftok(argv[0],'4')) == -1)
 		)
 		erreurFin("Pb ftok");
-	if (
-			((msgid_serveur = msgget(cle[0],IPC_CREAT  | IPC_EXCL | 0600)) == -1) ||
-			((msgid_carrefour[0] = msgget(cle[1],IPC_CREAT  | IPC_EXCL | 0600)) == -1) ||
-			((msgid_carrefour[1] = msgget(cle[2],IPC_CREAT  | IPC_EXCL | 0600)) == -1) ||
-			((msgid_carrefour[2] = msgget(cle[3],IPC_CREAT  | IPC_EXCL | 0600)) == -1) ||
-			((msgid_carrefour[3] = msgget(cle[4],IPC_CREAT  | IPC_EXCL | 0600)) == -1)
-		)
-		erreurFin("Pb msgget");
 
+	initialise_files();
 	initialise_carrefours();
 	initialise_compteur();
 	
@@ -231,4 +224,25 @@ void initialise_carrefours()
 void initialise_compteur()
 {
 	compteur = shmget(IPC_PRIVATE, sizeof(int), IPC_CREAT | 0666);
+}
+
+/**
+ * \fn void initialise_files()
+ * \brief Cree les files de messages du projet.
+ *
+ * Les files creees sont :
+ * - 4 files pour les communications entre les voitures et les carrefours (1 par carrefour).
+ * - 1 file pour les communications entre les carrefours et le serveur.
+ *
+ */
+void initialise_files()
+{
+	if (
+			((msgid_serveur = msgget(IPC_PRIVATE, IPC_CREAT | 0600)) == -1) ||
+			((msgid_carrefour[0] = msgget(IPC_PRIVATE, IPC_CREAT | 0600)) == -1) ||
+			((msgid_carrefour[1] = msgget(IPC_PRIVATE, IPC_CREAT | 0600)) == -1) ||
+			((msgid_carrefour[2] = msgget(IPC_PRIVATE, IPC_CREAT | 0600)) == -1) ||
+			((msgid_carrefour[3] = msgget(IPC_PRIVATE, IPC_CREAT | 0600)) == -1)
+		)
+		erreurFin("Pb msgget");
 }

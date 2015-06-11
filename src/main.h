@@ -17,4 +17,6 @@ void initialise_carrefours();
 
 void initialise_compteur();
 
+void initialise_files();
+
 #endif
