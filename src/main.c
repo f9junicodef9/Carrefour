@@ -33,15 +33,10 @@ pid_t pid_Carrefour[4];
  */
 main(int argc,char* argv[])
 {
-
-	if (argc-1 == 0) {
-		printf("Syntaxe : ""./project Nb1 Nb2"" OR ""./project Nb1""\n");
-		exit(-1);
-	}
-	
-
 	file = fopen("./output.txt", "w");
 	fclose(file);
+	
+	verif_arguments(argc-1, argv);
 
 	initialise_semaphore();
 	initialise_files();
@@ -100,6 +95,51 @@ void forkVoitures(int nbVoitures, char *argv[], void (*fonction)())
 			if (fork()==0)
 				(*fonction) (i, atoi(argv[1+(i*2)]), atoi(argv[2+(i*2)]), 1);
 	}
+}
+
+/**
+ * \fn void verif_arguments(int arguments, char *argv[])
+ * \brief Verifie la saisie de l'utilisateur lors du lancement du programme.
+ *
+ * Retourne si la saisie est correcte.
+ * Quitte le programme sinon.
+ *
+ * \param arguments Le nombre d'arguments passes au programme (moins le nom du programme).
+ * \param argv Les arguments passes au programme.
+ */
+void verif_arguments(int arguments, char *argv[])
+{
+	int i, nbVoitures, voie, carrefour;
+	
+	if (arguments == 1) {
+		nbVoitures = atoi(argv[1]);
+		if (nbVoitures > 0) {
+		} else {
+			printf("Veuillez entrer un nombre de voitures superieur a 0.\n");
+			exit(-1);
+		}
+	} else if (arguments > 1) {
+		if (arguments % 2 == 0) {
+			nbVoitures = arguments/2;
+			for (i=0;i<nbVoitures;i++) {
+				voie = atoi(argv[1+(i*2)]);
+				carrefour = atoi(argv[2+(i*2)]);
+				if ((voie > 0 && voie < 13 || voie == -1) && (carrefour > 0 && carrefour < 5 || carrefour == -1)) {
+				} else {
+					printf("Veuillez entrer un numero de voie compris entre 1 et 12 inclus et un numero de carrefour compris entre 1 et 4 inclus. et du carrefour. Si vous souhaitez generer des valeurs aleatoires, mettez -1.\n");			
+					exit(-1);
+				}
+			}
+		} else {	
+			printf("Veuillez entrer un groupe de deux valeurs pour chaque voiture : le numero de la voie et du carrefour. Si vous souhaitez generer des valeurs aleatoires, mettez -1.\n");
+			exit(-1);
+		}
+	} else {
+		printf("Syntaxe : ""./project Voie1 Carrefour1 Voie2 Carrefour2..."" OU ""./project NbVoitures"".\n");
+		exit(-1);
+	}
+	
+	return;
 }
 
 /**

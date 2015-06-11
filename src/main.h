@@ -5,6 +5,8 @@ void erreurFin(const char* msg);
 
 void forkVoitures(int nb, char *argv[], void (*fonction)());
 
+void verif_arguments(int arguments, char *argv[])
+
 void traitantSIGINT(int s);
 
 void premiere_ligne(int num);
