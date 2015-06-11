@@ -67,10 +67,10 @@ main(int argc,char* argv[])
 
 	if (argc-1 == 1) {
 		premiere_ligne(atoi(argv[1]));
-		forkn(atoi(argv[1]), NULL, voiture);
+		forkVoitures(atoi(argv[1]), NULL, voiture);
 	} else {
 		premiere_ligne(argc-1);
-		forkn(argc-1, argv, voiture);
+		forkVoitures(argc-1, argv, voiture);
 	}
 
 	while (1) {
@@ -97,7 +97,7 @@ main(int argc,char* argv[])
 void erreurFin(const char* msg){ perror(msg); exit(1); }
 
 /**
- * \fn void forkn(int nbFils, char *voies[], void (*fonction)())
+ * \fn void forkVoitures(int nbFils, char *voies[], void (*fonction)())
  * \brief Cree nbFils processus fils (voitures) qui executent la meme fonction.
  *
  * Si voies est NULL, cree nbFils voitures avec une voie aleatoire.
@@ -107,7 +107,7 @@ void erreurFin(const char* msg){ perror(msg); exit(1); }
  * \param voies Le tableau des voies a affecter aux voitures le cas echeant.
  * \param fonction La fonction qui sera exectuee par les voitures.
  */
-void forkn(int nbFils, char *voies[], void (*fonction)())
+void forkVoitures(int nbFils, char *voies[], void (*fonction)())
 {
 	int i;
 	
