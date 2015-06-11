@@ -38,7 +38,7 @@ main(int argc,char* argv[])
 	}
 	
 
-	file = fopen("./test.txt", "w");
+	file = fopen("./output.txt", "w");
 	fclose(file);
 
 	initialise_semaphore();

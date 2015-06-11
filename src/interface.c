@@ -21,7 +21,7 @@ void message(int i, char* s)
 {
    #define COLONNE 20
    int j, NbBlanc;
-   file = fopen("./test.txt", "a");
+   file = fopen("./output.txt", "a");
    NbBlanc=i*COLONNE;
    for (j=0; j<NbBlanc; j++) {
 		putchar(' ');
