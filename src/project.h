@@ -9,9 +9,9 @@
 #define MUTEX 1
 
 /*! La duree maximale des differentes operations des voitures (traversement des croisements, arrivees dans les files, etc) en microseconde. */
-#define MAXPAUSE 500000
+#define MAXPAUSE 1000000
 /*! La duree minimale des differentes operations des voitures (traversement des croisements, arrivees dans les files, etc) en microseconde. */
-#define MINPAUSE 100
+#define MINPAUSE 1000
 
 /*! Le nombre maximum de voitures dans les files avant / apres les croisements. Dimensionne le carrefour. */
 #define MAXFILE 1
