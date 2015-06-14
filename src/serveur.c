@@ -6,6 +6,9 @@
  */
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/ipc.h>
+#include <sys/shm.h>
+#include <sys/types.h>
 #include "project.h"
 #include "serveur.h"
 #include "interface.h"
@@ -53,7 +56,7 @@ void constructionReponse(Requete *req,Reponse *rep)
 	
 	Carrefour *c;
 	
-	c = (Carrefour *) shmat(carrefours[numero-1], NULL, 0);
+	c = shmat(carrefours[numero-1], NULL, 0);
 	
 	
 	if (traverse == AVANT) {

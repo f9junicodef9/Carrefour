@@ -7,6 +7,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/time.h>
+#include <sys/ipc.h>
+#include <sys/shm.h>
+#include <sys/types.h>
 #include "project.h"
 #include "voiture.h"
 #include "interface.h"
@@ -199,7 +202,7 @@ void voiture(int numero, int voie, int carrefour, int premier_lancement)
 
 	if (assoc_carrefours[v.carrefour-1][v.voie->numero-1] == -1) {
 		P(MUTEX);
-		int *c = (int *) shmat(compteur, NULL, 0);
+		int *c = shmat(compteur, NULL, 0);
 		(*c)++;
 		sprintf(buffer, "%d Voitures sont sorties\n", *c);
 		message(0, buffer);

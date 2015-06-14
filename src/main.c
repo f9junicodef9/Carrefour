@@ -5,6 +5,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/ipc.h>
+#include <sys/shm.h>
+#include <sys/types.h>
 #include <signal.h>
 #include <errno.h>
 #include "project.h"
@@ -15,7 +17,7 @@
 #include "serveur.h"
 
 int tailleReq = sizeof(Requete) - sizeof(long);
-int tailleRep = sizeof(Reponse);
+int tailleRep = sizeof(Reponse) - sizeof(long);
 
 int msg_serveur;
 int msg_carrefour[4];
@@ -239,7 +241,7 @@ void initialise_carrefours()
 
 	for (i=0;i<4;i++) {
 		carrefours[i] = shmget(IPC_PRIVATE, sizeof(Carrefour), IPC_CREAT | 0666);
-		c = (Carrefour *) shmat(carrefours[i], NULL, 0);
+		c = shmat(carrefours[i], NULL, 0);
 		
 		for (j=0;j<25;j++) {
 			c->croisements[j].etat = base.croisements[j].etat;
