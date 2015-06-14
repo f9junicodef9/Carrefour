@@ -33,9 +33,9 @@ int assoc_voies[] = {4,2,12,7,5,3,10,8,6,1,11,9};
 
 /*! Represente les carrefours associes aux voies "de sorties" respectives. */
 int assoc_carrefours[][12] = {	{-1,2,3,-1,-1,2,3,-1,-1,2,3,-1},
-										{-1,-1,4,1,-1,-1,4,1,-1,-1,4,1},
-										{1,4,-1,-1,1,4,-1,-1,1,4,-1,-1},
-										{2,-1,-1,3,2,-1,-1,3,2,-1,-1,3}	};
+								{-1,-1,4,1,-1,-1,4,1,-1,-1,4,1},
+								{1,4,-1,-1,1,4,-1,-1,1,4,-1,-1},
+								{2,-1,-1,3,2,-1,-1,3,2,-1,-1,3}	};
 
 /**
  * \fn void initRand()
@@ -80,15 +80,15 @@ void affiche_voiture(Voiture *v)
 void affiche_carrefours()
 {
 	int i,j;
-	
+
 	for (i=0;i<4;i++) {
 		printf("---------------------------\n");
 		printf("Carrefour %d :\n", i+1);
-		
+
 		for (j=0;j<12;j++) {
 			printf("Voie %d sort sur carrefour %d voie %d\n", j+1, assoc_carrefours[i][j], assoc_voies[j]);
 		}
-		
+
 		printf("---------------------------\n");
 	}
 }
@@ -139,7 +139,7 @@ void voiture(int numero, int voie, int carrefour, int premier_lancement)
 			v.voie = &voies[voie-1];
 	} else {
 		v.carrefour = carrefour;
-		
+
 		if (premier_lancement == 1) {
 			if (voie == -1) {
 				int voie_random = rand()%12+1;
@@ -152,13 +152,13 @@ void voiture(int numero, int voie, int carrefour, int premier_lancement)
 		}
 	}
 
-	create_question(&req, &v, v.carrefour, -1, -1, -1, -1, v.voie->numero, -1, MESSARRIVE);		
-	
+	create_question(&req, &v, v.carrefour, -1, -1, -1, -1, v.voie->numero, -1, MESSARRIVE);
+
 	for (i=0 ; i < 6 ; i++) {
 		croisement_numero = v.voie->sem_num[i];
 
 		if (croisement_numero == -1) break;
-		
+
 		croisement_voie = v.voie->croisements[i];
 		croisement_orientation = v.voie->orientation[i];
 		if (i == 0) {
@@ -171,33 +171,33 @@ void voiture(int numero, int voie, int carrefour, int premier_lancement)
 
 		create_question(&req, &v, v.carrefour, croisement_precedent_numero, croisement_precedent_orientation, croisement_numero, croisement_orientation, croisement_voie, AVANT, MESSDEMANDE);
 		receive_answer(&req,v.carrefour);
-		
+
 		create_question(&req, &v, v.carrefour, croisement_precedent_numero, croisement_precedent_orientation, croisement_numero, croisement_orientation, croisement_voie, AVANT, MESSINFO);
 
 		usleep(rand()%MAXPAUSE+MINPAUSE);
-		
-		create_question(&req, &v, v.carrefour, croisement_precedent_numero, croisement_precedent_orientation, croisement_numero, croisement_orientation, croisement_voie, PENDANT, MESSDEMANDE);		
-		receive_answer(&req,v.carrefour);		
+
+		create_question(&req, &v, v.carrefour, croisement_precedent_numero, croisement_precedent_orientation, croisement_numero, croisement_orientation, croisement_voie, PENDANT, MESSDEMANDE);
+		receive_answer(&req,v.carrefour);
 
 		create_question(&req, &v, v.carrefour, croisement_precedent_numero, croisement_precedent_orientation, croisement_numero, croisement_orientation, croisement_voie, PENDANT, MESSINFO);
-		
+
 		usleep(rand()%MAXPAUSE+MINPAUSE);
 
-		create_question(&req, &v, v.carrefour, croisement_precedent_numero, croisement_precedent_orientation, croisement_numero, croisement_orientation, croisement_voie, APRES, MESSDEMANDE);		
+		create_question(&req, &v, v.carrefour, croisement_precedent_numero, croisement_precedent_orientation, croisement_numero, croisement_orientation, croisement_voie, APRES, MESSDEMANDE);
 		receive_answer(&req,v.carrefour);
 
 		create_question(&req, &v, v.carrefour, croisement_precedent_numero, croisement_precedent_orientation, croisement_numero, croisement_orientation, croisement_voie, APRES, MESSINFO);
 
 		usleep(rand()%MAXPAUSE+MINPAUSE);
 	}
-	
+
 	croisement_precedent_numero = v.voie->sem_num[i-1];
 	croisement_precedent_orientation = v.voie->orientation[i-1];
 
 	if (i == 0) {
-		create_question(&req, &v, v.carrefour, -1, -1, -1, -1, v.voie->numero, -1, MESSSORT);		
+		create_question(&req, &v, v.carrefour, -1, -1, -1, -1, v.voie->numero, -1, MESSSORT);
 	} else {
-		create_question(&req, &v, v.carrefour, croisement_precedent_numero, croisement_precedent_orientation, -1, -1, v.voie->numero, -1, MESSSORT);			
+		create_question(&req, &v, v.carrefour, croisement_precedent_numero, croisement_precedent_orientation, -1, -1, v.voie->numero, -1, MESSSORT);
 	}
 
 	if (assoc_carrefours[v.carrefour-1][v.voie->numero-1] == -1) {
@@ -209,9 +209,9 @@ void voiture(int numero, int voie, int carrefour, int premier_lancement)
 		V(MUTEX);
 		exit(0);
 	}
-	
+
 	usleep(rand()%MAXPAUSE+MINPAUSE);
-			
+
 	voiture(v.numero, assoc_voies[v.voie->numero-1], assoc_carrefours[v.carrefour-1][v.voie->numero-1], 0);
 }
 
@@ -304,11 +304,11 @@ void receive_answer(Requete *req, int carrefour)
  */
 int random_voie(int v)
 {
-		if (v == 1 || v == 2 || v == 3)
-			return rand()%3+1;
-		if (v == 4 || v == 5 || v == 6)
-			return rand()%3+4;
-		if (v == 7 || v == 8 || v == 9)
-			return rand()%3+7;
-		return rand()%3+10;
+	if (v == 1 || v == 2 || v == 3)
+	return rand()%3+1;
+	if (v == 4 || v == 5 || v == 6)
+	return rand()%3+4;
+	if (v == 7 || v == 8 || v == 9)
+	return rand()%3+7;
+	return rand()%3+10;
 }

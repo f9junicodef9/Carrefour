@@ -2,7 +2,7 @@
  * \file project.h
  * \brief Contient les structures et variables globales liees au projet.
  */
-#ifndef __PROJECT__ 
+#ifndef __PROJECT__
 #define __PROJECT__
 
 /*! Le numero du semaphore utilise pour les operations de synchronisation. */

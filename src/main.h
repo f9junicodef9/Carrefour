@@ -1,4 +1,4 @@
-#ifndef __MAIN__ 
+#ifndef __MAIN__
 #define __MAIN__
 
 void erreurFin(const char* msg);

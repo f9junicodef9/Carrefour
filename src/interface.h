@@ -1,4 +1,4 @@
-#ifndef __INTERFACE__ 
+#ifndef __INTERFACE__
 #define __INTERFACE__
 
 char buffer[1024];

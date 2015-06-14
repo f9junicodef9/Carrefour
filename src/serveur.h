@@ -1,4 +1,4 @@
-#ifndef __SERVEUR__ 
+#ifndef __SERVEUR__
 #define __SERVEUR__
 
 void serveur();

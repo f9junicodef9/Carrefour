@@ -51,13 +51,12 @@ void constructionReponse(Requete *req,Reponse *rep)
 	int traverse = req->traverse;
 	int orientation = req->croisement_orientation;
 	int numero = req->carrefour;
-	
+
 	rep->autorisation = 0;
-	
+
 	Carrefour *c;
 	
 	c = shmat(carrefours[numero-1], NULL, 0);
-	
 	
 	if (traverse == AVANT) {
 		if (orientation == HO) {
@@ -70,9 +69,9 @@ void constructionReponse(Requete *req,Reponse *rep)
 			}
 		}
 	} else if (traverse == PENDANT) {
-			if (c->croisements[i].etat == 0) {
-				rep->autorisation = 1;
-			}
+		if (c->croisements[i].etat == 0) {
+			rep->autorisation = 1;
+		}
 	} else if (traverse == APRES) {
 		if (orientation == HO) {
 			if (c->croisements[i].apresH < MAXFILE) {
@@ -81,12 +80,12 @@ void constructionReponse(Requete *req,Reponse *rep)
 		} else {
 			if (c->croisements[i].apresV < MAXFILE) {
 				rep->autorisation = 1;
-			}	
+			}
 		}
 	}
-	
+
 	shmdt(c);
-	
+
 	V(MUTEX);
 }
 
@@ -100,7 +99,7 @@ void constructionReponse(Requete *req,Reponse *rep)
 void affichageReponse(Requete *req,Reponse *rep)
 {
 	int traverse = req->traverse;
-	
+
 	if (traverse == AVANT) {
 		if (rep->autorisation == 1) sprintf(buffer, "   Aut. av. voie %d\n", req->voie);
 		else if (rep->autorisation == 0) sprintf(buffer, "   Int. av. voie %d\n", req->voie);
@@ -111,6 +110,6 @@ void affichageReponse(Requete *req,Reponse *rep)
 		if (rep->autorisation == 1) sprintf(buffer, "   Aut. ap. voie %d\n", req->voie);
 		else if (rep->autorisation == 0) sprintf(buffer, "   Int. ap. voie %d\n", req->voie);
 	}
-				
+
 	message(req->v.numero, buffer);
 }

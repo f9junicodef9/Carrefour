@@ -118,7 +118,6 @@ void maj_carrefour(Requete *req, Carrefour *c)
 		}
 	}
 	
-//	affiche_carrefour();
 	V(MUTEX);
 }
 

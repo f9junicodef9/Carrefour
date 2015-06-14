@@ -1,4 +1,4 @@
-#ifndef __SEM__ 
+#ifndef __SEM__
 #define __SEM__
 
 #include <sys/sem.h>

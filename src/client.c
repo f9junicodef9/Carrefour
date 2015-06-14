@@ -62,22 +62,22 @@ void constructionRequete(Requete *req, Voiture *v, int carrefour, int croisement
 void affichageRequete(Requete *req)
 {
 	if (req->type == MESSARRIVE) {
-		message(req->v.numero, "---------------------\n");		
+		message(req->v.numero, "---------------------\n");
 		sprintf(buffer, "Arrive carrefour %d\n\n", req->carrefour);
-		message(req->v.numero, buffer);		
-		sprintf(buffer, "Arrive voie %d\n\n", req->voie);		
+		message(req->v.numero, buffer);
+		sprintf(buffer, "Arrive voie %d\n\n", req->voie);
 	} else if (req->type == MESSDEMANDE) {
 		if (req->traverse == AVANT) sprintf(buffer, "Dem. av. voie %d\n", req->voie);
 		else if (req->traverse == PENDANT) sprintf(buffer, "Dem. trav. voie %d\n", req->voie);
-		else if (req->traverse == APRES) sprintf(buffer, "Dem. ap. voie %d\n", req->voie);		
+		else if (req->traverse == APRES) sprintf(buffer, "Dem. ap. voie %d\n", req->voie);
 	} else if (req->type == MESSINFO) {
 		if (req->traverse == AVANT) sprintf(buffer, "Arrive av. voie %d\n", req->voie);
 		else if (req->traverse == PENDANT) sprintf(buffer, "Trav. voie %d\n", req->voie);
-		else if (req->traverse == APRES) sprintf(buffer, "Arrive ap. voie %d\n", req->voie);		
+		else if (req->traverse == APRES) sprintf(buffer, "Arrive ap. voie %d\n", req->voie);
 	} else if (req->type == MESSSORT) {
-		message(req->v.numero, "\n");	
+		message(req->v.numero, "\n");
 		sprintf(buffer, "Sort voie %d\n\n", req->voie);
-		message(req->v.numero, buffer);		
+		message(req->v.numero, buffer);
 		sprintf(buffer, "Sort carrefour %d\n", req->carrefour);
 		message(req->v.numero, buffer);
 		message(req->v.numero, "---------------------\n");

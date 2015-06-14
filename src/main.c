@@ -37,7 +37,7 @@ main(int argc,char* argv[])
 {
 	file = fopen("./output.txt", "w");
 	fclose(file);
-	
+
 	verif_arguments(argc-1, argv);
 
 	initialise_semaphore();
@@ -57,7 +57,7 @@ main(int argc,char* argv[])
 	}
 
 	signal(SIGINT,traitantSIGINT);
-	
+
 	while (1) {
 		pid_t done = wait();
 		if (done == -1)
@@ -112,7 +112,7 @@ void forkVoitures(int nbVoitures, char *argv[], void (*fonction)())
 void verif_arguments(int arguments, char *argv[])
 {
 	int i, nbVoitures, voie, carrefour;
-	
+
 	if (arguments == 1) {
 		nbVoitures = atoi(argv[1]);
 		if (nbVoitures > 0) {
@@ -128,11 +128,11 @@ void verif_arguments(int arguments, char *argv[])
 				carrefour = atoi(argv[2+(i*2)]);
 				if ((voie > 0 && voie < 13 || voie == -1) && (carrefour > 0 && carrefour < 5 || carrefour == -1)) {
 				} else {
-					printf("Veuillez entrer un numero de voie compris entre 1 et 12 inclus et un numero de carrefour compris entre 1 et 4 inclus. et du carrefour. Si vous souhaitez generer des valeurs aleatoires, mettez -1.\n");			
+					printf("Veuillez entrer un numero de voie compris entre 1 et 12 inclus et un numero de carrefour compris entre 1 et 4 inclus. et du carrefour. Si vous souhaitez generer des valeurs aleatoires, mettez -1.\n");
 					exit(-1);
 				}
 			}
-		} else {	
+		} else {
 			printf("Veuillez entrer un groupe de deux valeurs pour chaque voiture : le numero de la voie et du carrefour. Si vous souhaitez generer des valeurs aleatoires, mettez -1.\n");
 			exit(-1);
 		}
@@ -140,7 +140,7 @@ void verif_arguments(int arguments, char *argv[])
 		printf("Syntaxe : ""./project Voie1 Carrefour1 Voie2 Carrefour2..."" OU ""./project NbVoitures"".\n");
 		exit(-1);
 	}
-	
+
 	return;
 }
 
@@ -153,7 +153,7 @@ void verif_arguments(int arguments, char *argv[])
 void forkCarrefours(void (*fonction)())
 {
 	int i;
-	
+
 	for (i=0;i<4;i++) {
 		pid_Carrefour[i] = fork();
 
@@ -172,7 +172,7 @@ void forkCarrefours(void (*fonction)())
 void forkServeur(void (*fonction)())
 {
 	pid_Serveur = fork();
-	
+
 	if (pid_Serveur == 0) {
 		(*fonction) ();
 	}
@@ -185,7 +185,7 @@ void forkServeur(void (*fonction)())
  * Supprime les objets IPC et termine le programme lors de l'interception d'un signal SIGINT.
  *
  * \param s Le numero du signal intercepte (SIGINT).
- */ 
+ */
 void traitantSIGINT(int s)
 {
 	if (
@@ -199,10 +199,10 @@ void traitantSIGINT(int s)
 			((shmctl(carrefours[0], IPC_RMID, NULL)) == -1) ||
 			((shmctl(carrefours[1], IPC_RMID, NULL)) == -1) ||
 			((shmctl(carrefours[2], IPC_RMID, NULL)) == -1) ||
-			((shmctl(carrefours[3], IPC_RMID, NULL)) == -1)												
-		)
+			((shmctl(carrefours[3], IPC_RMID, NULL)) == -1)
+			)
 		erreurFin("Pb ipc_rmid");
-		
+
 	exit(0);
 }
 
@@ -277,6 +277,6 @@ void initialise_files()
 			((msg_carrefour[1] = msgget(IPC_PRIVATE, IPC_CREAT | 0600)) == -1) ||
 			((msg_carrefour[2] = msgget(IPC_PRIVATE, IPC_CREAT | 0600)) == -1) ||
 			((msg_carrefour[3] = msgget(IPC_PRIVATE, IPC_CREAT | 0600)) == -1)
-		)
+			)
 		erreurFin("Pb msgget");
 }

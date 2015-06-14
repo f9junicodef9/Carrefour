@@ -1,4 +1,4 @@
-#ifndef __VOITURE__ 
+#ifndef __VOITURE__
 #define __VOITURE__
 
 #include "project.h"

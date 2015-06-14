@@ -7,6 +7,8 @@
 #include <string.h>
 #include "interface.h"
 
+#define COLONNE 20
+
 /**
  * \fn void message(int i, char* s)
  * \brief Affiche un message dans la console et l'ecrit dans un fichier texte.
@@ -19,16 +21,15 @@
  */
 void message(int i, char* s)
 {
-   #define COLONNE 20
-   int j, NbBlanc;
-   file = fopen("./output.txt", "a");
-   NbBlanc=i*COLONNE;
-   for (j=0; j<NbBlanc; j++) {
+	int j, NbBlanc;
+	file = fopen("./output.txt", "a");
+	NbBlanc=i*COLONNE;
+	for (j=0; j<NbBlanc; j++) {
 		putchar(' ');
 		fprintf(file, " ");
 	}
-   printf("%s",s);
-   fprintf(file, "%s", s);
-   fflush(stdout);
-   fclose(file);
+	printf("%s",s);
+	fprintf(file, "%s", s);
+	fflush(stdout);
+	fclose(file);
 }
